@@ -1,0 +1,1217 @@
+{
+  "type": "document",
+  "id": "dp_paid_media_performance_report",
+  "version": "2",
+  "title": "Paid Media Performance Report",
+  "description": "Cross-platform media results: spend, conversions, ROAS / CPA, markets and search health.",
+  "tags": [
+    "Paid Media Performance"
+  ],
+  "period": {
+    "granularity": "MONTH",
+    "from": -5,
+    "to": -1
+  },
+  "content": {
+    "defaults": {
+      "page_size": "widescreen",
+      "takeaway": {
+        "generation": {
+          "instructions": "Act as a senior performance-marketing analyst at a media agency reporting to an advertiser. This report covers Paid Media Performance. Write short messages, max 255 characters. Explain what stands behind the numbers (markets, platforms, campaign types, seasonality, budget, tracking) more than restating them, and end with a concrete recommendation where possible."
+        }
+      }
+    },
+    "sections": [
+      {
+        "id": "section_main",
+        "pages": [
+          {
+            "id": "page_cover",
+            "kind": "cover",
+            "style": {
+              "background_color": "{theme.colors.backgrounds.page}"
+            },
+            "layout": {
+              "type": "row",
+              "children": [
+                {
+                  "type": "column",
+                  "style": {
+                    "background_color": "{theme.colors.backgrounds.page}"
+                  },
+                  "children": [
+                    {
+                      "type": "image",
+                      "id": "page_cover_gap5",
+                      "decorative": true,
+                      "source": "{theme.assets.images.spacer}",
+                      "style": {
+                        "fit": "contain",
+                        "horizontal_align": "center",
+                        "vertical_align": "center"
+                      },
+                      "proportion": 0.3
+                    },
+                    {
+                      "type": "row",
+                      "proportion": 10,
+                      "children": [
+                        {
+                          "type": "image",
+                          "id": "page_cover_gap3",
+                          "decorative": true,
+                          "source": "{theme.assets.images.spacer}",
+                          "style": {
+                            "fit": "contain",
+                            "horizontal_align": "center",
+                            "vertical_align": "center"
+                          },
+                          "proportion": 0.08
+                        },
+                        {
+                          "type": "column",
+                          "proportion": 1,
+                          "children": [
+                            {
+                              "type": "image",
+                              "id": "page_cover_gap1",
+                              "decorative": true,
+                              "source": "{theme.assets.images.spacer}",
+                              "style": {
+                                "fit": "contain",
+                                "horizontal_align": "center",
+                                "vertical_align": "center"
+                              },
+                              "proportion": 1.6
+                            },
+                            {
+                              "type": "text",
+                              "id": "cover_kicker",
+                              "markdown": "PAID MEDIA  ·  {documentDateRange}",
+                              "style": {
+                                "text_style": "smallText",
+                                "text_color": "{theme.colors.texts.accent}",
+                                "vertical_align": "bottom"
+                              },
+                              "proportion": 0.6
+                            },
+                            {
+                              "type": "title",
+                              "id": "cover_title",
+                              "markdown": "**Paid Media Performance Report**",
+                              "style": {
+                                "text_style": "largeText",
+                                "text_color": "{theme.colors.texts.default}",
+                                "vertical_align": "center"
+                              },
+                              "proportion": 1.4
+                            },
+                            {
+                              "type": "image",
+                              "id": "page_cover_rule2",
+                              "decorative": true,
+                              "source": "{theme.assets.images.accent_bar}",
+                              "style": {
+                                "fit": "contain",
+                                "horizontal_align": "left",
+                                "vertical_align": "center"
+                              },
+                              "proportion": 0.08
+                            },
+                            {
+                              "type": "text",
+                              "id": "cover_meta",
+                              "markdown": "Cross-platform media results: spend, conversions, ROAS / CPA, markets and search health.",
+                              "style": {
+                                "text_style": "normalText",
+                                "text_color": "{theme.colors.texts.muted}",
+                                "vertical_align": "top"
+                              },
+                              "proportion": 1.3
+                            },
+                            {
+                              "type": "image",
+                              "id": "cover_logo",
+                              "decorative": true,
+                              "source": "{theme.assets.images.logo}",
+                              "style": {
+                                "fit": "contain",
+                                "horizontal_align": "left",
+                                "vertical_align": "bottom"
+                              },
+                              "proportion": 0.6
+                            }
+                          ]
+                        },
+                        {
+                          "type": "image",
+                          "id": "page_cover_gap4",
+                          "decorative": true,
+                          "source": "{theme.assets.images.spacer}",
+                          "style": {
+                            "fit": "contain",
+                            "horizontal_align": "center",
+                            "vertical_align": "center"
+                          },
+                          "proportion": 0.08
+                        }
+                      ]
+                    },
+                    {
+                      "type": "image",
+                      "id": "page_cover_gap6",
+                      "decorative": true,
+                      "source": "{theme.assets.images.spacer}",
+                      "style": {
+                        "fit": "contain",
+                        "horizontal_align": "center",
+                        "vertical_align": "center"
+                      },
+                      "proportion": 0.3
+                    }
+                  ],
+                  "proportion": 1
+                },
+                {
+                  "type": "column",
+                  "proportion": 1.25,
+                  "style": {
+                    "background_color": "{theme.colors.backgrounds.page}"
+                  },
+                  "children": [
+                    {
+                      "type": "image",
+                      "id": "cover_hero",
+                      "decorative": true,
+                      "source": "{theme.assets.images.dp_paid_media_performance}",
+                      "style": {
+                        "fit": "cover",
+                        "horizontal_align": "center",
+                        "vertical_align": "center"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "id": "page_glance",
+            "kind": "content",
+            "style": {
+              "background_color": "{theme.colors.backgrounds.page}"
+            },
+            "layout": {
+              "type": "column",
+              "children": [
+                {
+                  "type": "column",
+                  "proportion": 2.0,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "page_glance_kicker",
+                      "markdown": "PAID MEDIA",
+                      "style": {
+                        "text_style": "smallText",
+                        "text_color": "{theme.colors.texts.accent}",
+                        "vertical_align": "bottom"
+                      },
+                      "proportion": 0.8
+                    },
+                    {
+                      "type": "title",
+                      "id": "page_glance_title",
+                      "markdown": "**At a Glance**",
+                      "style": {
+                        "text_style": "largeText",
+                        "text_color": "{theme.colors.texts.default}",
+                        "vertical_align": "center"
+                      },
+                      "proportion": 1.3
+                    },
+                    {
+                      "type": "text",
+                      "id": "page_glance_lead",
+                      "markdown": "Headline results for the period.",
+                      "style": {
+                        "text_style": "normalText",
+                        "vertical_align": "top"
+                      },
+                      "proportion": 1
+                    }
+                  ]
+                },
+                {
+                  "type": "image",
+                  "id": "page_glance_rule7",
+                  "decorative": true,
+                  "source": "{theme.assets.images.accent_bar}",
+                  "style": {
+                    "fit": "contain",
+                    "horizontal_align": "left",
+                    "vertical_align": "center"
+                  },
+                  "proportion": 0.05
+                },
+                {
+                  "type": "row",
+                  "proportion": 4.0,
+                  "children": [
+                    {
+                      "type": "column",
+                      "style": {
+                        "background_color": "{theme.colors.backgrounds.card}"
+                      },
+                      "children": [
+                        {
+                          "type": "image",
+                          "id": "page_glance_gap8",
+                          "decorative": true,
+                          "source": "{theme.assets.images.spacer}",
+                          "style": {
+                            "fit": "contain",
+                            "horizontal_align": "center",
+                            "vertical_align": "center"
+                          },
+                          "proportion": 0.35
+                        },
+                        {
+                          "type": "column",
+                          "proportion": 10,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "page_glance_pm_k_cost_lbl",
+                              "markdown": "**COST**",
+                              "style": {
+                                "text_style": "smallText",
+                                "text_color": "{theme.colors.texts.muted}",
+                                "horizontal_align": "center",
+                                "vertical_align": "bottom"
+                              },
+                              "proportion": 0.55
+                            },
+                            {
+                              "type": "column",
+                              "proportion": 3.6,
+                              "children": [
+                                {
+                                  "type": "visualization",
+                                  "id": "page_glance_pm_k_cost",
+                                  "visualization": "pm_k_cost",
+                                  "date": "activity_date"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "image",
+                          "id": "page_glance_gap9",
+                          "decorative": true,
+                          "source": "{theme.assets.images.spacer}",
+                          "style": {
+                            "fit": "contain",
+                            "horizontal_align": "center",
+                            "vertical_align": "center"
+                          },
+                          "proportion": 0.35
+                        }
+                      ]
+                    },
+                    {
+                      "type": "column",
+                      "style": {
+                        "background_color": "{theme.colors.backgrounds.card}"
+                      },
+                      "children": [
+                        {
+                          "type": "image",
+                          "id": "page_glance_gap10",
+                          "decorative": true,
+                          "source": "{theme.assets.images.spacer}",
+                          "style": {
+                            "fit": "contain",
+                            "horizontal_align": "center",
+                            "vertical_align": "center"
+                          },
+                          "proportion": 0.35
+                        },
+                        {
+                          "type": "column",
+                          "proportion": 10,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "page_glance_pm_k_conv_lbl",
+                              "markdown": "**CONVERSIONS**",
+                              "style": {
+                                "text_style": "smallText",
+                                "text_color": "{theme.colors.texts.muted}",
+                                "horizontal_align": "center",
+                                "vertical_align": "bottom"
+                              },
+                              "proportion": 0.55
+                            },
+                            {
+                              "type": "column",
+                              "proportion": 3.6,
+                              "children": [
+                                {
+                                  "type": "visualization",
+                                  "id": "page_glance_pm_k_conv",
+                                  "visualization": "pm_k_conv",
+                                  "date": "activity_date"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "image",
+                          "id": "page_glance_gap11",
+                          "decorative": true,
+                          "source": "{theme.assets.images.spacer}",
+                          "style": {
+                            "fit": "contain",
+                            "horizontal_align": "center",
+                            "vertical_align": "center"
+                          },
+                          "proportion": 0.35
+                        }
+                      ]
+                    },
+                    {
+                      "type": "column",
+                      "style": {
+                        "background_color": "{theme.colors.backgrounds.card}"
+                      },
+                      "children": [
+                        {
+                          "type": "image",
+                          "id": "page_glance_gap12",
+                          "decorative": true,
+                          "source": "{theme.assets.images.spacer}",
+                          "style": {
+                            "fit": "contain",
+                            "horizontal_align": "center",
+                            "vertical_align": "center"
+                          },
+                          "proportion": 0.35
+                        },
+                        {
+                          "type": "column",
+                          "proportion": 10,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "page_glance_pm_k_roas_lbl",
+                              "markdown": "**ROAS**",
+                              "style": {
+                                "text_style": "smallText",
+                                "text_color": "{theme.colors.texts.muted}",
+                                "horizontal_align": "center",
+                                "vertical_align": "bottom"
+                              },
+                              "proportion": 0.55
+                            },
+                            {
+                              "type": "column",
+                              "proportion": 3.6,
+                              "children": [
+                                {
+                                  "type": "visualization",
+                                  "id": "page_glance_pm_k_roas",
+                                  "visualization": "pm_k_roas",
+                                  "date": "activity_date"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "image",
+                          "id": "page_glance_gap13",
+                          "decorative": true,
+                          "source": "{theme.assets.images.spacer}",
+                          "style": {
+                            "fit": "contain",
+                            "horizontal_align": "center",
+                            "vertical_align": "center"
+                          },
+                          "proportion": 0.35
+                        }
+                      ]
+                    },
+                    {
+                      "type": "column",
+                      "style": {
+                        "background_color": "{theme.colors.backgrounds.card}"
+                      },
+                      "children": [
+                        {
+                          "type": "image",
+                          "id": "page_glance_gap14",
+                          "decorative": true,
+                          "source": "{theme.assets.images.spacer}",
+                          "style": {
+                            "fit": "contain",
+                            "horizontal_align": "center",
+                            "vertical_align": "center"
+                          },
+                          "proportion": 0.35
+                        },
+                        {
+                          "type": "column",
+                          "proportion": 10,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "page_glance_pm_k_cpa_lbl",
+                              "markdown": "**CPA**",
+                              "style": {
+                                "text_style": "smallText",
+                                "text_color": "{theme.colors.texts.muted}",
+                                "horizontal_align": "center",
+                                "vertical_align": "bottom"
+                              },
+                              "proportion": 0.55
+                            },
+                            {
+                              "type": "column",
+                              "proportion": 3.6,
+                              "children": [
+                                {
+                                  "type": "visualization",
+                                  "id": "page_glance_pm_k_cpa",
+                                  "visualization": "pm_k_cpa",
+                                  "date": "activity_date"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "image",
+                          "id": "page_glance_gap15",
+                          "decorative": true,
+                          "source": "{theme.assets.images.spacer}",
+                          "style": {
+                            "fit": "contain",
+                            "horizontal_align": "center",
+                            "vertical_align": "center"
+                          },
+                          "proportion": 0.35
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "row",
+                  "proportion": 5.0,
+                  "children": [
+                    {
+                      "type": "column",
+                      "style": {
+                        "background_color": "{theme.colors.backgrounds.card}"
+                      },
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "v_main_lbl",
+                          "markdown": "**Cost & ROAS by Month**",
+                          "style": {
+                            "text_style": "normalText",
+                            "text_color": "{theme.colors.texts.default}",
+                            "horizontal_align": "center",
+                            "vertical_align": "center"
+                          },
+                          "proportion": 1
+                        },
+                        {
+                          "type": "column",
+                          "proportion": 8,
+                          "children": [
+                            {
+                              "type": "visualization",
+                              "id": "v_main",
+                              "visualization": "pm_trend",
+                              "date": "activity_date"
+                            }
+                          ]
+                        }
+                      ],
+                      "proportion": 2.7
+                    },
+                    {
+                      "type": "column",
+                      "style": {
+                        "background_color": "{theme.colors.backgrounds.panel}"
+                      },
+                      "children": [
+                        {
+                          "type": "image",
+                          "id": "page_glance_gap18",
+                          "decorative": true,
+                          "source": "{theme.assets.images.spacer}",
+                          "style": {
+                            "fit": "contain",
+                            "horizontal_align": "center",
+                            "vertical_align": "center"
+                          },
+                          "proportion": 0.3
+                        },
+                        {
+                          "type": "row",
+                          "proportion": 10,
+                          "children": [
+                            {
+                              "type": "image",
+                              "id": "page_glance_gap16",
+                              "decorative": true,
+                              "source": "{theme.assets.images.spacer}",
+                              "style": {
+                                "fit": "contain",
+                                "horizontal_align": "center",
+                                "vertical_align": "center"
+                              },
+                              "proportion": 0.07
+                            },
+                            {
+                              "type": "column",
+                              "proportion": 1,
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "page_glance_ih",
+                                  "markdown": "**What to look for**",
+                                  "style": {
+                                    "text_style": "normalText",
+                                    "text_color": "{theme.colors.texts.accent}",
+                                    "vertical_align": "center"
+                                  },
+                                  "proportion": 1
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "page_glance_ib",
+                                  "markdown": "ROAS holding while spend grows means the budget scales efficiently.\n\nPeaks follow the retail calendar (soldes, Black Friday, Christmas).\n\n**Ask:** which campaign types should get the next euro?",
+                                  "style": {
+                                    "text_style": "smallText",
+                                    "text_color": "{theme.colors.texts.muted}"
+                                  },
+                                  "proportion": 5.5
+                                }
+                              ]
+                            },
+                            {
+                              "type": "image",
+                              "id": "page_glance_gap17",
+                              "decorative": true,
+                              "source": "{theme.assets.images.spacer}",
+                              "style": {
+                                "fit": "contain",
+                                "horizontal_align": "center",
+                                "vertical_align": "center"
+                              },
+                              "proportion": 0.07
+                            }
+                          ]
+                        },
+                        {
+                          "type": "image",
+                          "id": "page_glance_gap19",
+                          "decorative": true,
+                          "source": "{theme.assets.images.spacer}",
+                          "style": {
+                            "fit": "contain",
+                            "horizontal_align": "center",
+                            "vertical_align": "center"
+                          },
+                          "proportion": 0.3
+                        }
+                      ],
+                      "proportion": 1.3
+                    }
+                  ]
+                },
+                {
+                  "type": "row",
+                  "proportion": 0.6,
+                  "children": [
+                    {
+                      "type": "image",
+                      "id": "page_glance_logo",
+                      "decorative": true,
+                      "source": "{theme.assets.images.logo}",
+                      "style": {
+                        "fit": "contain",
+                        "horizontal_align": "left",
+                        "vertical_align": "bottom"
+                      },
+                      "proportion": 2
+                    },
+                    {
+                      "type": "text",
+                      "id": "page_glance_section",
+                      "proportion": 5,
+                      "decorative": true,
+                      "markdown": "Arcane  ·  Paid Media Performance",
+                      "style": {
+                        "text_style": "smallText",
+                        "horizontal_align": "center",
+                        "vertical_align": "bottom"
+                      }
+                    },
+                    {
+                      "type": "text",
+                      "id": "page_glance_pageno",
+                      "proportion": 2,
+                      "decorative": true,
+                      "markdown": "{currentPageNumber} / {totalPages}",
+                      "style": {
+                        "text_style": "smallText",
+                        "horizontal_align": "right",
+                        "vertical_align": "bottom"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "id": "page_1",
+            "kind": "content",
+            "style": {
+              "background_color": "{theme.colors.backgrounds.page}"
+            },
+            "layout": {
+              "type": "column",
+              "children": [
+                {
+                  "type": "column",
+                  "proportion": 2.0,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "page_1_kicker",
+                      "markdown": "PAID MEDIA",
+                      "style": {
+                        "text_style": "smallText",
+                        "text_color": "{theme.colors.texts.accent}",
+                        "vertical_align": "bottom"
+                      },
+                      "proportion": 0.8
+                    },
+                    {
+                      "type": "title",
+                      "id": "page_1_title",
+                      "markdown": "**Platforms & Campaign Types**",
+                      "style": {
+                        "text_style": "largeText",
+                        "text_color": "{theme.colors.texts.default}",
+                        "vertical_align": "center"
+                      },
+                      "proportion": 1.3
+                    },
+                    {
+                      "type": "text",
+                      "id": "page_1_lead",
+                      "markdown": "Where the budget goes and which campaign types pay back.",
+                      "style": {
+                        "text_style": "normalText",
+                        "vertical_align": "top"
+                      },
+                      "proportion": 1
+                    }
+                  ]
+                },
+                {
+                  "type": "image",
+                  "id": "page_1_rule20",
+                  "decorative": true,
+                  "source": "{theme.assets.images.accent_bar}",
+                  "style": {
+                    "fit": "contain",
+                    "horizontal_align": "left",
+                    "vertical_align": "center"
+                  },
+                  "proportion": 0.05
+                },
+                {
+                  "type": "row",
+                  "proportion": 8,
+                  "children": [
+                    {
+                      "type": "column",
+                      "style": {
+                        "background_color": "{theme.colors.backgrounds.card}"
+                      },
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "v_1_l_lbl",
+                          "markdown": "**Cost by Platform**",
+                          "style": {
+                            "text_style": "normalText",
+                            "text_color": "{theme.colors.texts.default}",
+                            "horizontal_align": "center",
+                            "vertical_align": "center"
+                          },
+                          "proportion": 1
+                        },
+                        {
+                          "type": "column",
+                          "proportion": 8,
+                          "children": [
+                            {
+                              "type": "visualization",
+                              "id": "v_1_l",
+                              "visualization": "pm_by_platform",
+                              "date": "activity_date"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "column",
+                      "style": {
+                        "background_color": "{theme.colors.backgrounds.card}"
+                      },
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "v_1_r_lbl",
+                          "markdown": "**Performance by Campaign Type**",
+                          "style": {
+                            "text_style": "normalText",
+                            "text_color": "{theme.colors.texts.default}",
+                            "horizontal_align": "center",
+                            "vertical_align": "center"
+                          },
+                          "proportion": 1
+                        },
+                        {
+                          "type": "column",
+                          "proportion": 8,
+                          "children": [
+                            {
+                              "type": "visualization",
+                              "id": "v_1_r",
+                              "visualization": "pm_by_type",
+                              "date": "activity_date"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "column",
+                      "style": {
+                        "background_color": "{theme.colors.backgrounds.panel}"
+                      },
+                      "children": [
+                        {
+                          "type": "image",
+                          "id": "page_1_gap23",
+                          "decorative": true,
+                          "source": "{theme.assets.images.spacer}",
+                          "style": {
+                            "fit": "contain",
+                            "horizontal_align": "center",
+                            "vertical_align": "center"
+                          },
+                          "proportion": 0.3
+                        },
+                        {
+                          "type": "row",
+                          "proportion": 10,
+                          "children": [
+                            {
+                              "type": "image",
+                              "id": "page_1_gap21",
+                              "decorative": true,
+                              "source": "{theme.assets.images.spacer}",
+                              "style": {
+                                "fit": "contain",
+                                "horizontal_align": "center",
+                                "vertical_align": "center"
+                              },
+                              "proportion": 0.07
+                            },
+                            {
+                              "type": "column",
+                              "proportion": 1,
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "page_1_ih",
+                                  "markdown": "**What to look for**",
+                                  "style": {
+                                    "text_style": "normalText",
+                                    "text_color": "{theme.colors.texts.accent}",
+                                    "vertical_align": "center"
+                                  },
+                                  "proportion": 1
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "page_1_ib",
+                                  "markdown": "Brand search has the best ROAS but little incremental value.\n\nPMax replaced Standard Shopping in March 2025.\n\n**Ask:** where is CPA above target?",
+                                  "style": {
+                                    "text_style": "smallText",
+                                    "text_color": "{theme.colors.texts.muted}"
+                                  },
+                                  "proportion": 5.5
+                                }
+                              ]
+                            },
+                            {
+                              "type": "image",
+                              "id": "page_1_gap22",
+                              "decorative": true,
+                              "source": "{theme.assets.images.spacer}",
+                              "style": {
+                                "fit": "contain",
+                                "horizontal_align": "center",
+                                "vertical_align": "center"
+                              },
+                              "proportion": 0.07
+                            }
+                          ]
+                        },
+                        {
+                          "type": "image",
+                          "id": "page_1_gap24",
+                          "decorative": true,
+                          "source": "{theme.assets.images.spacer}",
+                          "style": {
+                            "fit": "contain",
+                            "horizontal_align": "center",
+                            "vertical_align": "center"
+                          },
+                          "proportion": 0.3
+                        }
+                      ],
+                      "proportion": 0.75
+                    }
+                  ]
+                },
+                {
+                  "type": "row",
+                  "proportion": 0.6,
+                  "children": [
+                    {
+                      "type": "image",
+                      "id": "page_1_logo",
+                      "decorative": true,
+                      "source": "{theme.assets.images.logo}",
+                      "style": {
+                        "fit": "contain",
+                        "horizontal_align": "left",
+                        "vertical_align": "bottom"
+                      },
+                      "proportion": 2
+                    },
+                    {
+                      "type": "text",
+                      "id": "page_1_section",
+                      "proportion": 5,
+                      "decorative": true,
+                      "markdown": "Arcane  ·  Paid Media Performance",
+                      "style": {
+                        "text_style": "smallText",
+                        "horizontal_align": "center",
+                        "vertical_align": "bottom"
+                      }
+                    },
+                    {
+                      "type": "text",
+                      "id": "page_1_pageno",
+                      "proportion": 2,
+                      "decorative": true,
+                      "markdown": "{currentPageNumber} / {totalPages}",
+                      "style": {
+                        "text_style": "smallText",
+                        "horizontal_align": "right",
+                        "vertical_align": "bottom"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "id": "page_2",
+            "kind": "content",
+            "style": {
+              "background_color": "{theme.colors.backgrounds.page}"
+            },
+            "layout": {
+              "type": "column",
+              "children": [
+                {
+                  "type": "column",
+                  "proportion": 2.0,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "page_2_kicker",
+                      "markdown": "PAID MEDIA",
+                      "style": {
+                        "text_style": "smallText",
+                        "text_color": "{theme.colors.texts.accent}",
+                        "vertical_align": "bottom"
+                      },
+                      "proportion": 0.8
+                    },
+                    {
+                      "type": "title",
+                      "id": "page_2_title",
+                      "markdown": "**Markets & Search Health**",
+                      "style": {
+                        "text_style": "largeText",
+                        "text_color": "{theme.colors.texts.default}",
+                        "vertical_align": "center"
+                      },
+                      "proportion": 1.3
+                    },
+                    {
+                      "type": "text",
+                      "id": "page_2_lead",
+                      "markdown": "Results per market and the search impression share trend.",
+                      "style": {
+                        "text_style": "normalText",
+                        "vertical_align": "top"
+                      },
+                      "proportion": 1
+                    }
+                  ]
+                },
+                {
+                  "type": "image",
+                  "id": "page_2_rule25",
+                  "decorative": true,
+                  "source": "{theme.assets.images.accent_bar}",
+                  "style": {
+                    "fit": "contain",
+                    "horizontal_align": "left",
+                    "vertical_align": "center"
+                  },
+                  "proportion": 0.05
+                },
+                {
+                  "type": "row",
+                  "proportion": 8,
+                  "children": [
+                    {
+                      "type": "column",
+                      "style": {
+                        "background_color": "{theme.colors.backgrounds.card}"
+                      },
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "v_2_l_lbl",
+                          "markdown": "**Cost & Conversions by Market**",
+                          "style": {
+                            "text_style": "normalText",
+                            "text_color": "{theme.colors.texts.default}",
+                            "horizontal_align": "center",
+                            "vertical_align": "center"
+                          },
+                          "proportion": 1
+                        },
+                        {
+                          "type": "column",
+                          "proportion": 8,
+                          "children": [
+                            {
+                              "type": "visualization",
+                              "id": "v_2_l",
+                              "visualization": "pm_by_market",
+                              "date": "activity_date"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "column",
+                      "style": {
+                        "background_color": "{theme.colors.backgrounds.card}"
+                      },
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "v_2_r_lbl",
+                          "markdown": "**Search Impression Share by Week**",
+                          "style": {
+                            "text_style": "normalText",
+                            "text_color": "{theme.colors.texts.default}",
+                            "horizontal_align": "center",
+                            "vertical_align": "center"
+                          },
+                          "proportion": 1
+                        },
+                        {
+                          "type": "column",
+                          "proportion": 8,
+                          "children": [
+                            {
+                              "type": "visualization",
+                              "id": "v_2_r",
+                              "visualization": "pm_is_trend",
+                              "date": "activity_date"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "column",
+                      "style": {
+                        "background_color": "{theme.colors.backgrounds.panel}"
+                      },
+                      "children": [
+                        {
+                          "type": "image",
+                          "id": "page_2_gap28",
+                          "decorative": true,
+                          "source": "{theme.assets.images.spacer}",
+                          "style": {
+                            "fit": "contain",
+                            "horizontal_align": "center",
+                            "vertical_align": "center"
+                          },
+                          "proportion": 0.3
+                        },
+                        {
+                          "type": "row",
+                          "proportion": 10,
+                          "children": [
+                            {
+                              "type": "image",
+                              "id": "page_2_gap26",
+                              "decorative": true,
+                              "source": "{theme.assets.images.spacer}",
+                              "style": {
+                                "fit": "contain",
+                                "horizontal_align": "center",
+                                "vertical_align": "center"
+                              },
+                              "proportion": 0.07
+                            },
+                            {
+                              "type": "column",
+                              "proportion": 1,
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "page_2_ih",
+                                  "markdown": "**What to look for**",
+                                  "style": {
+                                    "text_style": "normalText",
+                                    "text_color": "{theme.colors.texts.accent}",
+                                    "vertical_align": "center"
+                                  },
+                                  "proportion": 1
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "page_2_ib",
+                                  "markdown": "A jump in Lost IS (Budget) means campaigns are capped and miss demand.\n\nLost IS (Rank) means competitors outbid us.\n\n**Ask:** which market is budget-limited?",
+                                  "style": {
+                                    "text_style": "smallText",
+                                    "text_color": "{theme.colors.texts.muted}"
+                                  },
+                                  "proportion": 5.5
+                                }
+                              ]
+                            },
+                            {
+                              "type": "image",
+                              "id": "page_2_gap27",
+                              "decorative": true,
+                              "source": "{theme.assets.images.spacer}",
+                              "style": {
+                                "fit": "contain",
+                                "horizontal_align": "center",
+                                "vertical_align": "center"
+                              },
+                              "proportion": 0.07
+                            }
+                          ]
+                        },
+                        {
+                          "type": "image",
+                          "id": "page_2_gap29",
+                          "decorative": true,
+                          "source": "{theme.assets.images.spacer}",
+                          "style": {
+                            "fit": "contain",
+                            "horizontal_align": "center",
+                            "vertical_align": "center"
+                          },
+                          "proportion": 0.3
+                        }
+                      ],
+                      "proportion": 0.75
+                    }
+                  ]
+                },
+                {
+                  "type": "row",
+                  "proportion": 0.6,
+                  "children": [
+                    {
+                      "type": "image",
+                      "id": "page_2_logo",
+                      "decorative": true,
+                      "source": "{theme.assets.images.logo}",
+                      "style": {
+                        "fit": "contain",
+                        "horizontal_align": "left",
+                        "vertical_align": "bottom"
+                      },
+                      "proportion": 2
+                    },
+                    {
+                      "type": "text",
+                      "id": "page_2_section",
+                      "proportion": 5,
+                      "decorative": true,
+                      "markdown": "Arcane  ·  Paid Media Performance",
+                      "style": {
+                        "text_style": "smallText",
+                        "horizontal_align": "center",
+                        "vertical_align": "bottom"
+                      }
+                    },
+                    {
+                      "type": "text",
+                      "id": "page_2_pageno",
+                      "proportion": 2,
+                      "decorative": true,
+                      "markdown": "{currentPageNumber} / {totalPages}",
+                      "style": {
+                        "text_style": "smallText",
+                        "horizontal_align": "right",
+                        "vertical_align": "bottom"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

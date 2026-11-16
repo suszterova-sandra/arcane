@@ -1,0 +1,103 @@
+# Arcane – GoodData setup
+
+The whole workspace is code. `build_analytics.py` generates the data model, metrics, visualizations and dashboards, and the `gd` CLI deploys them.
+
+| Setting | Value |
+|---|---|
+| Org | sandrasuszterova.demo.cloud.gooddata.com |
+| Parent workspace | `4d4926ef508e4cba9085ca29fefcf4fd` (Arcane) |
+| Client workspaces | `secondevie`, `autonova`, `routeo` (WDF `client_id` on `wdf__client_id`) |
+| Data source | `arcane-motherduck` (MotherDuck `arcane`, schema `main`) |
+| Secrets | `arcane/.env` (gitignored): `GOODDATA_API_TOKEN`, `motherduck_token` |
+
+```bash
+cd arcane
+set -a; . ./.env; set +a
+export PATH=~/.nvm/versions/node/v22.14.0/bin:$PATH   # gd CLI
+
+python3 gooddata/create_datasource.py     # data source arcane-motherduck (token base64-encoded for GoodData)
+python3 gooddata/provision.py --wdf-only  # first time only: data filter on the parent
+python3 gooddata/build_analytics.py       # analytics/*.yaml + gooddata/data_products.json
+gd validate && gd deploy                  # parent workspace
+python3 gooddata/provision.py             # client workspaces (or --client routeo for a live demo)
+python3 gooddata/apply_permissions.py     # object-level permissions per data product (re-run after every deploy)
+python3 gooddata/check_dashboards.py      # replay every widget (last 12 months) in parent + clients
+python3 theme/build_themes.py --deploy    # Arcane theme on the parent, co-branded client themes on the children
+python3 publisher/build_reports.py --deploy  # one publisher report per data product (documents dp_<product>_report)
+python3 gooddata/deploy_ai_context.py     # AI memory (parent + per-client definitions) + knowledge guide
+python3 tenancy/reconcile.py --tokens     # demo personas (tenancy/personas.csv) + API tokens -> tenancy/.tokens.json
+python3 tenancy/verify_personas.py        # act as each persona: own client only, own dashboards, others refused
+```
+
+After reloading MotherDuck (`demo_data/load_motherduck.py`, which reads the token from `.env`), clear the cache:
+`curl -X POST -H "Authorization: Bearer $GOODDATA_API_TOKEN" $HOST/api/v1/actions/dataSources/arcane-motherduck/uploadNotification`
+
+## Data products and permissions
+
+There are 8 dashboards, one per data product. Each one uses only its own product, the shared dimensions and Core.
+The builder fails if anything breaks that rule.
+
+| Dashboard | Data product | Group | Visible to |
+|---|---|---|---|
+| 1. Paid Media Performance | Core | `dp_paid_media_performance` | everyone |
+| 2. Social & Creatives | Standard | `dp_social_creatives` | group |
+| 3. Web, Sales & GEO | Standard | `dp_web_analytics_and_geo` | group |
+| 4. Budget & Pacing | Standard | `dp_budget_and_pacing` | group |
+| 5. Product Feed & Shopping | Premium add-on | `dp_product_feed_and_shopping` | group |
+| 6. CRM & Offline Sales | Premium add-on | `dp_crm_and_offline_sales` | group |
+| 7. Measurement & Incrementality | Premium add-on | `dp_measurement_and_incrementality` | group |
+| 8. Arcane Operations (internal) | Internal | `dp_arcane_operations` | group (Arcane staff) |
+
+To give a client user the products from their client's entitlements:
+`python3 gooddata/apply_permissions.py --add-user <user_id> --client routeo`
+
+`check_dashboards.py` reports these as EMPTY, and that's expected:
+- **Product Feed (AutoNova, Routéo) and CRM (Routéo):** these clients aren't entitled. Permissions hide the dashboards from their users.
+- **AutoNova web revenue KPIs:** AutoNova is a lead-gen business with no online sales. Web leads are in the CRM.
+- **AutoNova incrementality:** the tests ran in 2024–25. The dashboard's default range is 36 months, but the checker uses 12.
+
+## White-label themes (`theme/`)
+
+| Workspace | Theme |
+|---|---|
+| Parent (Arcane) | Arcane brand: teal `#004C52`, coral `#FF6555`, mint `#8FC9A9`, Zalando Sans, Arcane logo |
+| `secondevie` | Seconde Vie green, co-branded wordmark "Seconde Vie x Arcane" |
+| `autonova` | AutoNova navy / red, "AutoNova x Arcane" |
+| `routeo` | Routéo navy / orange, "Routeo x Arcane" |
+
+## AI context (`gooddata/deploy_ai_context.py`)
+
+- **Parent:** 11 memory items: platform vs backend ROAS, what conversions mean, partial periods, good and bad direction,
+  how to diagnose a drop, tracking issues, pacing, creatives, incrementality, GEO and the product feed. There's also
+  the knowledge document `knowledge/arcane_analytics_guide.md`. The client workspaces inherit all of it.
+- **Per client (the semantic layer per client):** what "sales" means for that client, its target, and its specifics:
+  Seconde Vie Pro B2B, AutoNova SmartConversion, Routéo booking seasonality.
+
+## Demo personas (`tenancy/`)
+
+| User | Workspace | Permissions | Data products |
+|---|---|---|---|
+| Camille Marchand (`arc.consultant`), Arcane media consultant | parent | ANALYZE, EXPORT, automations, AI | all 8 (incl. Arcane Operations) |
+| Léa Dubois (`arc.secondevie.ecom`), Seconde Vie | `secondevie` | ANALYZE, EXPORT, AI | 7 (all client-facing) |
+| Marc Fontaine (`arc.autonova.marketing`), AutoNova | `autonova` | ANALYZE, AI | 6 (no Product Feed) |
+| Elena Ruiz (`arc.routeo.marketing`), Routéo | `routeo` | VIEW, AI | 4 (Core + Standard) |
+
+These personas are API-only users (`@example.com`), so they can't log in to the UI. `verify_personas.py` uses their
+tokens to prove isolation and permissions: 4/4 personas pass. To show them live in the UI, the Viventium persona
+portal (`viventium/demo_app`) can be ported.
+
+## Publisher reports (`publisher/`)
+
+There's one report per data product (`dp_<product>_report`), 8 in total. Each has a cover, an "At a Glance" page with
+4 KPIs, the main chart and a reading guide, plus 1-2 analysis pages. The period is the last 6 complete months
+(Measurement: 24 months), and AI takeaways are on.
+
+- **Permissions:** GoodData documents have no permissions API, so every user sees all 8 reports in the list. A report
+  uses only visualizations of its own data product (the build fails otherwise), so the object-level permissions block
+  its content for users outside the product's group. `tenancy/verify_personas.py` checks this: each persona can open
+  exactly the reports of its data products (8 / 7 / 6 / 4).
+- **Theming:** colours, logo and images come from the active workspace theme. Every theme has a cover image per data
+  product (`{theme.assets.images.dp_<product>}`) in its own brand colours. The same report therefore renders in Arcane
+  teal in the parent and in each client's co-branded theme in its workspace.
+- **Data:** the reports live in the parent workspace and are inherited by the client workspaces, where the workspace
+  data filter limits the data to that client.

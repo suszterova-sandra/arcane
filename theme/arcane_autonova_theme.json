@@ -1,0 +1,400 @@
+{
+  "version": "2",
+  "palette": {
+    "primary": {
+      "base": "#1E5AA8",
+      "contrast": "#FFFFFF"
+    },
+    "error": {
+      "base": "#D1435B"
+    },
+    "warning": {
+      "base": "#FBBF24"
+    },
+    "success": {
+      "base": "#2F9E7A"
+    },
+    "complementary": {
+      "c0": "#FFFFFF",
+      "c1": "#F3F6FA",
+      "c2": "#F3F6FA",
+      "c3": "#DCE3EE",
+      "c4": "#DCE3EE",
+      "c5": "#9A98A8",
+      "c6": "#6E6C80",
+      "c7": "#4F4D63",
+      "c8": "#0B2545",
+      "c9": "#0B1A2E"
+    }
+  },
+  "typography": {
+    "font": "https://fonts.gstatic.com/s/zalandosans/v3/FwZJ7-Asy1Em_lq_aK3hpr-RrktWHD54lnesO2lsfPbPd_ajf_E.woff2",
+    "fontBold": "https://fonts.gstatic.com/s/zalandosans/v3/FwZJ7-Asy1Em_lq_aK3hpr-RrktWHD54lnesO2lsfPbPd_ajf_E.woff2"
+  },
+  "button": {
+    "borderRadius": "8",
+    "dropShadow": false,
+    "textCapitalization": false
+  },
+  "modal": {
+    "title": {
+      "color": "#0B1A2E",
+      "lineColor": "#DCE3EE"
+    },
+    "borderColor": "#DCE3EE",
+    "borderRadius": "14",
+    "borderWidth": "1",
+    "dropShadow": true,
+    "outsideBackgroundColor": "rgba(0, 0, 0, 0.45)"
+  },
+  "tooltip": {
+    "color": "#FFFFFF",
+    "backgroundColor": "#0B1A2E"
+  },
+  "chart": {
+    "backgroundColor": "#FFFFFF",
+    "gridColor": "#F3F6FA",
+    "axisColor": "#DCE3EE",
+    "axisLabelColor": "#7E7C90",
+    "axisValueColor": "#4F4D63",
+    "legendValueColor": "#4F4D63",
+    "plotLineColor": "#DCE3EE",
+    "tooltipBackgroundColor": "#0B1A2E",
+    "tooltipBorderColor": "#0B1A2E",
+    "tooltipLabelColor": "#DCE3EE",
+    "tooltipValueColor": "#FFFFFF"
+  },
+  "table": {
+    "valueColor": "#0B2545",
+    "nullValueColor": "#7E7C90",
+    "hoverBackgroundColor": "#F3F6FA",
+    "loadingIconColor": "#1E5AA8",
+    "headerLabelColor": "#7E7C90",
+    "headerHoverBackgroundColor": "#F3F6FA",
+    "subtotalBackgroundColor": "#F3F6FA",
+    "totalBackgroundColor": "#DCE3EE",
+    "totalValueColor": "#0B1A2E"
+  },
+  "kpi": {
+    "primaryMeasureColor": "#0B1A2E",
+    "secondaryInfoColor": "#4F4D63",
+    "value": {
+      "positiveColor": "#2F9E7A",
+      "negativeColor": "#D1435B"
+    }
+  },
+  "dashboards": {
+    "title": {
+      "color": "#0B1A2E",
+      "backgroundColor": "#FFFFFF",
+      "borderColor": "#FFFFFF"
+    },
+    "navigation": {
+      "title": {
+        "color": "#FFFFFF"
+      },
+      "backgroundColor": "#0B2545",
+      "borderColor": "#0B2545",
+      "item": {
+        "color": "#E6E9EE",
+        "hoverColor": "#FFFFFF",
+        "selectedColor": "#0B2545",
+        "selectedBackgroundColor": "#E63946"
+      }
+    },
+    "filterBar": {
+      "backgroundColor": "#FFFFFF",
+      "borderColor": "#DCE3EE",
+      "filterButton": {
+        "backgroundColor": "#F3F6FA"
+      }
+    },
+    "section": {
+      "title": {
+        "color": "#0B1A2E",
+        "lineColor": "#DCE3EE"
+      },
+      "description": {
+        "color": "#4F4D63"
+      },
+      "backgroundColor": "#FFFFFF"
+    },
+    "content": {
+      "backgroundColor": "#F3F6FA",
+      "widget": {
+        "title": {
+          "color": "#0B1A2E",
+          "textAlign": "center"
+        },
+        "backgroundColor": "#FFFFFF",
+        "borderColor": "#DCE3EE",
+        "borderRadius": "14",
+        "borderWidth": "1",
+        "dropShadow": false
+      },
+      "kpiWidget": {
+        "title": {
+          "color": "#E9E3F3",
+          "textAlign": "center"
+        },
+        "backgroundColor": "#0B2545",
+        "borderColor": "#0B2545",
+        "borderRadius": "14",
+        "borderWidth": "1",
+        "dropShadow": false,
+        "kpi": {
+          "primaryMeasureColor": "#FFFFFF",
+          "secondaryInfoColor": "#E9E3F3",
+          "value": {
+            "positiveColor": "#8FE3C0",
+            "negativeColor": "#FFB3BF"
+          }
+        }
+      }
+    }
+  },
+  "analyticalDesigner": {
+    "title": {
+      "color": "#0B1A2E"
+    }
+  },
+  "documents": {
+    "visualizationPalette": [
+      "#0B2545",
+      "#1E5AA8",
+      "#E63946",
+      "#8DA9C4",
+      "#F4A261",
+      "#5C677D",
+      "#13315C",
+      "#B8C5D6",
+      "#F1C6C9",
+      "#2A9D8F"
+    ],
+    "page": {
+      "backgroundColor": "#F3F6FA"
+    },
+    "colors": {
+      "backgrounds": [
+        {
+          "id": "page",
+          "color": "#F3F6FA"
+        },
+        {
+          "id": "card",
+          "color": "#FFFFFF"
+        },
+        {
+          "id": "panel",
+          "color": "#F3F6FA"
+        },
+        {
+          "id": "accent",
+          "color": "#1E5AA8"
+        }
+      ],
+      "texts": [
+        {
+          "id": "default",
+          "color": "#0B1A2E"
+        },
+        {
+          "id": "muted",
+          "color": "#4F4D63"
+        },
+        {
+          "id": "subtle",
+          "color": "#7E7C90"
+        },
+        {
+          "id": "accent",
+          "color": "#1E5AA8"
+        },
+        {
+          "id": "inverse",
+          "color": "#FFFFFF"
+        }
+      ]
+    },
+    "textStyle": {
+      "typography": {
+        "fontFamily": "Zalando Sans, Helvetica Neue, Arial, sans-serif",
+        "fonts": [
+          {
+            "family": "Zalando Sans",
+            "url": "https://fonts.gstatic.com/s/inter/v20/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuLyfAZ9hiJ-Ek-_0ew.woff2",
+            "weight": 400
+          },
+          {
+            "family": "Zalando Sans",
+            "url": "https://fonts.gstatic.com/s/inter/v20/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuFuYAZ9hiJ-Ek-_0ew.woff2",
+            "weight": 700
+          }
+        ]
+      },
+      "heading": {
+        "color": "#0B1A2E",
+        "h1": {
+          "fontSize": 4.4,
+          "lineHeight": 5,
+          "color": "#0B1A2E"
+        },
+        "h2": {
+          "fontSize": 2.1,
+          "lineHeight": 2.7,
+          "color": "#0B1A2E"
+        },
+        "h3": {
+          "fontSize": 1.6,
+          "lineHeight": 2.1,
+          "color": "#0B1A2E"
+        },
+        "h4": {
+          "fontSize": 1.35,
+          "lineHeight": 1.8,
+          "color": "#0B1A2E"
+        },
+        "h5": {
+          "fontSize": 1.2,
+          "lineHeight": 1.6,
+          "color": "#0B1A2E"
+        },
+        "h6": {
+          "fontSize": 1.1,
+          "lineHeight": 1.5,
+          "color": "#0B1A2E"
+        }
+      },
+      "paragraph": {
+        "color": "#4F4D63",
+        "largeText": {
+          "fontSize": 1.65,
+          "lineHeight": 2.3,
+          "color": "#0B1A2E"
+        },
+        "normalText": {
+          "fontSize": 1.35,
+          "lineHeight": 1.9,
+          "color": "#4F4D63"
+        },
+        "smallText": {
+          "fontSize": 1.1,
+          "lineHeight": 1.5,
+          "color": "#7E7C90"
+        }
+      }
+    }
+  },
+  "header": {
+    "backgroundColor": "#0B2545",
+    "color": "#FFFFFF",
+    "activeColor": "#E63946"
+  },
+  "assets": {
+    "logos": [
+      {
+        "id": "logo",
+        "url": "https://placehold.co/600x140/FFFFFF/0B2545/png?text=AutoNova+x+Arcane&font=montserrat",
+        "title": "AutoNova logo",
+        "altText": "AutoNova logo"
+      }
+    ],
+    "backgrounds": [
+      {
+        "id": "cover_bg",
+        "url": "https://placehold.co/1920x1080/0B2545/0B2545/png",
+        "title": "Cover background",
+        "altText": "Cover background"
+      },
+      {
+        "id": "section_bg",
+        "url": "https://placehold.co/1920x1080/0B2545/0B2545/png",
+        "title": "Section background",
+        "altText": "Section background"
+      }
+    ],
+    "images": [
+      {
+        "id": "cover_bg",
+        "url": "https://placehold.co/1920x1080/0B2545/0B2545/png",
+        "title": "Cover background",
+        "altText": "Cover background"
+      },
+      {
+        "id": "section_bg",
+        "url": "https://placehold.co/1920x1080/0B2545/0B2545/png",
+        "title": "Section background",
+        "altText": "Section background"
+      },
+      {
+        "id": "accent_bar",
+        "url": "https://placehold.co/1600x12/E63946/E63946/png",
+        "title": "Accent rule",
+        "altText": "Accent rule"
+      },
+      {
+        "id": "logo",
+        "url": "https://placehold.co/600x140/FFFFFF/0B2545/png?text=AutoNova+x+Arcane&font=montserrat",
+        "title": "AutoNova logo",
+        "altText": "AutoNova logo"
+      },
+      {
+        "id": "spacer",
+        "url": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=",
+        "title": "Spacer",
+        "altText": ""
+      },
+      {
+        "id": "dp_paid_media_performance",
+        "url": "https://www.arcane.run/wp-content/uploads/2026/07/home_hero_visual.webp",
+        "title": "Paid Media Performance",
+        "altText": "Paid Media Performance"
+      },
+      {
+        "id": "dp_social_creatives",
+        "url": "https://www.arcane.run/wp-content/uploads/2026/07/Tile-slider-29.webp",
+        "title": "Social Creatives",
+        "altText": "Social Creatives"
+      },
+      {
+        "id": "dp_web_analytics_and_geo",
+        "url": "https://www.arcane.run/wp-content/uploads/2026/07/Group-427320730-2.webp",
+        "title": "Web Analytics And Geo",
+        "altText": "Web Analytics And Geo"
+      },
+      {
+        "id": "dp_budget_and_pacing",
+        "url": "https://www.arcane.run/wp-content/uploads/2026/07/Group-427320640.webp",
+        "title": "Budget And Pacing",
+        "altText": "Budget And Pacing"
+      },
+      {
+        "id": "dp_product_feed_and_shopping",
+        "url": "https://www.arcane.run/wp-content/uploads/2026/07/Group-427320637.webp",
+        "title": "Product Feed And Shopping",
+        "altText": "Product Feed And Shopping"
+      },
+      {
+        "id": "dp_crm_and_offline_sales",
+        "url": "https://www.arcane.run/wp-content/uploads/2026/07/Tile-slider-26.webp",
+        "title": "Crm And Offline Sales",
+        "altText": "Crm And Offline Sales"
+      },
+      {
+        "id": "dp_measurement_and_incrementality",
+        "url": "https://www.arcane.run/wp-content/uploads/2026/07/Group-427320639.webp",
+        "title": "Measurement And Incrementality",
+        "altText": "Measurement And Incrementality"
+      },
+      {
+        "id": "dp_arcane_operations",
+        "url": "https://www.arcane.run/wp-content/uploads/2026/07/Group-427320638.webp",
+        "title": "Arcane Operations",
+        "altText": "Arcane Operations"
+      }
+    ]
+  },
+  "images": {
+    "logo": "url(https://placehold.co/600x140/0B2545/FFFFFF/png?text=AutoNova+x+Arcane&font=montserrat)"
+  }
+}

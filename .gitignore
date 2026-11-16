@@ -1,0 +1,9 @@
+# secrets: the organization admin token and the MotherDuck token never leave this machine
+.env
+# persona API tokens ARE committed on purpose in demo_app/.tokens.json (demo users only, needed by the static build)
+tenancy/.tokens.json
+__pycache__/
+*.duckdb
+.DS_Store
+node_modules/
+dist/

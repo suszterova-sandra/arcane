@@ -1,0 +1,8 @@
+profiles:
+  dev:
+    host: https://sandrasuszterova.demo.cloud.gooddata.com/
+    token: $GOODDATA_API_TOKEN
+    workspace_id: 4d4926ef508e4cba9085ca29fefcf4fd
+    data_source: arcane-motherduck
+source_dir: analytics
+default_profile: dev

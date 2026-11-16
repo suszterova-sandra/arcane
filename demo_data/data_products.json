@@ -1,0 +1,153 @@
+{
+  "rule": "A data product's datasets may reference only Shared Dimensions or their own datasets; its metrics may also use the Core product (Paid Media Performance), which every client and every Arcane user can see. Date datasets are shared.",
+  "shared_dimensions": [
+    "clients",
+    "platforms",
+    "markets",
+    "campaigns"
+  ],
+  "references": {
+    "platforms": [],
+    "markets": [],
+    "clients": [],
+    "campaigns": [
+      "clients",
+      "platforms",
+      "markets"
+    ],
+    "ad_performance_daily": [
+      "campaigns"
+    ],
+    "creatives": [
+      "campaigns"
+    ],
+    "creative_performance_daily": [
+      "creatives"
+    ],
+    "products": [],
+    "product_performance_weekly": [
+      "products",
+      "campaigns"
+    ],
+    "web_analytics_daily": [
+      "clients",
+      "markets"
+    ],
+    "business_locations": [],
+    "crm_leads": [
+      "campaigns",
+      "business_locations"
+    ],
+    "media_budgets": [
+      "clients",
+      "platforms",
+      "markets"
+    ],
+    "incrementality_tests": [
+      "clients",
+      "platforms",
+      "markets"
+    ],
+    "data_requests": [
+      "clients"
+    ],
+    "client_data_products": [
+      "clients"
+    ]
+  },
+  "data_products": {
+    "Paid Media Performance": {
+      "user_group": "dp_paid_media_performance",
+      "package": "Core",
+      "audience": "Client + Arcane",
+      "datasets": [
+        "ad_performance_daily"
+      ]
+    },
+    "Social Creatives": {
+      "user_group": "dp_social_creatives",
+      "package": "Standard",
+      "audience": "Client + Arcane",
+      "datasets": [
+        "creatives",
+        "creative_performance_daily"
+      ]
+    },
+    "Web Analytics & GEO": {
+      "user_group": "dp_web_analytics_and_geo",
+      "package": "Standard",
+      "audience": "Client + Arcane",
+      "datasets": [
+        "web_analytics_daily"
+      ]
+    },
+    "Budget & Pacing": {
+      "user_group": "dp_budget_and_pacing",
+      "package": "Standard",
+      "audience": "Client + Arcane",
+      "datasets": [
+        "media_budgets"
+      ]
+    },
+    "Product Feed & Shopping": {
+      "user_group": "dp_product_feed_and_shopping",
+      "package": "Premium add-on",
+      "audience": "Client + Arcane",
+      "datasets": [
+        "products",
+        "product_performance_weekly"
+      ]
+    },
+    "CRM & Offline Sales": {
+      "user_group": "dp_crm_and_offline_sales",
+      "package": "Premium add-on",
+      "audience": "Client + Arcane",
+      "datasets": [
+        "business_locations",
+        "crm_leads"
+      ]
+    },
+    "Measurement & Incrementality": {
+      "user_group": "dp_measurement_and_incrementality",
+      "package": "Premium add-on",
+      "audience": "Client + Arcane",
+      "datasets": [
+        "incrementality_tests"
+      ]
+    },
+    "Arcane Operations": {
+      "user_group": "dp_arcane_operations",
+      "package": "Internal",
+      "audience": "Arcane only",
+      "datasets": [
+        "data_requests",
+        "client_data_products"
+      ]
+    }
+  },
+  "entitlements": {
+    "secondevie": [
+      "Paid Media Performance",
+      "Social Creatives",
+      "Web Analytics & GEO",
+      "Budget & Pacing",
+      "Product Feed & Shopping",
+      "CRM & Offline Sales",
+      "Measurement & Incrementality"
+    ],
+    "autonova": [
+      "Paid Media Performance",
+      "Social Creatives",
+      "Web Analytics & GEO",
+      "Budget & Pacing",
+      "CRM & Offline Sales",
+      "Measurement & Incrementality"
+    ],
+    "routeo": [
+      "Paid Media Performance",
+      "Social Creatives",
+      "Web Analytics & GEO",
+      "Budget & Pacing"
+    ]
+  }
+}

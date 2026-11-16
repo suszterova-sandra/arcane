@@ -1,0 +1,482 @@
+{
+  "entitlements": {
+    "secondevie": [
+      "Paid Media Performance",
+      "Social Creatives",
+      "Web Analytics & GEO",
+      "Budget & Pacing",
+      "Product Feed & Shopping",
+      "CRM & Offline Sales",
+      "Measurement & Incrementality"
+    ],
+    "autonova": [
+      "Paid Media Performance",
+      "Social Creatives",
+      "Web Analytics & GEO",
+      "Budget & Pacing",
+      "CRM & Offline Sales",
+      "Measurement & Incrementality"
+    ],
+    "routeo": [
+      "Paid Media Performance",
+      "Social Creatives",
+      "Web Analytics & GEO",
+      "Budget & Pacing"
+    ]
+  },
+  "products": {
+    "Paid Media Performance": {
+      "user_group": "dp_paid_media_performance",
+      "package": "Core",
+      "datasets": [
+        "ad_performance_daily"
+      ],
+      "facts": [
+        "ad_performance_daily.impressions",
+        "ad_performance_daily.clicks",
+        "ad_performance_daily.cost_eur",
+        "ad_performance_daily.cost_local_currency",
+        "ad_performance_daily.conversions",
+        "ad_performance_daily.conversion_value_eur",
+        "ad_performance_daily.video_views",
+        "ad_performance_daily.engagements",
+        "ad_performance_daily.search_impressions",
+        "ad_performance_daily.search_eligible_impressions",
+        "ad_performance_daily.search_lost_is_budget",
+        "ad_performance_daily.search_lost_is_rank"
+      ],
+      "attributes": [
+        "ad_performance_daily.performance_id",
+        "ad_performance_daily.device"
+      ],
+      "labels": [],
+      "metrics": [
+        "pm_cost",
+        "pm_impressions",
+        "pm_clicks",
+        "pm_conversions",
+        "pm_conv_value",
+        "pm_video_views",
+        "pm_search_impr",
+        "pm_search_eligible",
+        "pm_search_lost_budget",
+        "pm_search_lost_rank",
+        "pm_ctr",
+        "pm_cpc",
+        "pm_cpm",
+        "pm_cvr",
+        "pm_cpa",
+        "pm_roas",
+        "pm_search_is",
+        "pm_lost_is_budget",
+        "pm_lost_is_rank",
+        "pm_active_campaigns"
+      ],
+      "visualizations": [
+        "pm_k_cost",
+        "pm_k_conv",
+        "pm_k_value",
+        "pm_k_roas",
+        "pm_k_cpa",
+        "pm_k_ctr",
+        "pm_trend",
+        "pm_by_platform",
+        "pm_by_type",
+        "pm_by_market",
+        "pm_by_funnel",
+        "pm_device",
+        "pm_is_trend",
+        "pm_is_market",
+        "pm_top_campaigns"
+      ],
+      "dashboards": [
+        "d1_paid_media"
+      ]
+    },
+    "Social Creatives": {
+      "user_group": "dp_social_creatives",
+      "package": "Standard",
+      "datasets": [
+        "creatives",
+        "creative_performance_daily"
+      ],
+      "facts": [
+        "creative_performance_daily.impressions",
+        "creative_performance_daily.clicks",
+        "creative_performance_daily.cost_eur",
+        "creative_performance_daily.video_3s_views",
+        "creative_performance_daily.thruplays",
+        "creative_performance_daily.engagements",
+        "creative_performance_daily.conversions",
+        "creative_performance_daily.conversion_value_eur"
+      ],
+      "attributes": [
+        "creatives.creative_id",
+        "creatives.creative_format",
+        "creatives.creative_theme",
+        "creatives.production_source",
+        "creatives.is_video",
+        "creatives.creative_status",
+        "creative_performance_daily.creative_performance_id"
+      ],
+      "labels": [
+        "creatives.creative_id.creative_name"
+      ],
+      "metrics": [
+        "sc_spend",
+        "sc_impressions",
+        "sc_clicks",
+        "sc_conversions",
+        "sc_conv_value",
+        "sc_vv3",
+        "sc_thruplays",
+        "sc_ctr",
+        "sc_cpa",
+        "sc_roas",
+        "sc_thumbstop",
+        "sc_hold",
+        "sc_creatives"
+      ],
+      "visualizations": [
+        "sc_k_spend",
+        "sc_k_ctr",
+        "sc_k_cpa",
+        "sc_k_thumb",
+        "sc_k_hold",
+        "sc_k_live",
+        "sc_by_format",
+        "sc_by_source",
+        "sc_trend",
+        "sc_by_theme",
+        "sc_top"
+      ],
+      "dashboards": [
+        "d2_social_creatives"
+      ]
+    },
+    "Web Analytics & GEO": {
+      "user_group": "dp_web_analytics_and_geo",
+      "package": "Standard",
+      "datasets": [
+        "web_analytics_daily"
+      ],
+      "facts": [
+        "web_analytics_daily.sessions",
+        "web_analytics_daily.engaged_sessions",
+        "web_analytics_daily.new_users",
+        "web_analytics_daily.transactions",
+        "web_analytics_daily.revenue_eur",
+        "web_analytics_daily.gross_margin_eur",
+        "web_analytics_daily.new_customers",
+        "web_analytics_daily.leads"
+      ],
+      "attributes": [
+        "web_analytics_daily.web_id",
+        "web_analytics_daily.channel_group",
+        "web_analytics_daily.is_paid_channel"
+      ],
+      "labels": [],
+      "metrics": [
+        "wa_sessions",
+        "wa_transactions",
+        "wa_revenue",
+        "wa_margin",
+        "wa_new_customers",
+        "wa_leads",
+        "wa_cvr",
+        "wa_aov",
+        "wa_paid_revenue",
+        "wa_paid_transactions",
+        "wa_paid_share",
+        "wa_mer",
+        "wa_paid_roas",
+        "wa_overattribution",
+        "wa_ai_sessions",
+        "wa_ai_share"
+      ],
+      "visualizations": [
+        "wa_k_rev",
+        "wa_k_mer",
+        "wa_k_paidshare",
+        "wa_k_cvr",
+        "wa_k_newc",
+        "wa_k_ai",
+        "wa_rev_channel",
+        "wa_channels",
+        "wa_ai_trend",
+        "wa_attrib",
+        "wa_market"
+      ],
+      "dashboards": [
+        "d3_web_geo"
+      ]
+    },
+    "Budget & Pacing": {
+      "user_group": "dp_budget_and_pacing",
+      "package": "Standard",
+      "datasets": [
+        "media_budgets"
+      ],
+      "facts": [
+        "media_budgets.planned_budget_eur",
+        "media_budgets.target_roas",
+        "media_budgets.target_cpa_eur"
+      ],
+      "attributes": [
+        "media_budgets.budget_id",
+        "media_budgets.budget_owner"
+      ],
+      "labels": [],
+      "metrics": [
+        "bp_planned",
+        "bp_pacing",
+        "bp_variance",
+        "bp_remaining",
+        "bp_target_roas",
+        "bp_target_cpa"
+      ],
+      "visualizations": [
+        "bp_k_planned",
+        "bp_k_actual",
+        "bp_k_pacing",
+        "bp_k_remaining",
+        "bp_trend",
+        "bp_table",
+        "bp_platform",
+        "bp_p_planned",
+        "bp_p_actual",
+        "bp_p_pacing",
+        "bp_p_variance",
+        "bp_p_table"
+      ],
+      "dashboards": [
+        "d4_budget_pacing"
+      ]
+    },
+    "Product Feed & Shopping": {
+      "user_group": "dp_product_feed_and_shopping",
+      "package": "Premium add-on",
+      "datasets": [
+        "products",
+        "product_performance_weekly"
+      ],
+      "facts": [
+        "products.price_eur",
+        "products.margin_pct",
+        "product_performance_weekly.impressions",
+        "product_performance_weekly.clicks",
+        "product_performance_weekly.cost_eur",
+        "product_performance_weekly.conversions",
+        "product_performance_weekly.conversion_value_eur"
+      ],
+      "attributes": [
+        "products.product_id",
+        "products.sku",
+        "products.product_brand",
+        "products.product_category",
+        "products.product_subcategory",
+        "products.product_condition",
+        "products.feed_optimized",
+        "product_performance_weekly.product_performance_id"
+      ],
+      "labels": [
+        "products.product_id.product_title"
+      ],
+      "metrics": [
+        "pf_impressions",
+        "pf_clicks",
+        "pf_cost",
+        "pf_conversions",
+        "pf_value",
+        "pf_ctr",
+        "pf_roas",
+        "pf_products"
+      ],
+      "visualizations": [
+        "pf_k_cost",
+        "pf_k_value",
+        "pf_k_roas",
+        "pf_k_ctr",
+        "pf_k_products",
+        "pf_feed",
+        "pf_category",
+        "pf_platform",
+        "pf_top"
+      ],
+      "dashboards": [
+        "d5_product_feed"
+      ]
+    },
+    "CRM & Offline Sales": {
+      "user_group": "dp_crm_and_offline_sales",
+      "package": "Premium add-on",
+      "datasets": [
+        "business_locations",
+        "crm_leads"
+      ],
+      "facts": [
+        "crm_leads.hours_to_first_contact",
+        "crm_leads.days_to_close",
+        "crm_leads.deal_value_eur",
+        "crm_leads.gross_profit_eur",
+        "crm_leads.is_qualified",
+        "crm_leads.is_opportunity",
+        "crm_leads.is_won"
+      ],
+      "attributes": [
+        "business_locations.location_id",
+        "business_locations.location_type",
+        "business_locations.city",
+        "business_locations.region",
+        "business_locations.country",
+        "crm_leads.lead_id",
+        "crm_leads.lead_type",
+        "crm_leads.product_brand",
+        "crm_leads.product_name",
+        "crm_leads.product_line",
+        "crm_leads.product_segment",
+        "crm_leads.product_variant",
+        "crm_leads.is_existing_customer",
+        "crm_leads.lead_status",
+        "crm_leads.opportunity_type",
+        "crm_leads.offline_conversion_uploaded"
+      ],
+      "labels": [
+        "business_locations.location_id.location_name",
+        "business_locations.location_id.latitude",
+        "business_locations.location_id.longitude"
+      ],
+      "metrics": [
+        "crm_leads",
+        "crm_qualified",
+        "crm_opportunities",
+        "crm_won",
+        "crm_deal_value",
+        "crm_gross_profit",
+        "crm_qual_rate",
+        "crm_win_rate",
+        "crm_contact_hours",
+        "crm_days_to_close",
+        "crm_lead_cost",
+        "crm_cpl",
+        "crm_cpql",
+        "crm_cost_per_won",
+        "crm_oci_share"
+      ],
+      "visualizations": [
+        "crm_k_leads",
+        "crm_k_qual",
+        "crm_k_won",
+        "crm_k_value",
+        "crm_k_cpl",
+        "crm_k_cpw",
+        "crm_funnel",
+        "crm_trend",
+        "crm_cost_trend",
+        "crm_platform",
+        "crm_location",
+        "crm_status"
+      ],
+      "dashboards": [
+        "d6_crm_offline"
+      ]
+    },
+    "Measurement & Incrementality": {
+      "user_group": "dp_measurement_and_incrementality",
+      "package": "Premium add-on",
+      "datasets": [
+        "incrementality_tests"
+      ],
+      "facts": [
+        "incrementality_tests.test_spend_eur",
+        "incrementality_tests.platform_conversions",
+        "incrementality_tests.incremental_conversions",
+        "incrementality_tests.incremental_revenue_eur",
+        "incrementality_tests.lift_pct",
+        "incrementality_tests.iroas",
+        "incrementality_tests.confidence_level"
+      ],
+      "attributes": [
+        "incrementality_tests.test_id",
+        "incrementality_tests.campaign_scope",
+        "incrementality_tests.methodology",
+        "incrementality_tests.test_status",
+        "incrementality_tests.is_significant",
+        "incrementality_tests.recommendation"
+      ],
+      "labels": [
+        "incrementality_tests.test_id.test_name"
+      ],
+      "metrics": [
+        "mi_tests",
+        "mi_spend",
+        "mi_inc_revenue",
+        "mi_iroas",
+        "mi_inc_share"
+      ],
+      "visualizations": [
+        "mi_k_tests",
+        "mi_k_iroas",
+        "mi_k_rev",
+        "mi_k_share",
+        "mi_scope",
+        "mi_table"
+      ],
+      "dashboards": [
+        "d7_measurement"
+      ]
+    },
+    "Arcane Operations": {
+      "user_group": "dp_arcane_operations",
+      "package": "Internal",
+      "datasets": [
+        "data_requests",
+        "client_data_products"
+      ],
+      "facts": [
+        "data_requests.days_to_deliver",
+        "data_requests.effort_hours",
+        "data_requests.is_delivered"
+      ],
+      "attributes": [
+        "data_requests.request_id",
+        "data_requests.requested_by_role",
+        "data_requests.request_channel",
+        "data_requests.request_type",
+        "data_requests.priority",
+        "data_requests.assigned_to",
+        "data_requests.request_status",
+        "client_data_products.entitlement_id",
+        "client_data_products.data_product",
+        "client_data_products.package",
+        "client_data_products.audience",
+        "client_data_products.is_enabled",
+        "client_data_products.user_group"
+      ],
+      "labels": [
+        "data_requests.request_id.request_summary"
+      ],
+      "metrics": [
+        "op_requests",
+        "op_delivered",
+        "op_days",
+        "op_effort",
+        "op_open",
+        "op_entitled"
+      ],
+      "visualizations": [
+        "op_k_req",
+        "op_k_days",
+        "op_k_open",
+        "op_k_effort",
+        "op_trend",
+        "op_days_type",
+        "op_list",
+        "op_entitlements"
+      ],
+      "dashboards": [
+        "d8_arcane_ops"
+      ]
+    }
+  }
+}
