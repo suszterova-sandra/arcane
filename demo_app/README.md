@@ -5,7 +5,7 @@ one template workspace (Arcane) and one white-labelled workspace per advertiser.
 click. Every number, dashboard, report and AI answer comes back with that user's own GoodData permissions.
 This is a port of the Viventium / conference portal.
 
-**Live (GitHub Pages):** https://suszterova-sandra.github.io/arcane-app/
+**Live (GitHub Pages):** https://suszterova-sandra.github.io/arcane/
 
 ## Personas
 
