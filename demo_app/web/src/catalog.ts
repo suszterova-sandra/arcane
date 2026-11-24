@@ -82,6 +82,9 @@ export function usePermissions(persona: PersonaId, ws: string | undefined) {
   return perms;
 }
 
+/** AI Publisher reports are readable only with CREATE_DOCUMENT (or MANAGE) on the workspace. */
+export const canReadReports = (perms: string[] | null) => !!perms && (perms.includes("CREATE_DOCUMENT") || perms.includes("MANAGE"));
+
 export const canCreateContent = (perms: string[] | null) => !!perms && (perms.includes("ANALYZE") || perms.includes("MANAGE"));
 
 /** AI Assistant, AI summaries and agents need USE_AI_ASSISTANT on the workspace (the AI tier). */

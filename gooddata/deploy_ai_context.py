@@ -50,9 +50,11 @@ PARENT_MEMORIES = [
      "below it is under-pacing, above it is over-pacing.",
      ["budget", "pacing", "plan", "planned", "spend", "underspend", "overspend", "media plan"]),
     ("arc_social", "Social creative metrics", "AUTO",
-     "Thumb-stop rate = 3-second views / impressions (hook). Hold rate = ThruPlays / 3-second views. Creatives fatigue "
-     "after 4-6 weeks: falling CTR on an old creative means refresh it.",
-     ["creative", "creatives", "ugc", "video", "hook", "thumb", "fatigue", "tiktok", "meta", "social"]),
+     "Thumb-stop = 3-s views / impressions; hold = ThruPlays / 3-s views. Falling CTR on an old creative = fatigue. "
+     "Cost per conversion / CPA / cost per result on social or by creative format = metric Social CPA; never build "
+     "a new metric for it.",
+     ["creative", "creatives", "ugc", "video", "hook", "thumb", "fatigue", "tiktok", "meta", "social", "format",
+      "cost per conversion", "cpa"]),
     ("arc_incrementality", "Incrementality", "AUTO",
      "iROAS = incremental revenue / test spend from geo-lift or conversion-lift tests. It beats platform ROAS for "
      "budget decisions; iROAS < 1 means the channel does not pay back.",

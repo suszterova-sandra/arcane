@@ -139,7 +139,13 @@ def build_theme(cfg):
                                               "selectedColor": nav["selected"],
                                               "selectedBackgroundColor": nav["selected_bg"]}}
     for w in ("widget", "kpiWidget"):
-        t["dashboards"]["content"][w].update(backgroundColor="#FFFFFF", borderColor=hexes["line"])
+        t["dashboards"]["content"][w].update(backgroundColor="#FFFFFF", borderColor=hexes["line"], borderWidth="0",
+                                             borderRadius="16", dropShadow=True)
+        t["dashboards"]["content"][w]["title"]["textAlign"] = "center"
+    # brand-coloured section titles with an accent rule, dashboard title in the deep brand colour
+    t["dashboards"]["section"] = {"title": {"color": nav["bg"], "lineColor": "#" + cfg["rule"]},
+                                  "description": {"color": hexes["muted"]}, "backgroundColor": hexes["card"]}
+    t["dashboards"]["title"] = {"color": nav["bg"], "backgroundColor": "#FFFFFF", "borderColor": "#FFFFFF"}
     t["dashboards"]["content"]["backgroundColor"] = hexes["card"]
     t["dashboards"]["filterBar"]["backgroundColor"] = "#FFFFFF"
     t["chart"]["backgroundColor"] = "#FFFFFF"

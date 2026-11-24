@@ -1,0 +1,3 @@
+user_id,first_name,last_name,client_id,role,workspace_id,workspace_permissions,story
+arc.routeo.marketing,Elena,Ruiz,hcpci,Claims & Operations Manager,3d9adaacc9c24fc49cd7b868b468ed6f,VIEW|USE_AI_ASSISTANT,"Carrier user with VIEW + AI: Exzeo's standard dashboards and AI report in the Homeowners Choice brand, asks the AI Assistant in plain English; sees only Homeowners Choice data"
+arc.autonova.marketing,Marc,Fontaine,typtap,Head of Analytics,efdabe226f2c4456873673af50575d3b,ANALYZE|USE_AI_ASSISTANT,"Carrier power user with ANALYZE + AI: everything Elena has, plus self-service (Analytical Designer, new dashboards, AI-built visualizations) on TypTap data only"

@@ -275,7 +275,7 @@ METRIC_DESC = {
     "sc_thruplays": "Video views to 15 seconds or to completion.",
     "sc_ctr": "Social click-through rate = Social Clicks / Social Impressions. Falling CTR on an old creative signals "
               "creative fatigue.",
-    "sc_cpa": "Social cost per conversion = Social Spend / Social Conversions, in EUR. Lower is better.",
+    "sc_cpa": "Social CPA (cost per conversion / cost per acquisition / cost per result on social: Meta, TikTok, LinkedIn) = Social Spend / Social Conversions, in EUR. Lower is better. Use it for creatives, formats and themes; for all platforms use CPA.",
     "sc_roas": "Social ROAS = Social Conversion Value / Social Spend. Platform-reported; social over-attributes the most.",
     "sc_thumbstop": "Thumb-stop rate = 3-second Video Views / Social Impressions - strength of the video hook. Higher is better; "
                     "only meaningful for video creatives.",

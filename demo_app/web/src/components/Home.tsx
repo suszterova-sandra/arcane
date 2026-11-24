@@ -4,7 +4,7 @@ import { useApp } from "../AppContext";
 import { languageName, type Key, type Lang } from "../i18n";
 import { change, fmt, fmtDelta, loadInsights, type Driver, type Insights, type Kpi, type Target } from "../insights";
 import { productsOf } from "../products";
-import { canUseAi, usePermissions } from "../catalog";
+import { canReadReports, canUseAi, usePermissions } from "../catalog";
 import { markdown } from "../markdown";
 import { logoTile } from "../theme";
 import type { PersonaId } from "../types";
@@ -13,8 +13,8 @@ import { Icon, type IconName } from "../icons";
 import { Prewarm } from "./Embed";
 import { STATIC } from "../staticBackend";
 
-const DIM_ICON: Record<string, IconName> = { market: "pin", platform: "tag" };
-const DIM_KEY: Record<string, Key> = { market: "market", platform: "platform" };
+const DIM_ICON: Record<string, IconName> = { category: "tag", country: "pin" };
+const DIM_KEY: Record<string, Key> = { category: "category", country: "country" };
 
 // workspace chosen on the global Home, per user
 const globalWs = new Map<PersonaId, string>();
@@ -53,7 +53,7 @@ export function Portal({ fixedWs }: { fixedWs?: string }) {
   const aiAllowed = canUseAi(perms);
   // the persona's first data product drives the hero button, the briefing and the prewarmed dashboard
   const first = productsOf(persona.products)[0];
-  const mainDash = first ? { id: first.dashboard, title: first.dashTitle } : { id: "d1_paid_media", title: "Paid Media Performance" };
+  const mainDash = first ? { id: first.dashboard, title: first.dashTitle } : { id: "overview", title: "Overview" };
 
   useEffect(() => {
     if (!ws) return;
@@ -151,9 +151,11 @@ export function Portal({ fixedWs }: { fixedWs?: string }) {
                 <Icon name="sparkles" size={15} /> {t("askAiAbout")}
               </button>
             )}
-            <button className="btn glass" onClick={() => navigate({ view: "ws", ws: ws.id, tab: "report" })}>
-              <Icon name="report" size={15} /> {t("aiBusinessReport")}
-            </button>
+            {canReadReports(perms) && (
+              <button className="btn glass" onClick={() => navigate({ view: "ws", ws: ws.id, tab: "report" })}>
+                <Icon name="report" size={15} /> {t("aiBusinessReport")}
+              </button>
+            )}
           </div>
         </div>
       </section>

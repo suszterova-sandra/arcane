@@ -56,7 +56,7 @@ let handshakeInstalled = false;
 
 export function AppProvider({ children }: { children: (state: "loading" | "ready" | string) => ReactNode }) {
   const [personas, setPersonas] = useState<Persona[]>([]);
-  const [personaId, setPersonaId] = useState<PersonaId>((localStorage.getItem("persona") as PersonaId) || "admin");
+  const [personaId, setPersonaId] = useState<PersonaId>((localStorage.getItem("persona") as PersonaId) || "");
   const [overview, setOverview] = useState<Overview | null>(null);
   const [workspaces, setWorkspaces] = useState<Workspace[]>([]);
   const [route, setRoute] = useState<Route>({ view: "none" });
@@ -229,11 +229,11 @@ export function AppProvider({ children }: { children: (state: "loading" | "ready
     const homeWs = persona.id === "admin" ? overview.parent : workspaces.find((w) => !w.isParent)?.id || workspaces[0]?.id;
     const homeWsMeta = overview.workspaces.find((w) => w.id === homeWs);
     const tenantTheme = persona.id !== "admin" && homeWsMeta?.themeId ? overview.themes[homeWsMeta.themeId] : undefined;
-    // the admin's platform carries the parent's brand (Arcane): its logo and theme colours
+    // the admin's platform carries the parent's brand (Exzeo): its logo and theme colours
     const parentTheme = overview.themes[overview.workspaces.find((w) => w.isParent)?.themeId || ""];
     const brand = tenantTheme
       ? { name: workspaces.find((w) => w.id === homeWs)?.name || "Workspace", logo: tenantTheme.logo, logoBg: logoTile(tenantTheme), theme: tenantTheme }
-      : { name: "Arcane", logo: parentTheme?.logo, logoBg: "#FFFFFF", theme: parentTheme };
+      : { name: "Exzeo", logo: parentTheme?.logo, logoBg: "#FFFFFF", theme: parentTheme };
     return {
       brand,
       homeWs,

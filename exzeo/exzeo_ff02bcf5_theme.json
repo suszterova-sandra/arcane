@@ -1,0 +1,352 @@
+{
+  "version": "2",
+  "palette": {
+    "primary": {
+      "base": "#1F8FA6",
+      "contrast": "#FFFFFF"
+    },
+    "error": {
+      "base": "#D1435B"
+    },
+    "warning": {
+      "base": "#FBBF24"
+    },
+    "success": {
+      "base": "#2F9E7A"
+    },
+    "complementary": {
+      "c0": "#FFFFFF",
+      "c1": "#F2F7FA",
+      "c2": "#F2F7FA",
+      "c3": "#D6E4EC",
+      "c4": "#D6E4EC",
+      "c5": "#9A98A8",
+      "c6": "#6E6C80",
+      "c7": "#4F4D63",
+      "c8": "#1B3159",
+      "c9": "#10202B"
+    }
+  },
+  "typography": {
+    "font": "https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiA.woff2",
+    "fontBold": "https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiA.woff2"
+  },
+  "button": {
+    "borderRadius": "8",
+    "dropShadow": false,
+    "textCapitalization": false
+  },
+  "modal": {
+    "title": {
+      "color": "#10202B",
+      "lineColor": "#D6E4EC"
+    },
+    "borderColor": "#D6E4EC",
+    "borderRadius": "14",
+    "borderWidth": "1",
+    "dropShadow": true,
+    "outsideBackgroundColor": "rgba(0, 0, 0, 0.45)"
+  },
+  "tooltip": {
+    "color": "#FFFFFF",
+    "backgroundColor": "#10202B"
+  },
+  "chart": {
+    "backgroundColor": "#FFFFFF",
+    "gridColor": "#F2F7FA",
+    "axisColor": "#D6E4EC",
+    "axisLabelColor": "#7E7C90",
+    "axisValueColor": "#4F4D63",
+    "legendValueColor": "#4F4D63",
+    "plotLineColor": "#D6E4EC",
+    "tooltipBackgroundColor": "#10202B",
+    "tooltipBorderColor": "#10202B",
+    "tooltipLabelColor": "#D6E4EC",
+    "tooltipValueColor": "#FFFFFF"
+  },
+  "table": {
+    "valueColor": "#1B3159",
+    "nullValueColor": "#7E7C90",
+    "hoverBackgroundColor": "#F2F7FA",
+    "loadingIconColor": "#1F8FA6",
+    "headerLabelColor": "#7E7C90",
+    "headerHoverBackgroundColor": "#F2F7FA",
+    "subtotalBackgroundColor": "#F2F7FA",
+    "totalBackgroundColor": "#D6E4EC",
+    "totalValueColor": "#10202B"
+  },
+  "kpi": {
+    "primaryMeasureColor": "#10202B",
+    "secondaryInfoColor": "#4F4D63",
+    "value": {
+      "positiveColor": "#2F9E7A",
+      "negativeColor": "#D1435B"
+    }
+  },
+  "dashboards": {
+    "title": {
+      "color": "#1B3159",
+      "backgroundColor": "#FFFFFF",
+      "borderColor": "#FFFFFF"
+    },
+    "navigation": {
+      "title": {
+        "color": "#FFFFFF"
+      },
+      "backgroundColor": "#1B3159",
+      "borderColor": "#1B3159",
+      "item": {
+        "color": "#E6E9EE",
+        "hoverColor": "#FFFFFF",
+        "selectedColor": "#1B3159",
+        "selectedBackgroundColor": "#33B1C9"
+      }
+    },
+    "filterBar": {
+      "backgroundColor": "#FFFFFF",
+      "borderColor": "#D6E4EC",
+      "filterButton": {
+        "backgroundColor": "#F2F7FA"
+      }
+    },
+    "section": {
+      "title": {
+        "color": "#1B3159",
+        "lineColor": "#33B1C9"
+      },
+      "description": {
+        "color": "#4F4D63"
+      },
+      "backgroundColor": "#F2F7FA"
+    },
+    "content": {
+      "backgroundColor": "#F2F7FA",
+      "widget": {
+        "title": {
+          "color": "#10202B",
+          "textAlign": "center"
+        },
+        "backgroundColor": "#FFFFFF",
+        "borderColor": "#D6E4EC",
+        "borderRadius": "16",
+        "borderWidth": "0",
+        "dropShadow": true
+      },
+      "kpiWidget": {
+        "title": {
+          "color": "#E9E3F3",
+          "textAlign": "center"
+        },
+        "backgroundColor": "#1B3159",
+        "borderColor": "#1B3159",
+        "borderRadius": "16",
+        "borderWidth": "0",
+        "dropShadow": true,
+        "kpi": {
+          "primaryMeasureColor": "#FFFFFF",
+          "secondaryInfoColor": "#E9E3F3",
+          "value": {
+            "positiveColor": "#8FE3C0",
+            "negativeColor": "#FFB3BF"
+          }
+        }
+      }
+    }
+  },
+  "analyticalDesigner": {
+    "title": {
+      "color": "#10202B"
+    }
+  },
+  "documents": {
+    "visualizationPalette": [
+      "#1B3159",
+      "#1F8FA6",
+      "#33B1C9",
+      "#1B3554",
+      "#3B8639",
+      "#8DA9C4",
+      "#F2A33A",
+      "#5C677D",
+      "#B8C5D6",
+      "#F1C6C9"
+    ],
+    "page": {
+      "backgroundColor": "#F2F7FA"
+    },
+    "colors": {
+      "backgrounds": [
+        {
+          "id": "page",
+          "color": "#F2F7FA"
+        },
+        {
+          "id": "card",
+          "color": "#FFFFFF"
+        },
+        {
+          "id": "panel",
+          "color": "#F2F7FA"
+        },
+        {
+          "id": "accent",
+          "color": "#1F8FA6"
+        }
+      ],
+      "texts": [
+        {
+          "id": "default",
+          "color": "#10202B"
+        },
+        {
+          "id": "muted",
+          "color": "#4F4D63"
+        },
+        {
+          "id": "subtle",
+          "color": "#7E7C90"
+        },
+        {
+          "id": "accent",
+          "color": "#1F8FA6"
+        },
+        {
+          "id": "inverse",
+          "color": "#FFFFFF"
+        }
+      ]
+    },
+    "textStyle": {
+      "typography": {
+        "fontFamily": "Inter, Helvetica Neue, Arial, sans-serif",
+        "fonts": [
+          {
+            "family": "Inter",
+            "url": "https://fonts.gstatic.com/s/inter/v20/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuLyfAZ9hiJ-Ek-_0ew.woff2",
+            "weight": 400
+          },
+          {
+            "family": "Inter",
+            "url": "https://fonts.gstatic.com/s/inter/v20/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuFuYAZ9hiJ-Ek-_0ew.woff2",
+            "weight": 700
+          }
+        ]
+      },
+      "heading": {
+        "color": "#10202B",
+        "h1": {
+          "fontSize": 4.4,
+          "lineHeight": 5,
+          "color": "#10202B"
+        },
+        "h2": {
+          "fontSize": 2.1,
+          "lineHeight": 2.7,
+          "color": "#10202B"
+        },
+        "h3": {
+          "fontSize": 1.6,
+          "lineHeight": 2.1,
+          "color": "#10202B"
+        },
+        "h4": {
+          "fontSize": 1.35,
+          "lineHeight": 1.8,
+          "color": "#10202B"
+        },
+        "h5": {
+          "fontSize": 1.2,
+          "lineHeight": 1.6,
+          "color": "#10202B"
+        },
+        "h6": {
+          "fontSize": 1.1,
+          "lineHeight": 1.5,
+          "color": "#10202B"
+        }
+      },
+      "paragraph": {
+        "color": "#4F4D63",
+        "largeText": {
+          "fontSize": 1.65,
+          "lineHeight": 2.3,
+          "color": "#10202B"
+        },
+        "normalText": {
+          "fontSize": 1.35,
+          "lineHeight": 1.9,
+          "color": "#4F4D63"
+        },
+        "smallText": {
+          "fontSize": 1.1,
+          "lineHeight": 1.5,
+          "color": "#7E7C90"
+        }
+      }
+    }
+  },
+  "header": {
+    "backgroundColor": "#FFFFFF",
+    "color": "#1B3159",
+    "activeColor": "#1F8FA6"
+  },
+  "assets": {
+    "logos": [
+      {
+        "id": "logo",
+        "url": "https://cdn.prod.website-files.com/6797a6b5c734c8a068c27fc9/679cf0f9a9f19ee8289b948c_CORE-Horizontal-color-p-800.png",
+        "title": "CORE - Condo Owners Reciprocal Exchange logo",
+        "altText": "CORE - Condo Owners Reciprocal Exchange logo"
+      }
+    ],
+    "backgrounds": [
+      {
+        "id": "cover_bg",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/St_Tropez_on_The_Bay_-_Sunny_Isles_Beach_Condos.jpg/1920px-St_Tropez_on_The_Bay_-_Sunny_Isles_Beach_Condos.jpg",
+        "title": "Cover background",
+        "altText": "Cover background"
+      },
+      {
+        "id": "section_bg",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/St_Tropez_on_The_Bay_-_Sunny_Isles_Beach_Condos.jpg/1920px-St_Tropez_on_The_Bay_-_Sunny_Isles_Beach_Condos.jpg",
+        "title": "Section background",
+        "altText": "Section background"
+      }
+    ],
+    "images": [
+      {
+        "id": "cover_bg",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/St_Tropez_on_The_Bay_-_Sunny_Isles_Beach_Condos.jpg/1920px-St_Tropez_on_The_Bay_-_Sunny_Isles_Beach_Condos.jpg",
+        "title": "Cover background",
+        "altText": "Cover background"
+      },
+      {
+        "id": "section_bg",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/St_Tropez_on_The_Bay_-_Sunny_Isles_Beach_Condos.jpg/1920px-St_Tropez_on_The_Bay_-_Sunny_Isles_Beach_Condos.jpg",
+        "title": "Section background",
+        "altText": "Section background"
+      },
+      {
+        "id": "accent_bar",
+        "url": "https://placehold.co/1600x12/33B1C9/33B1C9/png",
+        "title": "Accent rule",
+        "altText": "Accent rule"
+      },
+      {
+        "id": "logo",
+        "url": "https://cdn.prod.website-files.com/6797a6b5c734c8a068c27fc9/679cf0f9a9f19ee8289b948c_CORE-Horizontal-color-p-800.png",
+        "title": "CORE - Condo Owners Reciprocal Exchange logo",
+        "altText": "CORE - Condo Owners Reciprocal Exchange logo"
+      },
+      {
+        "id": "spacer",
+        "url": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=",
+        "title": "Spacer",
+        "altText": ""
+      }
+    ]
+  },
+  "images": {
+    "logo": "url(https://cdn.prod.website-files.com/6797a6b5c734c8a068c27fc9/679cf0f9a9f19ee8289b948c_CORE-Horizontal-color-p-800.png)"
+  }
+}

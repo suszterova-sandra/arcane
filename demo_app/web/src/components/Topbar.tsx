@@ -7,7 +7,7 @@ import { LANGS, type Lang } from "../i18n";
 import { Icon } from "../icons";
 import type { Persona, TierKey } from "../types";
 
-const TIER_SHORT: Record<TierKey, string> = { admin: "Arcane", ai: "Top Account", analytics: "Growth", base: "Standard" };
+const TIER_SHORT: Record<TierKey, string> = { admin: "Exzeo", ai: "Analyze + AI", analytics: "Analyze", base: "View + AI" };
 
 export function Topbar({ mode, onSetMode }: { mode: ColorMode; onSetMode: (m: ColorMode) => void }) {
   const { personas, persona, switchPersona, route, toast, lang, setLang, t, brand } = useApp();

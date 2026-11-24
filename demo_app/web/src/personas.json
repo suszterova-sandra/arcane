@@ -1,97 +1,26 @@
 [
  {
-  "id": "admin",
-  "userId": "arc.admin",
-  "name": "Arcane Admin",
-  "initials": "AA",
-  "role": "Arcane Platform Admin · Arcane",
-  "tagline": "Arcane admin for the demo: the template (parent) and, inherited, every client workspace; all 8 data products. Not an organization admin.",
-  "workspace": "4d4926ef508e4cba9085ca29fefcf4fd",
-  "client": "Arcane",
-  "tier": "Arcane team",
-  "tierKey": "admin",
+  "id": "arc.routeo.marketing",
+  "userId": "arc.routeo.marketing",
+  "name": "Elena Ruiz",
+  "initials": "ER",
+  "role": "Claims & Operations Manager · Homeowners Choice",
+  "tagline": "Carrier user with VIEW + AI: Exzeo's standard dashboards and AI report in the Homeowners Choice brand, asks the AI Assistant in plain English; sees only Homeowners Choice data",
+  "workspace": "3d9adaacc9c24fc49cd7b868b468ed6f",
+  "client": "Homeowners Choice",
+  "tier": "View + AI",
+  "tierKey": "base",
   "products": [
-   "Paid Media Performance",
-   "Web Analytics & GEO",
-   "CRM & Offline Sales",
-   "Product Feed & Shopping",
-   "Social Creatives",
-   "Budget & Pacing",
-   "Measurement & Incrementality",
-   "Arcane Operations"
+   "Business Overview",
+   "Sales",
+   "Products",
+   "Customers"
   ],
   "locations": [
-   "All clients, all markets"
+   "Homeowners Choice"
   ],
   "permissions": [
-   "ANALYZE",
-   "EXPORT",
-   "CREATE_AUTOMATION",
-   "USE_AI_ASSISTANT"
-  ]
- },
- {
-  "id": "arc.consultant",
-  "userId": "arc.consultant",
-  "name": "Camille Marchand",
-  "initials": "CM",
-  "role": "Arcane Media Consultant · Arcane",
-  "tagline": "Arcane internal: all clients in the parent workspace, all 8 data products incl. Arcane Operations; builds the template once for every client",
-  "workspace": "4d4926ef508e4cba9085ca29fefcf4fd",
-  "client": "Arcane",
-  "tier": "Arcane team",
-  "tierKey": "admin",
-  "products": [
-   "Paid Media Performance",
-   "Web Analytics & GEO",
-   "CRM & Offline Sales",
-   "Product Feed & Shopping",
-   "Social Creatives",
-   "Budget & Pacing",
-   "Measurement & Incrementality",
-   "Arcane Operations"
-  ],
-  "locations": [
-   "All clients, all markets"
-  ],
-  "permissions": [
-   "ANALYZE",
-   "EXPORT",
-   "CREATE_AUTOMATION",
-   "USE_AI_ASSISTANT"
-  ]
- },
- {
-  "id": "arc.secondevie.ecom",
-  "userId": "arc.secondevie.ecom",
-  "name": "Léa Dubois",
-  "initials": "LD",
-  "role": "Head of E-commerce · Seconde Vie",
-  "tagline": "Top account: Core + Standard + all premium add-ons (Product Feed, CRM for Seconde Vie Pro, Measurement); self-service + AI",
-  "workspace": "secondevie",
-  "client": "Seconde Vie",
-  "tier": "Top Account",
-  "tierKey": "ai",
-  "products": [
-   "Paid Media Performance",
-   "Web Analytics & GEO",
-   "Product Feed & Shopping",
-   "CRM & Offline Sales",
-   "Social Creatives",
-   "Budget & Pacing",
-   "Measurement & Incrementality"
-  ],
-  "locations": [
-   "France",
-   "Germany",
-   "Spain",
-   "Italy",
-   "United Kingdom",
-   "United States"
-  ],
-  "permissions": [
-   "ANALYZE",
-   "EXPORT",
+   "VIEW",
    "USE_AI_ASSISTANT"
   ]
  },
@@ -100,54 +29,23 @@
   "userId": "arc.autonova.marketing",
   "name": "Marc Fontaine",
   "initials": "MF",
-  "role": "Marketing Director · AutoNova Automobiles",
-  "tagline": "Top account: Core + Standard + CRM & Offline Sales + Measurement; no product feed; cost per car sold via AI",
-  "workspace": "autonova",
-  "client": "AutoNova Automobiles",
-  "tier": "Top Account",
+  "role": "Head of Analytics · TypTap Insurance",
+  "tagline": "Carrier power user with ANALYZE + AI: everything Elena has, plus self-service (Analytical Designer, new dashboards, AI-built visualizations) on TypTap data only",
+  "workspace": "efdabe226f2c4456873673af50575d3b",
+  "client": "TypTap Insurance",
+  "tier": "Analyze + AI",
   "tierKey": "ai",
   "products": [
-   "Paid Media Performance",
-   "CRM & Offline Sales",
-   "Social Creatives",
-   "Budget & Pacing",
-   "Web Analytics & GEO",
-   "Measurement & Incrementality"
+   "Business Overview",
+   "Sales",
+   "Products",
+   "Customers"
   ],
   "locations": [
-   "France"
+   "TypTap Insurance"
   ],
   "permissions": [
    "ANALYZE",
-   "USE_AI_ASSISTANT"
-  ]
- },
- {
-  "id": "arc.routeo.marketing",
-  "userId": "arc.routeo.marketing",
-  "name": "Elena Ruiz",
-  "initials": "ER",
-  "role": "Digital Marketing Manager · Routéo Location",
-  "tagline": "Long-tail Standard package: Core + Standard only, view + AI; premium dashboards are hidden (upsell)",
-  "workspace": "routeo",
-  "client": "Routéo Location",
-  "tier": "Standard",
-  "tierKey": "base",
-  "products": [
-   "Paid Media Performance",
-   "Web Analytics & GEO",
-   "Social Creatives",
-   "Budget & Pacing"
-  ],
-  "locations": [
-   "France",
-   "Spain",
-   "Italy",
-   "Germany",
-   "United Kingdom"
-  ],
-  "permissions": [
-   "VIEW",
    "USE_AI_ASSISTANT"
   ]
  }

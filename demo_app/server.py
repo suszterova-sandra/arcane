@@ -1,12 +1,11 @@
-"""Arcane demo app: localhost shell around the Arcane workspaces (template + client workspaces).
+"""Exzeo demo app: localhost shell around the Exzeo workspaces (template + one workspace per carrier).
 
     python3 demo_app/server.py            # backend on :8765
     cd demo_app/web && npm run dev        # React UI on http://localhost:5173 (proxies /gd and /app here)
 
 - /gd/<path>        proxy to GoodData, authenticated as the persona in the X-Persona header,
                     so every list, permission check and AI chat runs with that user's own access.
-- /app/personas     who can be impersonated (../tenancy/personas.csv; API tokens in .tokens.json, incl. the
-                    "Arcane Admin" demo user arc.admin - not an organization admin)
+- /app/personas     who can be impersonated (../exzeo/personas.csv; API tokens in .tokens.json)
 - /app/token        token handed to embedded iframes via the setApiToken postMessage handshake
 - /app/overview     admin-only facts for the Control Center (hierarchy, themes, WDFs, access, agents), read with the
                     organization admin token from ../.env (server side only, never sent to the browser)
@@ -32,8 +31,8 @@ ROOT = HERE.parent
 STATIC = HERE / "web" / "dist"  # React build (npm run build); in dev, Vite serves the UI on :5173
 HOST = "sandrasuszterova.demo.cloud.gooddata.com"
 PORT = int(sys.argv[1]) if len(sys.argv) > 1 else 8765
-PARENT_WS = "4d4926ef508e4cba9085ca29fefcf4fd"
-REPORT_ID = "dp_paid_media_performance_report"  # default; the app opens the report of the persona's first data product
+PARENT_WS = "e74a1eaa18f74706b94e39f91552efe7"  # Exzeo Carrier Analytics (template)
+REPORT_ID = "business_performance_report"  # AI Publisher report, authored once in the template
 
 
 def _env():
@@ -46,18 +45,10 @@ def _env():
 
 
 ADMIN_TOKEN = _env()["GOODDATA_API_TOKEN"]  # organization admin: only for the Control Center overview, server side
-DP = json.loads((ROOT / "gooddata" / "data_products.json").read_text())
-ALL_PRODUCTS = list(DP["products"])
-# home page order per client: the products that tell the client's story first
-ORDER = {"ALL": ["Paid Media Performance", "Web Analytics & GEO", "CRM & Offline Sales", "Product Feed & Shopping"],
-         "secondevie": ["Paid Media Performance", "Web Analytics & GEO", "Product Feed & Shopping", "CRM & Offline Sales"],
-         "autonova": ["Paid Media Performance", "CRM & Offline Sales", "Social Creatives", "Budget & Pacing"],
-         "routeo": ["Paid Media Performance", "Web Analytics & GEO", "Social Creatives", "Budget & Pacing"]}
-CLIENTS = {"secondevie": ("Seconde Vie", ["France", "Germany", "Spain", "Italy", "United Kingdom", "United States"]),
-           "autonova": ("AutoNova Automobiles", ["France"]),
-           "routeo": ("Routéo Location", ["France", "Spain", "Italy", "Germany", "United Kingdom"])}
-PACKAGE = {"Top Account": "ai", "Standard": "base"}
-TIER = {"secondevie": "Top Account", "autonova": "Top Account", "routeo": "Standard"}
+# the standard dashboards every carrier inherits from the Exzeo template, in home-page order (web/src/products.ts)
+PRODUCTS = ["Business Overview", "Sales", "Products", "Customers"]
+CLIENTS = {"hcpci": "Homeowners Choice", "typtap": "TypTap Insurance"}
+TIER = {"VIEW": ("View + AI", "base"), "ANALYZE": ("Analyze + AI", "ai")}
 
 
 def _csv(path):
@@ -65,26 +56,17 @@ def _csv(path):
         return list(csv.DictReader(f))
 
 
-def _ordered(products, client):
-    first = [p for p in ORDER.get(client, []) if p in products]
-    return first + [p for p in products if p not in first]
-
-
 def _personas():
     out = []
-    for r in _csv(ROOT / "tenancy" / "personas.csv"):
-        internal = r["client_id"] == "ALL"
-        products = ALL_PRODUCTS if r["data_products"] == "ALL" else DP["entitlements"][r["client_id"]]
-        client, markets = ("Arcane", ["All clients, all markets"]) if internal else CLIENTS[r["client_id"]]
-        tier = "Arcane team" if internal else TIER[r["client_id"]]
+    for r in _csv(ROOT / "exzeo" / "personas.csv"):
+        perms = r["workspace_permissions"].split("|")
+        tier, key = TIER["ANALYZE" if "ANALYZE" in perms else "VIEW"]
+        client = CLIENTS[r["client_id"]]
         out.append({
-            # the Arcane Admin demo user is the app's "admin" persona (template + every client workspace)
-            "id": "admin" if r["user_id"] == "arc.admin" else r["user_id"], "userId": r["user_id"],
+            "id": r["user_id"], "userId": r["user_id"],
             "name": f'{r["first_name"]} {r["last_name"]}', "initials": (r["first_name"][:1] + r["last_name"][:1]).upper(),
             "role": f'{r["role"]} · {client}', "tagline": r["story"], "workspace": r["workspace_id"], "client": client,
-            "tier": tier, "tierKey": "admin" if internal else PACKAGE[tier],
-            "products": _ordered(products, r["client_id"]), "locations": markets,
-            "permissions": r["workspace_permissions"].split("|"),
+            "tier": tier, "tierKey": key, "products": PRODUCTS, "locations": [client], "permissions": perms,
         })
     return out
 
@@ -112,7 +94,7 @@ TTL = 300  # seconds before the overview is refreshed in the background
 
 
 def _build_overview():
-    """Admin view of the Arcane tree. All GoodData calls run in parallel."""
+    """Admin view of the Exzeo tree. All GoodData calls run in parallel."""
     with ThreadPoolExecutor(12) as ex:
         f_ws = ex.submit(gd, "/api/v1/entities/workspaces?include=parent&size=500")
         f_wdf = ex.submit(gd, "/api/v1/layout/workspaceDataFilters")
@@ -164,7 +146,7 @@ def _build_overview():
                            "skills": at.get("customSkills") if at.get("skillsMode") == "custom" else ["all skills"],
                            "availableToAll": at.get("availableToAll"),
                            "groups": [g["id"] for g in a.get("relationships", {}).get("userGroups", {}).get("data", [])],
-                           "conference": a["id"].startswith("arcane-")})
+                           "conference": a["id"].startswith("exzeo-")})
 
     return {"host": f"https://{HOST}", "parent": PARENT_WS, "reportId": REPORT_ID, "workspaces": details,
             "themes": themes, "wdfs": wdfs, "groups": groups, "members": members, "agents": agents}
@@ -246,7 +228,7 @@ class Handler(BaseHTTPRequestHandler):
         self.wfile.write(body)
 
     def _proxy(self, method, url):
-        token = token_for(self.headers.get("X-Persona", "admin"))  # every persona incl. admin = a demo user token
+        token = token_for(self.headers.get("X-Persona", PERSONAS[0]["id"]))  # every persona = a demo user token
         if not token:
             return self._json({"error": "persona has no API token; run demo_app/setup_tokens.py"}, 401)
         length = int(self.headers.get("Content-Length") or 0)
@@ -297,7 +279,7 @@ class Handler(BaseHTTPRequestHandler):
 if __name__ == "__main__":
     srv = ThreadingHTTPServer(("127.0.0.1", PORT), Handler)
     srv.daemon_threads = True
-    print(f"Arcane demo backend → http://127.0.0.1:{PORT}  (UI: cd demo_app/web && npm run dev → http://localhost:5173)")
+    print(f"Exzeo demo backend → http://127.0.0.1:{PORT}  (UI: cd demo_app/web && npm run dev → http://localhost:5173)")
     missing = [p["name"] for p in PERSONAS if not token_for(p["id"])]
     if missing:
         print(f"  ! no API token yet for: {', '.join(missing)} → run: python3 demo_app/setup_tokens.py")

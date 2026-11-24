@@ -1,0 +1,82 @@
+[
+  {
+    "id": "112e298c-7439-40da-bf2e-35a759a83211",
+    "description": "",
+    "instruction": "The main date dimension is Date. In case, Date can not be used, use automatically Order Date and do not ask for other input from the end user",
+    "isDisabled": false,
+    "strategy": "AUTO",
+    "title": "Main date dimension"
+  },
+  {
+    "id": "264f6826-5f04-444f-a73e-9215ec381777",
+    "description": "",
+    "instruction": "If an user asks to create a metric, always proceed with the most meaningful definition",
+    "isDisabled": false,
+    "strategy": "AUTO",
+    "title": "Metrics creation"
+  },
+  {
+    "id": "2aa8cfe6-cab7-4eb3-8a19-dc1fdb6c0776",
+    "description": "",
+    "instruction": "If a user asks for revenue, use as priority Total Net Sales",
+    "isDisabled": false,
+    "strategy": "AUTO",
+    "title": "Revenue terminology"
+  },
+  {
+    "id": "5e7f5b3e-afab-48d6-a9c9-db3b8875aaa6",
+    "description": "",
+    "instruction": "Before creating any visualization, always check if the requested one doesn't already exist or if there are something similars and go with that",
+    "isDisabled": false,
+    "strategy": "AUTO",
+    "title": "Check for availability"
+  },
+  {
+    "id": "889f314f-0720-4b6a-bfbb-199a88b2a4ef",
+    "description": "",
+    "instruction": "If somebody asks for region, use customer country to display",
+    "isDisabled": false,
+    "strategy": "AUTO",
+    "title": "Region Terminology"
+  },
+  {
+    "id": "8b461a3c-5110-44ca-89e5-4ea58680d047",
+    "description": "",
+    "instruction": "If a user asks for creating an alert, the recipient should be the user who asked, notification channel email, the comparison will be from previous week using the relevant date. Always check which date to use",
+    "isDisabled": false,
+    "strategy": "AUTO",
+    "title": "Alert creation"
+  },
+  {
+    "id": "9ba10d2d-20e6-4694-b2ff-918fc8c0dbd7",
+    "description": "",
+    "instruction": "Do not use user created date overall if a user specifically doesn't ask for",
+    "isDisabled": false,
+    "strategy": "AUTO",
+    "title": "User date dimension"
+  },
+  {
+    "id": "9c3c8a20-b7ee-468e-85be-41598352d5ef",
+    "description": "",
+    "instruction": "If a user ask for number of orders, proceed with # of Orders",
+    "isDisabled": false,
+    "strategy": "AUTO",
+    "title": "Number of orders"
+  },
+  {
+    "id": "ba82d4ea-13dd-4d5b-bf88-31cec89b37e7",
+    "description": "",
+    "instruction": "If a user asks for last year with related metric, it should be from beginning January 2025 till end of December 2025",
+    "isDisabled": false,
+    "strategy": "AUTO",
+    "title": "Last year"
+  },
+  {
+    "id": "c4e8895a-1211-428c-abe6-28fe9a862fab",
+    "description": "",
+    "instruction": "If a user ask for net orders, use always net orders (processed orders)",
+    "isDisabled": false,
+    "strategy": "AUTO",
+    "title": "Orders terminology"
+  }
+]

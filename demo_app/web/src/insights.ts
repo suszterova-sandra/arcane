@@ -42,11 +42,10 @@ function roundRobin(products: Product[], pick: (p: Product) => ProductKpi[]): Kp
   return out;
 }
 
-// key drivers: the lead KPI sliced by market and by platform (both reachable from every campaign-based product;
-// a product without them, e.g. Web Analytics by platform, simply returns no drivers for that dimension)
+// key drivers: the lead KPI sliced by product category and by customer country
 const DIMS = [
-  { id: "market", label: "markets.market_id.country_name", noun: "Market", target: (p: Product) => T(p.dashboard, p.dashTitle, p.byMarket.viz, p.byMarket.title) },
-  { id: "platform", label: "platforms.platform_id.platform_name", noun: "Platform", target: (p: Product) => T(p.dashboard, p.dashTitle, p.byPlatform.viz, p.byPlatform.title) },
+  { id: "category", label: "product_category", noun: "Category", target: (p: Product) => T(p.dashboard, p.dashTitle, p.byCategory.viz, p.byCategory.title) },
+  { id: "country", label: "customer_country", noun: "Country", target: (p: Product) => T(p.dashboard, p.dashTitle, p.byCountry.viz, p.byCountry.title) },
 ];
 
 export interface Driver {
@@ -72,7 +71,7 @@ export interface Insights {
 
 // ------------------------------------------------------------------ execution (as the persona)
 
-const DATE_DATASET = "activity_date";
+const DATE_DATASET = "date";
 
 const measure = (lid: string, metric: string, quarter: number) => ({
   localIdentifier: lid,
@@ -186,7 +185,7 @@ export function fmt(v: number | undefined, f: Kpi["format"]) {
   if (f === "count" && a < 1e4) return `${v < 0 ? "−" : ""}${Math.round(a).toLocaleString()}`;
   if (f === "num" && a < 1e4) return `${v < 0 ? "−" : ""}${a.toFixed(1)}`;
   const s = a >= 1e9 ? `${(a / 1e9).toFixed(1)}B` : a >= 1e6 ? `${(a / 1e6).toFixed(1)}M` : a >= 1e3 ? `${(a / 1e3).toFixed(a >= 1e5 ? 0 : 1)}K` : a.toFixed(0);
-  return `${v < 0 ? "−" : ""}${f === "money" ? "€" : ""}${s}`;
+  return `${v < 0 ? "−" : ""}${f === "money" ? "$" : ""}${s}`;
 }
 
 export function change(k: { cur?: number; prev?: number; format: Kpi["format"] }) {

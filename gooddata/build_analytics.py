@@ -20,6 +20,7 @@ import shutil
 
 import yaml
 
+from dashboard_content import CONTENT
 from descriptions import DATE_DESC, DESC, METRIC_DESC, VIS_DESC
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -460,6 +461,33 @@ def build_metrics():
 # ---------------------------------------------------------------------------
 VIS = {}
 DASHBOARDS = []
+
+# Dashboard plugins (hosted bundles, registered once in the parent and inherited by the client workspaces)
+PLUGINS = {"dashboard_summary": {
+    "type": "plugin", "id": "dashboard_summary", "title": "Dashboard Summary",
+    "description": "Summary panel on top of the dashboard (hosted GoodData demo plugin).",
+    "url": "https://gooddata-demo.s3.amazonaws.com/dashboard-plugins/dashboard-summary/dashboardPlugin/dp_dashboard_summary.mjs"}}
+DASHBOARD_PLUGINS = {"d1_paid_media": ["dashboard_summary"], "d4_budget_pacing": ["dashboard_summary"],
+                     "d6_crm_offline": ["dashboard_summary"]}
+# Drill to dashboard only into dashboards every viewer of the source can open: 1-4 (Core + Standard, all clients).
+DRILLS = {
+    "pm_k_cost": [{"click_on": "primary", "open_dashboard": "d4_budget_pacing"}],
+    "pm_k_value": [{"click_on": "primary", "open_dashboard": "d3_web_geo"}],
+    "sc_k_spend": [{"click_on": "primary", "open_dashboard": "d1_paid_media"}],
+    "sc_by_format": [{"click_on": "creatives_creative_format", "open_visualization": "sc_top"}],
+    "wa_k_mer": [{"click_on": "primary", "open_dashboard": "d1_paid_media"}],
+    "bp_k_actual": [{"click_on": "primary", "open_dashboard": "d1_paid_media"}],
+    "bp_p_actual": [{"click_on": "primary", "open_dashboard": "d1_paid_media"}],
+    "pf_k_cost": [{"click_on": "primary", "open_dashboard": "d1_paid_media"}],
+    "crm_k_cpl": [{"click_on": "primary", "open_dashboard": "d1_paid_media"}],
+    "crm_k_cpw": [{"click_on": "primary", "open_dashboard": "d1_paid_media"}],
+    "mi_k_iroas": [{"click_on": "primary", "open_dashboard": "d3_web_geo"}],
+}
+FILTER_PARENTS = {"market": ["client"], "platform": ["client", "market"]}  # dependent dashboard filters
+# Same platform = same palette slot on every chart (each workspace's theme palette supplies the actual colour)
+PLATFORM_COLORS = {"Google Ads": 1, "Meta Ads": 2, "TikTok Ads": 3, "Microsoft Advertising": 4, "Amazon Ads": 5,
+                   "LinkedIn Ads": 6, "Display & Video 360": 7, "Pinterest Ads": 8, "Non-paid (Organic / Direct)": 9}
+LOWER_IS_BETTER = {"pm_cpa", "sc_cpa", "crm_cpl", "crm_cost_per_won", "op_days"}
 MONTH = f"label/{DATE}.month"
 WEEK = f"label/{DATE}.week"
 CLIENT = "label/clients.client_id.client_name"
@@ -470,6 +498,42 @@ BOTTOM = {"legend_position": "bottom"}
 
 def fid(ref):
     return ref.split("/", 1)[1].replace(".", "_")
+
+
+def compact(prefix="", small="#,##0"):
+    """Short number for KPI tiles: 12.3M / 45.7K (from 10K) / full value below; explicit minus for negatives."""
+    pos = f"[>=1000000]{prefix}#,##0.0,,M;[>=10000]{prefix}#,##0.0,K;[>=0]{prefix}{small}"
+    neg = f"[<=-1000000]-{prefix}#,##0.0,,M;[<=-10000]-{prefix}#,##0.0,K;-{prefix}{small}"
+    return f"{pos};{neg}"
+
+
+# KPI-tile format per metric format (tables and charts keep the metric's full format)
+KPI_FORMAT = {EUR: compact("€"), NUM: compact(), NUM1: compact(small="#,##0.0"),
+              EUR2: "[>=100]€#,##0;[<=-100]-€#,##0;€#,##0.00"}
+
+
+FORECAST_MONTHS = 4
+
+
+def forecast(kpi_vid, title, m):
+    """Pop-up opened by clicking a KPI tile: monthly line of complete months + GoodData forecast (95 % band)."""
+    src = next(x for x in METRICS if x[0] == m)
+    fm, fv = f"fc_{m}", f"fc_{kpi_vid}"
+    if fm not in METRIC_DESC:
+        metric(fm, f"{src[1]} (complete months)",
+               f"SELECT {{metric/{m}}} WHERE {{label/{DATE}.month}} < THIS(MONTH)", src[3], "", src[5])
+        METRIC_DESC[fm] = (f"{src[1]} for complete months only (the current, partial month is left out) - "
+                           f"the base of the {FORECAST_MONTHS}-month forecast.")
+    VIS[fv] = {"type": "line_chart", "id": fv, "title": f"{title} - Forecast",
+               "query": {"fields": {fm: f"metric/{fm}", fid(MONTH): MONTH}},
+               "metrics": [fm], "view_by": [fid(MONTH)],
+               "config": {"legend_position": "bottom", "forecast_enabled": True,
+                          "forecast_period": FORECAST_MONTHS, "forecast_confidence": 0.95,
+                          "forecast_seasonal": False},
+               "tags": [src[5]]}
+    VIS_DESC[fv] = (f"{title} by month (complete months) with a {FORECAST_MONTHS}-month forecast and its 95 % "
+                    f"confidence band. Opens when you click the {title} KPI.")
+    DRILLS.setdefault(kpi_vid, []).insert(0, {"click_on": "primary", "open_visualization": fv})
 
 
 def headline(vid, title, m, desc, compare=True):
@@ -483,8 +547,15 @@ def headline(vid, title, m, desc, compare=True):
         v["metrics"] = ["primary", "secondary"]
         v["config"] = {"comparison_type": "change", "indicator_arrow": True, "indicator_colors": True,
                        "label_default": "vs previous period", "label_conditional": True}
+        if m in LOWER_IS_BETTER:
+            v["config"].update(indicator_color_positive=-1, indicator_color_negative=1)
     else:
         v["metrics"] = ["primary"]
+    if compare:
+        forecast(vid, title, m)
+    fmt = KPI_FORMAT.get(next(x[3] for x in METRICS if x[0] == m))
+    if fmt:
+        v["metrics"][0] = {"field": "primary", "format": fmt}
     VIS[vid] = v
 
 
@@ -508,8 +579,15 @@ def chart(vid, typ, title, desc, metrics, view=None, segment=None, sort=True, fi
                                                      if totals is True or k in totals]}] + vk[1:]) if totals else vk
     if sk:
         v["segment_by"] = sk
-    if config:
-        v["config"] = config
+    cfg = dict(config or {})
+    if typ not in ("table", "headline_chart"):
+        cfg["legend_position"] = "bottom"
+    if typ == "bar_chart":
+        cfg.setdefault("data_labels", True)
+    if PLATFORM in (segment or []) or (typ in ("donut_chart", "pie_chart") and PLATFORM in (view or [])):
+        cfg["colors"] = dict(PLATFORM_COLORS)
+    if cfg:
+        v["config"] = cfg
     VIS[vid] = v
 
 
@@ -529,33 +607,58 @@ FILTERS = {
 
 
 def dashboard(did, product, title, desc, rows, filters=("client", "market", "platform"), months=(-11, 0)):
+    c = CONTENT[did]
     sections = []
+    def widget(vid, use_date):
+        w = {"id": f"w_{vid}", "visualization": vid, "title": VIS[vid]["title"]}
+        if VIS[vid].get("tags") and VIS[vid]["tags"] != [product]:
+            raise SystemExit(f"{vid} is used by two data products")
+        VIS[vid]["tags"] = [product]
+        if use_date:
+            w["date"] = DATE
+        if VIS[vid]["type"] not in ("headline_chart", "table") and any(
+                f["field"] if isinstance(f, dict) else f for f in VIS[vid].get("view_by", [])
+                if (f["field"] if isinstance(f, dict) else f).startswith(f"{DATE}_")):
+            w["zoom_data"] = True
+        if vid in DRILLS:
+            w["interactions"] = DRILLS[vid]
+        return w
+
     for stitle, widgets in rows:
         ws = []
         for vid, cols, h, use_date in widgets:
-            w = {"id": f"w_{vid}", "visualization": vid, "title": VIS[vid]["title"], "columns": cols, "rows": h}
-            if VIS[vid].get("tags") and VIS[vid]["tags"] != [product]:
-                raise SystemExit(f"{vid} is used by two data products")
-            VIS[vid]["tags"] = [product]
-            if use_date:
-                w["date"] = DATE
-            ws.append(w)
+            if isinstance(vid, tuple):  # visualization switcher
+                ws.append({"id": "sw_" + "_".join(vid), "visualizations": [widget(v, use_date) for v in vid],
+                           "columns": cols, "rows": h})
+            else:
+                ws.append({**widget(vid, use_date), "columns": cols, "rows": h})
         s = {"widgets": ws}
         if stitle:
             s["title"] = stitle
+            s["description"] = c["sections"][stitle]
         sections.append(s)
     f = {"date": {"type": "date_filter", "granularity": "MONTH", "from": months[0], "to": months[1]}}
-    f.update({k: FILTERS[k] for k in filters})
+    for k in filters:
+        f[k] = dict(FILTERS[k])
+        parents = [p for p in FILTER_PARENTS.get(k, []) if p in filters]
+        if parents:
+            f[k]["parents"] = parents
     pkg = DP["data_products"][product]["package"]
     who = {"Core": "visible to every client and Arcane user", "Internal": "Arcane staff only"}.get(
         pkg, "visible to clients who have this data product")
     desc = f"{desc} Data product: {product} ({pkg}, {who})."
-    DASHBOARDS.append({"type": "dashboard", "id": did, "title": title, "description": desc, "tags": [product],
-                       "sections": sections, "filters": f})
+    d = {"type": "dashboard", "id": did, "title": title, "description": desc, "tags": [product],
+         "sections": sections, "filters": f}
+    if did in DASHBOARD_PLUGINS:
+        d["plugins"] = [{"id": pid, "parameters": ""} for pid in DASHBOARD_PLUGINS[did]]
+    DASHBOARDS.append(d)
 
 
 def kpis(*items):
-    return [(v, 2, 8, d) for v, d in items]
+    """KPI tiles filling the 12-column row (wider tiles at the end when 12 does not divide evenly)."""
+    n = len(items)
+    widths = [12 // n + (1 if i >= n - 12 % n else 0) for i in range(n)]
+    return [(v, w, 8, d) for (v, d), w in zip(items, widths)]
 
 
 def build_visuals():
@@ -593,9 +696,9 @@ def build_visuals():
               "Cross-platform media performance: spend, conversions, ROAS / CPA, markets, devices and search health.",
               [(None, kpis(("pm_k_cost", 1), ("pm_k_conv", 1), ("pm_k_value", 1), ("pm_k_roas", 1), ("pm_k_cpa", 1),
                            ("pm_k_ctr", 1))),
-               ("Trend & Mix", [("pm_trend", 8, 16, 1), ("pm_by_platform", 4, 16, 1), ("pm_by_funnel", 6, 16, 1),
-                                ("pm_by_market", 6, 16, 1)]),
-               ("Campaigns", [("pm_by_type", 7, 16, 1), ("pm_device", 5, 16, 1), ("pm_top_campaigns", 12, 18, 1)]),
+               ("Trend & Mix", [("pm_trend", 8, 16, 1), ("pm_by_platform", 4, 16, 1),
+                                (("pm_by_market", "pm_by_funnel"), 8, 16, 1), ("pm_device", 4, 16, 1)]),
+               ("Campaigns", [(("pm_by_type", "pm_top_campaigns"), 12, 15, 1)]),
                ("Search Health", [("pm_is_trend", 7, 16, 1), ("pm_is_market", 5, 16, 1)])])
 
     # 2. Social Creatives -------------------------------------------------------
@@ -621,9 +724,9 @@ def build_visuals():
               "Creative analytics for Meta, TikTok and LinkedIn: formats, themes, production source, fatigue.",
               [(None, kpis(("sc_k_spend", 1), ("sc_k_ctr", 1), ("sc_k_cpa", 1), ("sc_k_thumb", 1), ("sc_k_hold", 1),
                            ("sc_k_live", 1))),
-               ("Formats & Production", [("sc_by_format", 6, 16, 1), ("sc_by_source", 6, 16, 1)]),
-               ("Trend", [("sc_trend", 7, 16, 1), ("sc_by_theme", 5, 16, 1)]),
-               ("Creatives", [("sc_top", 12, 20, 1)])])
+               ("Trend", [("sc_trend", 8, 16, 1), ("sc_by_theme", 4, 16, 1)]),
+               ("Formats & Production", [("sc_by_format", 8, 16, 1), ("sc_by_source", 4, 16, 1)]),
+               ("Creatives", [("sc_top", 12, 15, 1)])])
 
     # 3. Web Analytics & GEO -----------------------------------------------------
     for vid, title, m, desc in [("wa_k_rev", "Backend Revenue", "wa_revenue", "Revenue in the client's backend."),
@@ -650,8 +753,8 @@ def build_visuals():
               "Backend truth: revenue by channel, blended ROAS (MER), platform over-attribution and AI-assistant traffic.",
               [(None, kpis(("wa_k_rev", 1), ("wa_k_mer", 1), ("wa_k_paidshare", 1), ("wa_k_cvr", 1), ("wa_k_newc", 1),
                            ("wa_k_ai", 1))),
-               ("Channels", [("wa_rev_channel", 7, 16, 1), ("wa_channels", 5, 16, 1)]),
-               ("Attribution & GEO", [("wa_attrib", 6, 16, 1), ("wa_ai_trend", 6, 16, 1), ("wa_market", 12, 14, 1)])],
+               ("Channels", [("wa_rev_channel", 8, 16, 1), ("wa_channels", 4, 16, 1)]),
+               ("Attribution & GEO", [(("wa_attrib", "wa_ai_trend"), 8, 16, 1), ("wa_market", 4, 16, 1)])],
               filters=("client", "market"))
 
     # 4. Budget & Pacing -----------------------------------------------------------
@@ -681,9 +784,9 @@ def build_visuals():
               "plan vs actual for the selected period.",
               [(None, kpis(("bp_k_planned", None), ("bp_k_actual", None), ("bp_k_pacing", None),
                            ("bp_k_remaining", None))),
-               ("This Month", [("bp_table", 7, 18, None), ("bp_platform", 5, 18, None)]),
+               ("This Month", [("bp_table", 8, 15, None), ("bp_platform", 4, 15, None)]),
                ("Selected Period", kpis(("bp_p_planned", 1), ("bp_p_actual", 1), ("bp_p_pacing", 1), ("bp_p_variance", 1))
-                + [("bp_trend", 12, 16, 1), ("bp_p_table", 12, 18, 1)])],
+                + [("bp_trend", 8, 16, 1), ("bp_p_table", 4, 16, 1)])],
               months=(-11, 1))
 
     # 5. Product Feed & Shopping ----------------------------------------------------
@@ -706,7 +809,7 @@ def build_visuals():
               "Shopping, Performance Max and Amazon at product level; impact of feed optimization (SmartFeeds).",
               [(None, kpis(("pf_k_cost", 1), ("pf_k_value", 1), ("pf_k_roas", 1), ("pf_k_ctr", 1), ("pf_k_products", 1))),
                ("Feed Optimization", [("pf_feed", 8, 16, 1), ("pf_platform", 4, 16, 1)]),
-               ("Products", [("pf_category", 5, 18, 1), ("pf_top", 7, 18, 1)])])
+               ("Products", [("pf_top", 8, 15, 1), ("pf_category", 4, 15, 1)])])
 
     # 6. CRM & Offline Sales ---------------------------------------------------------
     for vid, title, m, desc in [("crm_k_leads", "Leads", "crm_leads", "CRM leads."),
@@ -734,9 +837,9 @@ def build_visuals():
               "First-party CRM: lead quality, conversion to sales, cost per sold car / B2B deal and offline conversion import.",
               [(None, kpis(("crm_k_leads", 1), ("crm_k_qual", 1), ("crm_k_won", 1), ("crm_k_value", 1), ("crm_k_cpl", 1),
                            ("crm_k_cpw", 1))),
-               ("Funnel", [("crm_funnel", 4, 16, 1), ("crm_trend", 8, 16, 1)]),
-               ("Efficiency", [("crm_cost_trend", 6, 16, 1), ("crm_platform", 6, 16, 1)]),
-               ("Locations", [("crm_location", 8, 18, 1), ("crm_status", 4, 18, 1)])],
+               ("Funnel", [("crm_trend", 8, 16, 1), (("crm_funnel", "crm_status"), 4, 16, 1)]),
+               ("Efficiency", [("crm_cost_trend", 8, 16, 1), ("crm_platform", 4, 16, 1)]),
+               ("Locations", [("crm_location", 12, 14, 1)])],
               months=(-23, 0))
 
     # 7. Measurement & Incrementality ---------------------------------------------------
@@ -754,7 +857,7 @@ def build_visuals():
     dashboard("d7_measurement", "Measurement & Incrementality", "7. Measurement & Incrementality",
               "Geo-lift and conversion-lift tests: iROAS per channel versus platform-reported results.",
               [(None, kpis(("mi_k_tests", 1), ("mi_k_iroas", 1), ("mi_k_rev", 1), ("mi_k_share", 1))),
-               ("Results", [("mi_scope", 5, 18, 1), ("mi_table", 7, 18, 1)])], months=(-35, 0))
+               ("Results", [("mi_table", 8, 15, 1), ("mi_scope", 4, 15, 1)])], months=(-35, 0))
 
     # 8. Arcane Operations (internal) ---------------------------------------------------
     for vid, title, m, desc, cmp_ in [("op_k_req", "Data Requests", "op_requests", "Requests submitted.", True),
@@ -776,8 +879,8 @@ def build_visuals():
     dashboard("d8_arcane_ops", "Arcane Operations", "8. Arcane Operations (internal)",
               "Today's data-support loop: request volume, delivery time and effort - plus client data-product entitlements.",
               [(None, kpis(("op_k_req", 1), ("op_k_days", 1), ("op_k_open", None), ("op_k_effort", 1))),
-               ("Requests", [("op_trend", 7, 16, 1), ("op_days_type", 5, 16, 1), ("op_list", 12, 18, 1)]),
-               ("Entitlements", [("op_entitlements", 12, 14, None)])], filters=("client",))
+               ("Requests", [("op_trend", 8, 16, 1), ("op_days_type", 4, 16, 1), ("op_list", 12, 14, 1)]),
+               ("Entitlements", [("op_entitlements", 12, 12, None)])], filters=("client",))
 
 
 # ---------------------------------------------------------------------------
@@ -839,7 +942,7 @@ def dump(folder, name, doc):
 
 
 def main():
-    for folder in ("datasets", "metrics", "visualisations", "dashboards"):
+    for folder in ("datasets", "metrics", "visualisations", "dashboards", "plugins"):
         p = os.path.join(OUT, folder)
         if os.path.isdir(p):
             shutil.rmtree(p)
@@ -847,6 +950,7 @@ def main():
     for name, doc in build_datasets().items():
         dump("datasets", name, doc)
     build_metrics()
+    build_visuals()
     missing = [m[0] for m in METRICS if m[0] not in METRIC_DESC]
     if missing:
         raise SystemExit(f"no description in descriptions.METRIC_DESC for metrics {missing}")
@@ -854,7 +958,6 @@ def main():
         desc = METRIC_DESC[mid]
         dump("metrics", mid, {"type": "metric", "id": mid, "title": title, "description": desc, "tags": [tag],
                               "maql": maql, "format": fmt})
-    build_visuals()
     missing = [v for v in VIS if v not in VIS_DESC]
     if missing:
         raise SystemExit(f"no description in descriptions.VIS_DESC for visualisations {missing}")
@@ -865,6 +968,11 @@ def main():
         dump("visualisations", vid, doc)
     for d in DASHBOARDS:
         dump("dashboards", d["id"], d)
+    for pid, doc in PLUGINS.items():
+        dump("plugins", pid, doc)
+    missing = {p for d in DASHBOARD_PLUGINS.values() for p in d} - set(PLUGINS)
+    if missing or set(DASHBOARD_PLUGINS) - {d["id"] for d in DASHBOARDS}:
+        raise SystemExit(f"DASHBOARD_PLUGINS refers to unknown plugins/dashboards")
     for product, x in manifest.items():
         print(f"  {product:<30} {x['user_group']:<36} metrics {len(x['metrics']):>2}  vis {len(x['visualizations']):>2}")
     print(f"datasets {len(MODEL) + len(DATES)}, metrics {len(METRICS)}, visualisations {len(VIS)}, "

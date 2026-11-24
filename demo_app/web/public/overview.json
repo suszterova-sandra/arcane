@@ -1,198 +1,13 @@
 {
  "host": "https://sandrasuszterova.demo.cloud.gooddata.com",
- "parent": "4d4926ef508e4cba9085ca29fefcf4fd",
- "reportId": "dp_paid_media_performance_report",
+ "parent": "e74a1eaa18f74706b94e39f91552efe7",
+ "reportId": "business_performance_report",
  "workspaces": [
   {
-   "id": "4d4926ef508e4cba9085ca29fefcf4fd",
-   "name": "Arcane",
-   "isParent": true,
-   "themeId": "arcane",
-   "permissions": [
-    {
-     "name": "ANALYZE",
-     "assignee": {
-      "id": "arc.admin",
-      "type": "user"
-     }
-    },
-    {
-     "name": "CREATE_AUTOMATION",
-     "assignee": {
-      "id": "arc.admin",
-      "type": "user"
-     }
-    },
-    {
-     "name": "EXPORT",
-     "assignee": {
-      "id": "arc.admin",
-      "type": "user"
-     }
-    },
-    {
-     "name": "USE_AI_ASSISTANT",
-     "assignee": {
-      "id": "arc.admin",
-      "type": "user"
-     }
-    },
-    {
-     "name": "ANALYZE",
-     "assignee": {
-      "id": "arc.consultant",
-      "type": "user"
-     }
-    },
-    {
-     "name": "CREATE_AUTOMATION",
-     "assignee": {
-      "id": "arc.consultant",
-      "type": "user"
-     }
-    },
-    {
-     "name": "EXPORT",
-     "assignee": {
-      "id": "arc.consultant",
-      "type": "user"
-     }
-    },
-    {
-     "name": "USE_AI_ASSISTANT",
-     "assignee": {
-      "id": "arc.consultant",
-      "type": "user"
-     }
-    }
-   ],
-   "hierarchyPermissions": [
-    {
-     "name": "ANALYZE",
-     "assignee": {
-      "id": "arc.admin",
-      "type": "user"
-     }
-    },
-    {
-     "name": "CREATE_AUTOMATION",
-     "assignee": {
-      "id": "arc.admin",
-      "type": "user"
-     }
-    },
-    {
-     "name": "EXPORT",
-     "assignee": {
-      "id": "arc.admin",
-      "type": "user"
-     }
-    },
-    {
-     "name": "USE_AI_ASSISTANT",
-     "assignee": {
-      "id": "arc.admin",
-      "type": "user"
-     }
-    }
-   ],
-   "dashboards": [
-    {
-     "id": "d1_paid_media",
-     "title": "1. Paid Media Performance"
-    },
-    {
-     "id": "d2_social_creatives",
-     "title": "2. Social & Creatives"
-    },
-    {
-     "id": "d3_web_geo",
-     "title": "3. Web, Sales & GEO"
-    },
-    {
-     "id": "d4_budget_pacing",
-     "title": "4. Budget & Pacing"
-    },
-    {
-     "id": "d5_product_feed",
-     "title": "5. Product Feed & Shopping"
-    },
-    {
-     "id": "d6_crm_offline",
-     "title": "6. CRM & Offline Sales"
-    },
-    {
-     "id": "d7_measurement",
-     "title": "7. Measurement & Incrementality"
-    },
-    {
-     "id": "d8_arcane_ops",
-     "title": "8. Arcane Operations (internal)"
-    }
-   ]
-  },
-  {
-   "id": "autonova",
-   "name": "AutoNova Automobiles",
+   "id": "3d9adaacc9c24fc49cd7b868b468ed6f",
+   "name": "Homeowners Choice",
    "isParent": false,
-   "themeId": "arcane_autonova",
-   "permissions": [
-    {
-     "name": "ANALYZE",
-     "assignee": {
-      "id": "arc.autonova.marketing",
-      "type": "user"
-     }
-    },
-    {
-     "name": "USE_AI_ASSISTANT",
-     "assignee": {
-      "id": "arc.autonova.marketing",
-      "type": "user"
-     }
-    }
-   ],
-   "hierarchyPermissions": [],
-   "dashboards": [
-    {
-     "id": "d1_paid_media",
-     "title": "1. Paid Media Performance"
-    },
-    {
-     "id": "d2_social_creatives",
-     "title": "2. Social & Creatives"
-    },
-    {
-     "id": "d3_web_geo",
-     "title": "3. Web, Sales & GEO"
-    },
-    {
-     "id": "d4_budget_pacing",
-     "title": "4. Budget & Pacing"
-    },
-    {
-     "id": "d5_product_feed",
-     "title": "5. Product Feed & Shopping"
-    },
-    {
-     "id": "d6_crm_offline",
-     "title": "6. CRM & Offline Sales"
-    },
-    {
-     "id": "d7_measurement",
-     "title": "7. Measurement & Incrementality"
-    },
-    {
-     "id": "d8_arcane_ops",
-     "title": "8. Arcane Operations (internal)"
-    }
-   ]
-  },
-  {
-   "id": "routeo",
-   "name": "Rout\u00e9o Location",
-   "isParent": false,
-   "themeId": "arcane_routeo",
+   "themeId": "exzeo_3d9adaac",
    "permissions": [
     {
      "name": "USE_AI_ASSISTANT",
@@ -207,68 +22,32 @@
       "id": "arc.routeo.marketing",
       "type": "user"
      }
-    }
-   ],
-   "hierarchyPermissions": [],
-   "dashboards": [
-    {
-     "id": "d1_paid_media",
-     "title": "1. Paid Media Performance"
     },
     {
-     "id": "d2_social_creatives",
-     "title": "2. Social & Creatives"
-    },
-    {
-     "id": "d3_web_geo",
-     "title": "3. Web, Sales & GEO"
-    },
-    {
-     "id": "d4_budget_pacing",
-     "title": "4. Budget & Pacing"
-    },
-    {
-     "id": "d5_product_feed",
-     "title": "5. Product Feed & Shopping"
-    },
-    {
-     "id": "d6_crm_offline",
-     "title": "6. CRM & Offline Sales"
-    },
-    {
-     "id": "d7_measurement",
-     "title": "7. Measurement & Incrementality"
-    },
-    {
-     "id": "d8_arcane_ops",
-     "title": "8. Arcane Operations (internal)"
-    }
-   ]
-  },
-  {
-   "id": "secondevie",
-   "name": "Seconde Vie",
-   "isParent": false,
-   "themeId": "arcane_secondevie",
-   "permissions": [
-    {
-     "name": "ANALYZE",
+     "name": "CREATE_AUTOMATION",
      "assignee": {
-      "id": "arc.secondevie.ecom",
+      "id": "john-doe-1",
       "type": "user"
      }
     },
     {
      "name": "EXPORT",
      "assignee": {
-      "id": "arc.secondevie.ecom",
+      "id": "john-doe-1",
       "type": "user"
      }
     },
     {
      "name": "USE_AI_ASSISTANT",
      "assignee": {
-      "id": "arc.secondevie.ecom",
+      "id": "john-doe-1",
+      "type": "user"
+     }
+    },
+    {
+     "name": "VIEW",
+     "assignee": {
+      "id": "john-doe-1",
       "type": "user"
      }
     }
@@ -276,47 +55,196 @@
    "hierarchyPermissions": [],
    "dashboards": [
     {
-     "id": "d1_paid_media",
-     "title": "1. Paid Media Performance"
+     "id": "cefb7e47-0c82-4d2a-b9af-78e0f2c031f0",
+     "title": "My dashboard"
     },
     {
-     "id": "d2_social_creatives",
-     "title": "2. Social & Creatives"
+     "id": "customers",
+     "title": "3. Customers"
     },
     {
-     "id": "d3_web_geo",
-     "title": "3. Web, Sales & GEO"
+     "id": "executive_business_performance_last_quarter_2ddddfb7",
+     "title": "Executive Business Performance \u2014 Last Quarter"
     },
     {
-     "id": "d4_budget_pacing",
-     "title": "4. Budget & Pacing"
+     "id": "executive_performance_dashboard_last_quarter_5053baac",
+     "title": "Executive Performance Dashboard \u2014 Last Quarter"
     },
     {
-     "id": "d5_product_feed",
-     "title": "5. Product Feed & Shopping"
+     "id": "overview",
+     "title": "1. Overview"
     },
     {
-     "id": "d6_crm_offline",
-     "title": "6. CRM & Offline Sales"
+     "id": "products",
+     "title": "4. Products"
     },
     {
-     "id": "d7_measurement",
-     "title": "7. Measurement & Incrementality"
+     "id": "sales",
+     "title": "2. Sales"
+    }
+   ]
+  },
+  {
+   "id": "e74a1eaa18f74706b94e39f91552efe7",
+   "name": "Exzeo Carrier Analytics (template)",
+   "isParent": true,
+   "themeId": "exzeo",
+   "permissions": [],
+   "hierarchyPermissions": [],
+   "dashboards": [
+    {
+     "id": "customers",
+     "title": "3. Customers"
     },
     {
-     "id": "d8_arcane_ops",
-     "title": "8. Arcane Operations (internal)"
+     "id": "executive_business_performance_last_quarter_2ddddfb7",
+     "title": "Executive Business Performance \u2014 Last Quarter"
+    },
+    {
+     "id": "executive_performance_dashboard_last_quarter_5053baac",
+     "title": "Executive Performance Dashboard \u2014 Last Quarter"
+    },
+    {
+     "id": "overview",
+     "title": "1. Overview"
+    },
+    {
+     "id": "products",
+     "title": "4. Products"
+    },
+    {
+     "id": "sales",
+     "title": "2. Sales"
+    }
+   ]
+  },
+  {
+   "id": "efdabe226f2c4456873673af50575d3b",
+   "name": "TypTap Insurance",
+   "isParent": false,
+   "themeId": "exzeo_efdabe22",
+   "permissions": [
+    {
+     "name": "ANALYZE",
+     "assignee": {
+      "id": "arc.autonova.marketing",
+      "type": "user"
+     }
+    },
+    {
+     "name": "USE_AI_ASSISTANT",
+     "assignee": {
+      "id": "arc.autonova.marketing",
+      "type": "user"
+     }
+    },
+    {
+     "name": "ANALYZE",
+     "assignee": {
+      "id": "view_.user.cb0ae9dc-c1e2-4b8e-b408-872a17db00a5",
+      "type": "user"
+     }
+    },
+    {
+     "name": "CREATE_AUTOMATION",
+     "assignee": {
+      "id": "view_.user.cb0ae9dc-c1e2-4b8e-b408-872a17db00a5",
+      "type": "user"
+     }
+    },
+    {
+     "name": "EXPORT",
+     "assignee": {
+      "id": "view_.user.cb0ae9dc-c1e2-4b8e-b408-872a17db00a5",
+      "type": "user"
+     }
+    },
+    {
+     "name": "USE_AI_ASSISTANT",
+     "assignee": {
+      "id": "view_.user.cb0ae9dc-c1e2-4b8e-b408-872a17db00a5",
+      "type": "user"
+     }
+    }
+   ],
+   "hierarchyPermissions": [],
+   "dashboards": [
+    {
+     "id": "customers",
+     "title": "3. Customers"
+    },
+    {
+     "id": "executive_business_performance_last_quarter_2ddddfb7",
+     "title": "Executive Business Performance \u2014 Last Quarter"
+    },
+    {
+     "id": "executive_performance_dashboard_last_quarter_5053baac",
+     "title": "Executive Performance Dashboard \u2014 Last Quarter"
+    },
+    {
+     "id": "overview",
+     "title": "1. Overview"
+    },
+    {
+     "id": "products",
+     "title": "4. Products"
+    },
+    {
+     "id": "sales",
+     "title": "2. Sales"
+    },
+    {
+     "id": "914d804b-f74e-4c62-8883-5ecb210444af",
+     "title": "test Copy of 1. Overview"
+    }
+   ]
+  },
+  {
+   "id": "ff02bcf531d143bf8fb8f37c3d29fb29",
+   "name": "CORE - Condo Owners Reciprocal Exchange",
+   "isParent": false,
+   "themeId": "exzeo_ff02bcf5",
+   "permissions": [],
+   "hierarchyPermissions": [],
+   "dashboards": [
+    {
+     "id": "customers",
+     "title": "3. Customers"
+    },
+    {
+     "id": "executive_business_performance_last_quarter_2ddddfb7",
+     "title": "Executive Business Performance \u2014 Last Quarter"
+    },
+    {
+     "id": "executive_performance_dashboard_last_quarter_5053baac",
+     "title": "Executive Performance Dashboard \u2014 Last Quarter"
+    },
+    {
+     "id": "overview",
+     "title": "1. Overview"
+    },
+    {
+     "id": "products",
+     "title": "4. Products"
+    },
+    {
+     "id": "sales",
+     "title": "2. Sales"
+    },
+    {
+     "id": "core_custom_board",
+     "title": "CORE \u00b7 Custom Board"
     }
    ]
   }
  ],
  "themes": {
-  "arcane_autonova": {
-   "id": "arcane_autonova",
-   "name": "Arcane \u2013 AutoNova Automobiles",
+  "exzeo_efdabe22": {
+   "id": "exzeo_efdabe22",
+   "name": "TypTap Insurance (Exzeo)",
    "palette": {
     "primary": {
-     "base": "#1E5AA8",
+     "base": "#4E9A2F",
      "contrast": "#FFFFFF"
     },
     "error": {
@@ -330,110 +258,32 @@
     },
     "complementary": {
      "c0": "#FFFFFF",
-     "c1": "#F3F6FA",
-     "c2": "#F3F6FA",
-     "c3": "#DCE3EE",
-     "c4": "#DCE3EE",
+     "c1": "#F4F8F2",
+     "c2": "#F4F8F2",
+     "c3": "#DDE6D8",
+     "c4": "#DDE6D8",
      "c5": "#9A98A8",
      "c6": "#6E6C80",
      "c7": "#4F4D63",
-     "c8": "#0B2545",
-     "c9": "#0B1A2E"
+     "c8": "#3B3838",
+     "c9": "#10202B"
     }
    },
-   "logo": "https://placehold.co/600x140/FFFFFF/0B2545/png?text=AutoNova+x+Arcane&font=montserrat",
-   "cover": "https://placehold.co/1920x1080/0B2545/0B2545/png",
-   "accent": "#E63946",
-   "header": {
-    "backgroundColor": "#0B2545",
-    "color": "#FFFFFF",
-    "activeColor": "#E63946"
-   }
-  },
-  "arcane_secondevie": {
-   "id": "arcane_secondevie",
-   "name": "Arcane \u2013 Seconde Vie",
-   "palette": {
-    "primary": {
-     "base": "#22A06B",
-     "contrast": "#FFFFFF"
-    },
-    "error": {
-     "base": "#D1435B"
-    },
-    "warning": {
-     "base": "#FBBF24"
-    },
-    "success": {
-     "base": "#2F9E7A"
-    },
-    "complementary": {
-     "c0": "#FFFFFF",
-     "c1": "#F2F8F5",
-     "c2": "#F2F8F5",
-     "c3": "#D6E8DF",
-     "c4": "#D6E8DF",
-     "c5": "#9A98A8",
-     "c6": "#6E6C80",
-     "c7": "#4F4D63",
-     "c8": "#0F3D2E",
-     "c9": "#0B2219"
-    }
-   },
-   "logo": "https://placehold.co/600x140/FFFFFF/0F3D2E/png?text=Seconde+Vie+x+Arcane&font=montserrat",
-   "cover": "https://placehold.co/1920x1080/0F3D2E/0F3D2E/png",
-   "accent": "#F2C14E",
-   "header": {
-    "backgroundColor": "#0F3D2E",
-    "color": "#FFFFFF",
-    "activeColor": "#F2C14E"
-   }
-  },
-  "arcane_routeo": {
-   "id": "arcane_routeo",
-   "name": "Arcane \u2013 Rout\u00e9o Location",
-   "palette": {
-    "primary": {
-     "base": "#F28C28",
-     "contrast": "#FFFFFF"
-    },
-    "error": {
-     "base": "#D1435B"
-    },
-    "warning": {
-     "base": "#FBBF24"
-    },
-    "success": {
-     "base": "#2F9E7A"
-    },
-    "complementary": {
-     "c0": "#FFFFFF",
-     "c1": "#FBF7F2",
-     "c2": "#FBF7F2",
-     "c3": "#ECE2D6",
-     "c4": "#ECE2D6",
-     "c5": "#9A98A8",
-     "c6": "#6E6C80",
-     "c7": "#4F4D63",
-     "c8": "#23395B",
-     "c9": "#16233A"
-    }
-   },
-   "logo": "https://placehold.co/600x140/FFFFFF/23395B/png?text=Routeo+x+Arcane&font=montserrat",
-   "cover": "https://placehold.co/1920x1080/23395B/23395B/png",
-   "accent": "#F28C28",
+   "logo": "https://cdn.prod.website-files.com/6797a6b5c734c8a068c27fc9/679cf0fa584cf23a986b2438_TypTap-Insurance-Full-Color-tm-p-800.png",
+   "cover": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Hurricane_Milton_from_the_ISS_2024-10-08.jpg/1920px-Hurricane_Milton_from_the_ISS_2024-10-08.jpg",
+   "accent": "#4E9A2F",
    "header": {
     "backgroundColor": "#FFFFFF",
-    "color": "#23395B",
-    "activeColor": "#F28C28"
+    "color": "#3B3838",
+    "activeColor": "#4E9A2F"
    }
   },
-  "arcane": {
-   "id": "arcane",
-   "name": "Arcane \u2013 Arcane",
+  "exzeo": {
+   "id": "exzeo",
+   "name": "Exzeo (Exzeo)",
    "palette": {
     "primary": {
-     "base": "#FF6555",
+     "base": "#3B8639",
      "contrast": "#FFFFFF"
     },
     "error": {
@@ -447,41 +297,140 @@
     },
     "complementary": {
      "c0": "#FFFFFF",
-     "c1": "#F3F7F7",
-     "c2": "#F3F7F7",
-     "c3": "#D9E4E4",
-     "c4": "#D9E4E4",
+     "c1": "#F3F6F9",
+     "c2": "#F3F6F9",
+     "c3": "#DCE3EC",
+     "c4": "#DCE3EC",
      "c5": "#9A98A8",
      "c6": "#6E6C80",
      "c7": "#4F4D63",
-     "c8": "#004C52",
-     "c9": "#0E2A2D"
+     "c8": "#1B3554",
+     "c9": "#0F1F33"
     }
    },
-   "logo": "https://www.arcane.run/wp-content/themes/arcane/dist/images/logo-animated.c23bffada0219d8bbafa.webp",
-   "cover": "https://placehold.co/1920x1080/004C52/004C52/png",
-   "accent": "#FF6555",
+   "logo": "https://cdn.prod.website-files.com/6797a6b5c734c8a068c27fc9/67b64b69a480c154b99565cc_Exzeo_logo_light_bg.svg",
+   "cover": "https://cdn.prod.website-files.com/6797a6b5c734c8a068c27fc9/67acbb3b98b9bc503f3d7f77_Exzeo%20Banner-1080-poster-00001.jpg",
+   "accent": "#44D541",
+   "header": {
+    "backgroundColor": "#1B3554",
+    "color": "#FFFFFF",
+    "activeColor": "#44D541"
+   }
+  },
+  "exzeo_3d9adaac": {
+   "id": "exzeo_3d9adaac",
+   "name": "Homeowners Choice (Exzeo)",
+   "palette": {
+    "primary": {
+     "base": "#2E2A7A",
+     "contrast": "#FFFFFF"
+    },
+    "error": {
+     "base": "#D1435B"
+    },
+    "warning": {
+     "base": "#FBBF24"
+    },
+    "success": {
+     "base": "#2F9E7A"
+    },
+    "complementary": {
+     "c0": "#FFFFFF",
+     "c1": "#F4F4FA",
+     "c2": "#F4F4FA",
+     "c3": "#DDDCEC",
+     "c4": "#DDDCEC",
+     "c5": "#9A98A8",
+     "c6": "#6E6C80",
+     "c7": "#4F4D63",
+     "c8": "#221C55",
+     "c9": "#10202B"
+    }
+   },
+   "logo": "https://cdn.prod.website-files.com/6797a6b5c734c8a068c27fc9/679cf14a07528c1451962461_HCPCI_FullLogo_Vector-p-800.png",
+   "cover": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/West_PB_FL_Flamingo_Park_Res_HD_house01.jpg/1920px-West_PB_FL_Flamingo_Park_Res_HD_house01.jpg",
+   "accent": "#2E2A7A",
    "header": {
     "backgroundColor": "#FFFFFF",
-    "color": "#004C52",
-    "activeColor": "#FF6555"
+    "color": "#221C55",
+    "activeColor": "#2E2A7A"
+   }
+  },
+  "exzeo_ff02bcf5": {
+   "id": "exzeo_ff02bcf5",
+   "name": "CORE - Condo Owners Reciprocal Exchange (Exzeo)",
+   "palette": {
+    "primary": {
+     "base": "#1F8FA6",
+     "contrast": "#FFFFFF"
+    },
+    "error": {
+     "base": "#D1435B"
+    },
+    "warning": {
+     "base": "#FBBF24"
+    },
+    "success": {
+     "base": "#2F9E7A"
+    },
+    "complementary": {
+     "c0": "#FFFFFF",
+     "c1": "#F2F7FA",
+     "c2": "#F2F7FA",
+     "c3": "#D6E4EC",
+     "c4": "#D6E4EC",
+     "c5": "#9A98A8",
+     "c6": "#6E6C80",
+     "c7": "#4F4D63",
+     "c8": "#1B3159",
+     "c9": "#10202B"
+    }
+   },
+   "logo": "https://cdn.prod.website-files.com/6797a6b5c734c8a068c27fc9/679cf0f9a9f19ee8289b948c_CORE-Horizontal-color-p-800.png",
+   "cover": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/St_Tropez_on_The_Bay_-_Sunny_Isles_Beach_Condos.jpg/1920px-St_Tropez_on_The_Bay_-_Sunny_Isles_Beach_Condos.jpg",
+   "accent": "#1F8FA6",
+   "header": {
+    "backgroundColor": "#FFFFFF",
+    "color": "#1B3159",
+    "activeColor": "#1F8FA6"
    }
   }
  },
  "wdfs": [
   {
-   "id": "client_id",
-   "title": "Client ID",
+   "id": "WDF__CLIENT_ID",
+   "title": "Client id",
    "column": "wdf__client_id",
    "values": {
-    "autonova": [
-     "autonova"
+    "efdabe226f2c4456873673af50575d3b": [
+     "merchant__electronics"
     ],
-    "routeo": [
-     "routeo"
+    "ff02bcf531d143bf8fb8f37c3d29fb29": [
+     "merchant__clothing"
     ],
-    "secondevie": [
-     "secondevie"
+    "3d9adaacc9c24fc49cd7b868b468ed6f": [
+     "merchant__bigboxretailer"
+    ]
+   }
+  },
+  {
+   "id": "WDF__PRODUCT_CATEGORY",
+   "title": "Product category",
+   "column": "wdf__product_category",
+   "values": {
+    "efdabe226f2c4456873673af50575d3b": [
+     "Computers & Accessories",
+     "Audio & Video Accessories"
+    ],
+    "ff02bcf531d143bf8fb8f37c3d29fb29": [
+     "Home Goods",
+     "Clothing",
+     "Audio & Video Accessories"
+    ],
+    "3d9adaacc9c24fc49cd7b868b468ed6f": [
+     "Home Goods",
+     "Furniture",
+     "Computers & Accessories"
     ]
    }
   }
@@ -517,36 +466,17 @@
   "dp_social_creatives": "Data Product: Social Creatives",
   "dp_time_attendance": "Data Product: Time & Attendance",
   "dp_web_analytics_and_geo": "Data Product: Web Analytics & GEO",
-  "e1797ea1-3b76-48ba-b7ee-011b6a5388eb": "Analyze Group"
+  "e1797ea1-3b76-48ba-b7ee-011b6a5388eb": "Analyze Group",
+  "maplehollow_managers": "Maple Hollow \u00b7 Managers",
+  "maplehollow_staff": "Maple Hollow \u00b7 Staff",
+  "willowbend_managers": "Willowbend \u00b7 Managers",
+  "willowbend_staff": "Willowbend \u00b7 Staff"
  },
  "members": {
-  "admin": [
-   "dp_crm_and_offline_sales",
-   "dp_measurement_and_incrementality",
-   "dp_paid_media_performance",
-   "dp_arcane_operations",
-   "dp_product_feed_and_shopping",
+  "arc.routeo.marketing": [
    "dp_web_analytics_and_geo",
    "dp_social_creatives",
-   "dp_budget_and_pacing"
-  ],
-  "arc.consultant": [
-   "dp_crm_and_offline_sales",
-   "dp_measurement_and_incrementality",
    "dp_paid_media_performance",
-   "dp_arcane_operations",
-   "dp_product_feed_and_shopping",
-   "dp_web_analytics_and_geo",
-   "dp_social_creatives",
-   "dp_budget_and_pacing"
-  ],
-  "arc.secondevie.ecom": [
-   "dp_crm_and_offline_sales",
-   "dp_measurement_and_incrementality",
-   "dp_paid_media_performance",
-   "dp_product_feed_and_shopping",
-   "dp_web_analytics_and_geo",
-   "dp_social_creatives",
    "dp_budget_and_pacing"
   ],
   "arc.autonova.marketing": [
@@ -555,12 +485,6 @@
    "dp_paid_media_performance",
    "dp_web_analytics_and_geo",
    "dp_social_creatives",
-   "dp_budget_and_pacing"
-  ],
-  "arc.routeo.marketing": [
-   "dp_web_analytics_and_geo",
-   "dp_social_creatives",
-   "dp_paid_media_performance",
    "dp_budget_and_pacing"
   ]
  },
@@ -615,14 +539,16 @@
     "visualization_summary",
     "visualization",
     "key_driver_analysis",
-    "anomaly_detection"
+    "anomaly_detection",
+    "dashboard_builder",
+    "dashboard_editor"
    ],
    "availableToAll": false,
    "groups": [
     "adminGroup",
     "dp_paid_media_performance"
    ],
-   "conference": true
+   "conference": false
   },
   {
    "id": "arcane-budget-agent",
@@ -641,7 +567,7 @@
     "adminGroup",
     "dp_budget_and_pacing"
    ],
-   "conference": true
+   "conference": false
   },
   {
    "id": "arcane-performance-agent",
@@ -660,7 +586,7 @@
     "adminGroup",
     "dp_paid_media_performance"
    ],
-   "conference": true
+   "conference": false
   },
   {
    "id": "default-ai-assistant",

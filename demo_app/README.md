@@ -1,35 +1,36 @@
-# Arcane demo app
+# Exzeo demo app
 
-React (Vite + TypeScript) portal around the **Arcane** workspaces on `sandrasuszterova.demo.cloud.gooddata.com`:
-one template workspace (Arcane) and one white-labelled workspace per advertiser. Switch between demo users in one
-click. Every number, dashboard, report and AI answer comes back with that user's own GoodData permissions.
-This is a port of the Viventium / conference portal.
+React (Vite + TypeScript) portal around the **Exzeo** workspaces on `sandrasuszterova.demo.cloud.gooddata.com`:
+the Exzeo template workspace (`e74a1eaa18f74706b94e39f91552efe7`, "Exzeo Carrier Analytics (template)") and one
+white-labelled workspace per carrier (Homeowners Choice, TypTap Insurance, CORE). Switch between demo users in one
+click. Every number, dashboard and AI answer comes back with that user's own GoodData permissions and data filters.
+Ported from the Arcane portal; Exzeo workspaces, themes and the AI Publisher report come from `../exzeo/setup.py`.
 
-**Live (GitHub Pages):** https://suszterova-sandra.github.io/arcane/
+**Live (GitHub Pages):** https://suszterova-sandra.github.io/arcane/ (still the Arcane build until this is pushed)
 
-## Personas
+## Personas (`../exzeo/personas.csv`)
 
-| User | Workspace | Package | Data products | AI |
-|---|---|---|---|---|
-| Arcane Admin (`arc.admin`, the app's admin) | template + every client (inherited) | Arcane team | all 8 | ✓ + agents |
-| Camille Marchand (`arc.consultant`), media consultant | template (all clients) | Arcane team | all 8 | ✓ + agents |
-| Léa Dubois (`arc.secondevie.ecom`), Seconde Vie | `secondevie` | Top Account | 7 (all client-facing) | ✓ + agents |
-| Marc Fontaine (`arc.autonova.marketing`), AutoNova | `autonova` | Top Account | 6 (no Product Feed) | ✓ + agents |
-| Elena Ruiz (`arc.routeo.marketing`), Routéo | `routeo` | Standard | 4 (Core + Standard) | ✓ + Briefing / Performance agents |
+| User | Carrier workspace | Access | What to show |
+|---|---|---|---|
+| Elena Ruiz (`arc.routeo.marketing`) | Homeowners Choice | VIEW + USE_AI_ASSISTANT | Standard dashboards in the carrier's brand, AI briefing, AI Assistant; no authoring |
+| Marc Fontaine (`arc.autonova.marketing`) | TypTap Insurance | ANALYZE + USE_AI_ASSISTANT | Everything Elena has + Analyze, New dashboard, AI-built visualizations |
 
-**Tokens:** every persona's API token is compiled into the static build (`demo_app/.tokens.json`, committed on
-purpose), so visitors can switch between all users without logging in. They belong to demo users with access to the
-Arcane demo workspaces only; none is an organization admin. The organization admin token in `../.env` is used only
-locally (`server.py` overview, `setup_agents.py`, `snapshot_overview.py`) and is never committed.
-Rotate the tokens with `python3 tenancy/reconcile.py --tokens && python3 demo_app/setup_tokens.py`, then commit.
+Both are existing demo users moved over from Arcane (no new users: the org is at its user limit). Each sees only its
+own carrier workspace. The AI Publisher report (`business_performance_report`) is only readable with the
+CREATE_DOCUMENT permission, so the app hides the AI Report tab for users without it; PDF export needs EXPORT.
+There is no admin persona, so the Control Center screen is not reachable.
+
+**Tokens:** the two users' existing API tokens (from `../tenancy/.tokens.json`) are copied into
+`demo_app/.tokens.json` by `setup_tokens.py` and compiled into the static build, so visitors can switch users
+without logging in. Neither user is an organization admin. The organization admin token in `../.env` is used only
+locally (`server.py` overview, `snapshot_overview.py`) and is never committed.
 
 ## Run / publish
 
 ```bash
 # once (from arcane/)
-python3 tenancy/reconcile.py --tokens   # personas + API tokens
+python3 exzeo/setup.py                  # Exzeo workspaces, themes, WDFs, custom dashboard
 python3 demo_app/setup_tokens.py        # -> demo_app/.tokens.json + web/src/personas.json
-python3 demo_app/setup_agents.py        # 3 Arcane agents in AI Hub
 python3 demo_app/snapshot_overview.py   # Control Center snapshot -> web/public/overview.json
 cd demo_app/web && npm install
 

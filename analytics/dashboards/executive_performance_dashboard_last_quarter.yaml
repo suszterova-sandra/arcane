@@ -1,0 +1,101 @@
+# A dashboard is a collection of visualizations that are organized into sections.
+# Because they allow filtering and other adjustments, they function as a dynamic presentation layer for your data analytics.
+# Read more about dashboards:
+# https://www.gooddata.com/docs/cloud/create-dashboards/concepts/dashboard/
+
+type: dashboard
+id: executive_performance_dashboard_last_quarter_5053baac
+
+version: "2"
+
+title: Executive Performance Dashboard — Last Quarter
+description: Leadership view of net sales, profitability, customer activity, order volume, product performance, and fulfillment for the last completed quarter.
+
+tabs:
+  - id: executive-overview
+    title: Executive Overview
+    filters:
+      date:
+        type: date_filter
+        granularity: QUARTER
+        from: -1
+        to: -1
+        title: Last quarter
+    sections:
+      - title: Key KPIs
+        description: Headline measures for leadership review.
+        widgets:
+          - id: ffa24f37-dc4a-441e-a9a7-588307fa575d
+            visualization: net_sales_headline
+            title: Net Sales
+            columns: 6
+            rows: 10
+            date: date
+          - id: 189c79d5-8b9c-407b-a216-9d184a444669
+            visualization: gross_profit_headline
+            title: Gross Profit
+            columns: 6
+            rows: 10
+            date: date
+          - id: 3c280b0a-ccb8-4140-bfbe-fac905e61717
+            visualization: orders_processed_headline
+            title: Orders Processed
+            columns: 6
+            rows: 12
+            date: date
+          - id: 62331087-9509-4ff4-a0e6-fefc916089e3
+            visualization: active_customers_headline
+            title: Active Customers
+            columns: 6
+            rows: 12
+            date: date
+      - title: Sales and Customer Trends
+        description: Track performance over time and understand customer engagement.
+        widgets:
+          - id: 8f80441f-9220-42e4-a3ac-70732ce6c8ba
+            visualization: revenue_trend_over_time
+            title: Revenue Trend Over Time
+            columns: 6
+            rows: 22
+            date: date
+          - id: b8ae5fa2-a3ae-4bb0-b964-5a9c35c84b80
+            visualization: customer_activity_over_time
+            title: Customer Activity Over Time
+            columns: 6
+            rows: 22
+            date: date
+      - title: Product and Operational Performance
+        description: Identify profit drivers, category performance, and fulfillment issues.
+        widgets:
+          - id: 984eeb5d-6d72-4220-909c-da23da492f01
+            visualization: total_net_sales_by_product_category_bar
+            title: Total Net Sales by Product Category
+            columns: 6
+            rows: 22
+            date: date
+          - id: cd815311-71e8-412b-843c-0925da3e997b
+            visualization: top_products_by_gross_profit
+            title: Top Products by Gross Profit
+            columns: 6
+            rows: 22
+            date: date
+          - id: 832215b1-4361-4a87-8b77-077c11bfa1ec
+            visualization: order_fulfillment_funnel
+            title: Order Fulfillment Funnel
+            columns: 6
+            rows: 22
+            date: date
+      - title: Customer Geography
+        description: Understand customer concentration by country.
+        widgets:
+          - id: dccb977f-9386-45c5-9461-8d3d98e6a59e
+            visualization: active_customers_by_country
+            title: Active Customers by Country
+            columns: 6
+            rows: 22
+            date: date
+
+permissions:
+  EDIT:
+    users:
+      - sandra.suszterova

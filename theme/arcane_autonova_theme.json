@@ -85,7 +85,7 @@
   },
   "dashboards": {
     "title": {
-      "color": "#0B1A2E",
+      "color": "#0B2545",
       "backgroundColor": "#FFFFFF",
       "borderColor": "#FFFFFF"
     },
@@ -111,13 +111,13 @@
     },
     "section": {
       "title": {
-        "color": "#0B1A2E",
-        "lineColor": "#DCE3EE"
+        "color": "#0B2545",
+        "lineColor": "#E63946"
       },
       "description": {
         "color": "#4F4D63"
       },
-      "backgroundColor": "#FFFFFF"
+      "backgroundColor": "#F3F6FA"
     },
     "content": {
       "backgroundColor": "#F3F6FA",
@@ -128,9 +128,9 @@
         },
         "backgroundColor": "#FFFFFF",
         "borderColor": "#DCE3EE",
-        "borderRadius": "14",
-        "borderWidth": "1",
-        "dropShadow": false
+        "borderRadius": "16",
+        "borderWidth": "0",
+        "dropShadow": true
       },
       "kpiWidget": {
         "title": {
@@ -139,9 +139,9 @@
         },
         "backgroundColor": "#0B2545",
         "borderColor": "#0B2545",
-        "borderRadius": "14",
-        "borderWidth": "1",
-        "dropShadow": false,
+        "borderRadius": "16",
+        "borderWidth": "0",
+        "dropShadow": true,
         "kpi": {
           "primaryMeasureColor": "#FFFFFF",
           "secondaryInfoColor": "#E9E3F3",

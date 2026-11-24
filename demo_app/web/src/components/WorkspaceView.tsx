@@ -7,7 +7,7 @@ import { AgenticSummary } from "./AgenticSummary";
 import { Portal } from "./Home";
 import { useChatbot } from "./Chatbot";
 import { Icon } from "../icons";
-import { canCreateContent, canUseAi, useCatalog, usePermissions } from "../catalog";
+import { canCreateContent, canReadReports, canUseAi, useCatalog, usePermissions } from "../catalog";
 import { productsOf, reportOf } from "../products";
 import { Embed } from "./Embed";
 
@@ -24,7 +24,7 @@ export function WorkspaceView() {
   const tabs: { id: Tab; label: string }[] = [
     { id: "home", label: t("home") },
     { id: "dashboards", label: t("dashboards") },
-    { id: "report", label: t("aiReport") },
+    ...(canReadReports(perms) ? [{ id: "report" as Tab, label: t("aiReport") }] : []),
     ...(canAnalyze ? [{ id: "analyze" as Tab, label: t("analyze") }] : []),
   ];
 
@@ -46,7 +46,7 @@ export function WorkspaceView() {
 
       {route.tab === "home" && <Portal key={`${persona.id}|${ws.id}`} fixedWs={ws.id} />}
       {route.tab === "dashboards" && <Dashboards ws={ws.id} sub={route.sub} viz={route.viz} canCreate={canAnalyze} permsKnown={perms !== null} aiAllowed={canUseAi(perms)} />}
-      {route.tab === "report" && <Report ws={ws.id} />}
+      {route.tab === "report" && canReadReports(perms) && <Report ws={ws.id} />}
       {route.tab === "analyze" && (perms === null ? <Loading text="…" /> : <Analyze ws={ws.id} canAnalyze={canAnalyze} />)}
     </div>
   );
@@ -178,8 +178,11 @@ function Dashboards({ ws, sub, viz, canCreate, permsKnown, aiAllowed }: { ws: st
 function Report({ ws }: { ws: string }) {
   const { persona, overview, toast, t } = useApp();
   const [busy, setBusy] = useState(false);
-  // one Publisher report per data product; the persona's first product by default
-  const products = productsOf(persona.products);
+  // PDF export needs the EXPORT workspace permission; VIEW / ANALYZE (+ AI) users read the report in the app
+  const perms = usePermissions(persona.id, ws);
+  const canExport = !!perms && (perms.includes("EXPORT") || perms.includes("MANAGE"));
+  // one Publisher report per report id (Exzeo: one report covers all standard dashboards)
+  const products = productsOf(persona.products).filter((p, i, all) => all.findIndex((x) => x.report === p.report) === i);
   const [reportId, setReportId] = useState(() => reportOf(persona.products, overview.reportId));
 
   const exportPdf = async () => {
@@ -187,7 +190,7 @@ function Report({ ws }: { ws: string }) {
     try {
       const r = await gd(persona.id, `/api/v1/actions/workspaces/${ws}/export/document`, {
         method: "POST",
-        body: JSON.stringify({ format: "PDF", fileName: products.find((p) => p.report === reportId)?.name ? `${products.find((p) => p.report === reportId)!.name} Report` : "Report", documentId: reportId }),
+        body: JSON.stringify({ format: "PDF", fileName: products.find((p) => p.report === reportId)?.name ? "Business Performance Report" : "Report", documentId: reportId }),
       });
       for (let i = 0; i < 90; i++) {
         const res = await fetch(`/gd/api/v1/actions/workspaces/${ws}/export/document/${r.exportResult}`, {
@@ -219,11 +222,11 @@ function Report({ ws }: { ws: string }) {
               ))}
             </select>
           ) : (
-            <b>{products[0]?.name || "Data product"} report</b>
+            <b>Business Performance report</b>
           )}{" "}
-          <span className="muted small">· authored once in the Arcane template, rendered in each client's theme, computed on {persona.name}'s data only</span>
+          <span className="muted small">· authored once in the Exzeo template, rendered in each carrier's brand, computed on {persona.name}'s data only</span>
         </div>
-        <button className="btn primary" onClick={exportPdf} disabled={busy}>
+        {canExport && <button className="btn primary" onClick={exportPdf} disabled={busy}>
           {busy ? (
             <>
               <span className="spinner" /> Exporting…
@@ -233,7 +236,7 @@ function Report({ ws }: { ws: string }) {
               <Icon name="download" size={15} /> {t("exportPdf")}
             </>
           )}
-        </button>
+        </button>}
         <a className="btn ghost" target="_blank" rel="noreferrer" href={urls.app(ws, `reports/document/${reportId}`)}>
           {t("openInGoodData")} <Icon name="external" size={14} />
         </a>
@@ -275,7 +278,7 @@ function Analyze({ ws, canAnalyze }: { ws: string; canAnalyze: boolean }) {
     <>
       <div className="row" style={{ marginBottom: 12 }}>
         <div className="grow">
-          <b>Analytical Designer</b> <span className="muted small">· drag metrics and attributes from the governed model; results are filtered to this client automatically</span>
+          <b>Analytical Designer</b> <span className="muted small">· drag metrics and attributes from the governed model; results are filtered to this carrier automatically</span>
         </div>
         <a className="btn ghost" target="_blank" rel="noreferrer" href={urls.app(ws, "analyze/#/reportId/edit")}>
           {t("openInGoodData")} <Icon name="external" size={14} />
