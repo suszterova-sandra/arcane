@@ -172,7 +172,7 @@ export function keyDrivers(persona: PersonaId, ws: string, metric: Metric) {
         method: "POST",
         body: JSON.stringify({
           measure: { localIdentifier: "m", definition: { measure: { item: { identifier: { id: metric.id, type: "metric" } } } } },
-          dateAttribute: { localIdentifier: "d", label: { identifier: { id: "activity_date.quarter", type: "label" } } },
+          dateAttribute: { localIdentifier: "d", label: { identifier: { id: "date.quarter", type: "label" } } },
           referencePeriod: reference.api,
           analyzedPeriod: analyzed.api,
         }),
