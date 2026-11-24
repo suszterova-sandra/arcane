@@ -7,35 +7,35 @@ import type { OverviewWorkspace, Persona, TierKey } from "../types";
 
 /** client_id (workspace data filter value) -> name */
 const CLIENT_NAMES: Record<string, string> = {
-  secondevie: "Seconde Vie",
-  autonova: "AutoNova Automobiles",
-  routeo: "Routéo Location",
+  merchant__bigboxretailer: "Homeowners Choice",
+  electronics: "TypTap Insurance",
+  clothing: "CORE",
 };
 const clientName = (id: string) => CLIENT_NAMES[id] || id;
 
 const TIERS: { key: Exclude<TierKey, "admin">; title: string; what: string; isolation: string; can: string }[] = [
   {
     key: "ai",
-    title: "Top Account",
-    what: "Own workspace in the client's brand. Core + Standard data products plus premium add-ons (product feed, CRM & offline sales, incrementality).",
-    isolation: "Workspace data filter = this client only",
-    can: "ANALYZE / EXPORT + AI Assistant, per user",
+    title: "Analyze + AI",
+    what: "Carrier power users: Exzeo's standard dashboards in the carrier's brand, plus self-service (Analytical Designer, own dashboards, AI-built visualizations).",
+    isolation: "Workspace data filter = this carrier only",
+    can: "ANALYZE + AI Assistant",
   },
   {
     key: "base",
-    title: "Standard",
-    what: "Long-tail client on the standard schema: own workspace and brand, Core + Standard data products; premium add-ons are an upsell.",
-    isolation: "Workspace data filter = this client only",
+    title: "View + AI",
+    what: "Carrier business users: Exzeo's standard dashboards in the carrier's own brand; ask the AI Assistant in plain English.",
+    isolation: "Workspace data filter = this carrier only",
     can: "VIEW + AI Assistant",
   },
 ];
 
 const LAYERS: { icon: IconName; title: string; question: string; how: string; example: string }[] = [
-  { icon: "shield", title: "Client", question: "Whose data?", how: "Workspace data filter on wdf__client_id, one client workspace each", example: "Léa sees only Seconde Vie, Elena only Routéo" },
-  { icon: "dashboard", title: "Data product × package", question: "Which dashboards, reports, metrics?", how: "Object-level permissions per data-product user group, granted once on the template", example: "Routéo (Standard) has no CRM, Product Feed or Measurement" },
-  { icon: "sparkles", title: "Permissions", question: "What can they do?", how: "Workspace permissions VIEW / ANALYZE / EXPORT / AI", example: "Elena views, Marc builds his own analyses; everyone has AI" },
-  { icon: "tag", title: "Client definitions", question: "What does 'sales' mean?", how: "AI memory per client workspace on top of Arcane's shared rules", example: "AutoNova: sale = car sold · Routéo: sale = confirmed booking" },
-  { icon: "lock", title: "Arcane internal", question: "What stays inside Arcane?", how: "Internal data product, Arcane groups only", example: "Data-request backlog and entitlements: Arcane team only" },
+  { icon: "shield", title: "Carrier", question: "Whose data?", how: "Workspace data filter on the client id, one carrier workspace each", example: "Elena sees only Homeowners Choice, Marc only TypTap" },
+  { icon: "dashboard", title: "Standard + custom content", question: "Which dashboards?", how: "Standard dashboards built once in the Exzeo template and inherited; custom boards live in the carrier's own workspace", example: "CORE has its own Custom Board on top of the standard set" },
+  { icon: "sparkles", title: "Permissions", question: "What can they do?", how: "Workspace permissions VIEW / ANALYZE / EXPORT / AI", example: "Elena views, Marc builds his own analyses; both have AI" },
+  { icon: "tag", title: "AI memory", question: "What does 'revenue' mean?", how: "AI memory set once on the template, inherited by every carrier", example: "Revenue = Total Net Sales · Region = customer country" },
+  { icon: "lock", title: "White-label", question: "Whose brand?", how: "Theme and colour palette per carrier workspace", example: "Each carrier sees its own logo, colours and imagery" },
 ];
 
 const has = (perms: string[], ...want: string[]) => perms.includes("MANAGE") || want.some((w) => perms.includes(w));
@@ -71,9 +71,9 @@ function WsCard({ w, isParent, users }: { w: OverviewWorkspace; isParent?: boole
           <code>{w.id.length > 20 ? "parent" : w.id}</code> · {w.dashboards.length} dashboards {isParent ? "authored here" : "inherited"}
         </div>
         <dl className="kv">
-          <dt>{isParent ? "Data" : clients.length > 1 ? "Clients" : "Client"}</dt>
+          <dt>{isParent ? "Data" : clients.length > 1 ? "Carriers" : "Carrier"}</dt>
           <dd>
-            {isParent ? <span className="tchip">All clients, unfiltered</span> : clients.map((c) => <span key={c} className="tchip">{clientName(c)}</span>)}
+            {isParent ? <span className="tchip">All carriers, unfiltered</span> : clients.map((c) => <span key={c} className="tchip">{clientName(c)}</span>)}
           </dd>
           <dt>Users</dt>
           <dd className="people">
@@ -84,7 +84,7 @@ function WsCard({ w, isParent, users }: { w: OverviewWorkspace; isParent?: boole
                 </span>
               ))
             ) : (
-              <span className="tchip">{isParent ? "Arcane team" : "—"}</span>
+              <span className="tchip">{isParent ? "Exzeo team" : "—"}</span>
             )}
           </dd>
         </dl>
@@ -112,31 +112,31 @@ export function ControlCenter() {
     <div className="page cc">
       <section className="cc-hero">
         <div>
-          <div className="chip glass" style={{ marginBottom: 10 }}>Arcane internal · admin view</div>
-          <h1>One template, every client</h1>
+          <div className="chip glass" style={{ marginBottom: 10 }}>Exzeo · admin view</div>
+          <h1>One template, every carrier</h1>
           <p>
-            One shared data model, 8 data-product dashboards and publisher reports are built once in the Arcane template and inherited by every client
-            workspace. The client's package decides which data products it gets; data filters, permissions and the client's own AI definitions decide what
-            each user sees.
+            One shared data model, the standard dashboards, the AI Publisher report and the AI memory are built once in the Exzeo template and inherited
+            by every carrier workspace. Each carrier gets its own brand and can add custom dashboards; data filters and permissions decide what each user
+            sees.
           </p>
         </div>
         <div className="stats">
-          <div className="stat"><b>8</b><span>data products</span></div>
-          <div className="stat"><b>{children.length - unused.length}</b><span>client workspaces</span></div>
-          <div className="stat"><b>{Object.keys(CLIENT_NAMES).length}</b><span>clients</span></div>
+          <div className="stat"><b>{parent?.dashboards.length ?? 0}</b><span>standard dashboards</span></div>
+          <div className="stat"><b>{children.length}</b><span>carrier workspaces</span></div>
+          <div className="stat"><b>{Object.keys(o.themes).length}</b><span>white-label themes</span></div>
           <div className="stat"><b>{users.length}</b><span>demo users</span></div>
         </div>
       </section>
 
       <div className="section-title">
-        <h2>1 · Workspaces by package</h2>
+        <h2>1 · Carrier workspaces by access</h2>
         <span className="muted small">Click a workspace to open it as admin. Switch user at the top to see it as that user.</span>
       </div>
       <div className="cc-template">
         {parent && <WsCard w={parent} isParent users={team} />}
         <div className="cc-template-note">
           <b>Template (parent workspace)</b>
-          <p>Shared data model, metrics, 8 dashboards and 8 publisher reports (one per data product). Arcane team only; no client data filter, all clients side by side.</p>
+          <p>Shared data model, metrics, standard dashboards, the AI Publisher report and AI memory. Exzeo team only; no carrier data filter, all carriers side by side.</p>
         </div>
       </div>
       <div className="cc-lanes">
@@ -162,13 +162,21 @@ export function ControlCenter() {
         })}
       </div>
       {unused.length > 0 && (
-        <p className="muted small" style={{ margin: "10px 2px 0" }}>
-          Not used in this demo: {unused.map((w) => w.name).join(", ")} (not part of this demo).
-        </p>
+        <div className="cc-lanes" style={{ marginTop: 14 }}>
+          <div className="cc-lane analytics">
+            <div className="cc-lane-h">
+              <span className="tier-badge analytics">Standard + custom</span>
+              <p>Carriers without a demo user: the standard set plus their own custom dashboards. Open as admin to show them.</p>
+            </div>
+            {unused.map((w) => (
+              <WsCard key={w.id} w={w} users={[]} />
+            ))}
+          </div>
+        </div>
       )}
 
       <div className="section-title">
-        <h2>2 · Five access layers</h2>
+        <h2>2 · Five layers</h2>
         <span className="muted small">Every workspace uses the same layers. All are enforced by GoodData, not by this app.</span>
       </div>
       <div className="cc-layers">
@@ -194,17 +202,16 @@ export function ControlCenter() {
             <tr>
               <th>User</th>
               <th>Workspace</th>
-              <th>Client data</th>
-              <th>Markets</th>
-              <th>Data products (dashboards)</th>
+              <th>Carrier data</th>
+              <th>Standard dashboards</th>
               <th className="c">Build own</th>
               <th className="c">AI</th>
-              <th className="c">Arcane internal</th>
+              <th className="c">Export</th>
               <th />
             </tr>
           </thead>
           <tbody>
-            {[...team.filter((p) => p.id !== "admin"), ...TIERS.flatMap((tier) => users.filter((p) => p.tierKey === tier.key))].map((p) => {
+            {[...team, ...TIERS.flatMap((tier) => users.filter((p) => p.tierKey === tier.key))].map((p) => {
               const perms = permsOf(p);
               const internal = p.tierKey === "admin";
               return (
@@ -224,9 +231,8 @@ export function ControlCenter() {
                   </td>
                   <td>
                     <b>{p.client}</b>
-                    <small className="cc-sub">{internal ? "all clients (template)" : "own client workspace only"}</small>
+                    <small className="cc-sub">{internal ? "all carriers (template)" : "own carrier workspace only"}</small>
                   </td>
-                  <td>{p.locations.join(", ")}</td>
                   <td>
                     <div className="cc-products">
                       {p.products.map((x) => (
@@ -236,7 +242,7 @@ export function ControlCenter() {
                   </td>
                   <td className="c"><Check on={has(perms, "ANALYZE")} label="ANALYZE" /></td>
                   <td className="c"><Check on={has(perms, "USE_AI_ASSISTANT")} label="USE_AI_ASSISTANT" /></td>
-                  <td className="c"><Check on={p.products.includes("Arcane Operations")} label="Arcane Operations data product" /></td>
+                  <td className="c"><Check on={has(perms, "EXPORT")} label="EXPORT" /></td>
                   <td>
                     <button
                       className="btn"
@@ -255,7 +261,7 @@ export function ControlCenter() {
 
       <div className="section-title">
         <h2>4 · AI agents</h2>
-        <span className="muted small">Configured once in AI Hub and assigned to user groups: every client with the data product (and the Arcane team) can use them.</span>
+        <span className="muted small">Configured once in AI Hub and assigned to user groups: every carrier user in the group (and the Exzeo team) can use them.</span>
       </div>
       <div className="card">
         <table className="matrix">

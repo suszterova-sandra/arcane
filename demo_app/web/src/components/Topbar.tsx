@@ -1,3 +1,4 @@
+import { STATIC, adminLoginUrl } from "../staticBackend";
 import { useEffect, useRef, useState } from "react";
 import { useApp } from "../AppContext";
 import type { ColorMode } from "../theme";
@@ -7,7 +8,7 @@ import { LANGS, type Lang } from "../i18n";
 import { Icon } from "../icons";
 import type { Persona, TierKey } from "../types";
 
-const TIER_SHORT: Record<TierKey, string> = { admin: "Exzeo", ai: "Analyze + AI", analytics: "Analyze", base: "View + AI" };
+const TIER_SHORT: Record<TierKey, string> = { admin: "All carriers", ai: "Analyze + AI", analytics: "Analyze", base: "View + AI" };
 
 export function Topbar({ mode, onSetMode }: { mode: ColorMode; onSetMode: (m: ColorMode) => void }) {
   const { personas, persona, switchPersona, route, toast, lang, setLang, t, brand } = useApp();
@@ -23,8 +24,14 @@ export function Topbar({ mode, onSetMode }: { mode: ColorMode; onSetMode: (m: Co
   const [whoOpen, setWhoOpen] = useState(false);
   const whoRef = useRef<HTMLDivElement>(null);
 
+  // on GitHub Pages the admin is a GoodData sign-in: without a session, the admin tab opens GoodData's login page
+  const signIn = (p: Persona) => STATIC && p.id === "admin" && !p.available;
   const pick = (p: Persona) => {
     setWhoOpen(false);
+    if (signIn(p)) {
+      window.location.href = adminLoginUrl();
+      return;
+    }
     if (p.id !== persona.id) switchPersona(p.id, route).then(() => toast(`${p.name} · ${p.role}`));
   };
 
@@ -64,15 +71,15 @@ export function Topbar({ mode, onSetMode }: { mode: ColorMode; onSetMode: (m: Co
               role="tab"
               aria-selected={p.id === persona.id}
               className={p.id === persona.id ? "active" : ""}
-              disabled={!p.available}
-              title={`${p.name} · ${p.role}\n${p.tier} · ${p.products.join(", ")}\n${p.locations.join(", ")}`}
+              disabled={!p.available && !signIn(p)}
+              title={signIn(p) ? "Sign in to GoodData to open the admin view" : `${p.name} · ${p.role}\n${p.tier} · ${p.products.join(", ")}\n${p.locations.join(", ")}`}
               onClick={() => pick(p)}
             >
               <span className={`avatar sm ${p.tierKey}`}>{p.initials}</span>
               <span className="ps-text">
                 <span className="ps-name">{p.id === "admin" ? "Admin" : p.name.split(" ")[0]}</span>
                 <span className="ps-sub">
-                  {TIER_SHORT[p.tierKey]} · {p.client.split(" ")[0]}
+                  {signIn(p) ? "Sign in →" : `${TIER_SHORT[p.tierKey]} · ${p.client.split(" ")[0]}`}
                 </span>
               </span>
             </button>
@@ -86,7 +93,7 @@ export function Topbar({ mode, onSetMode }: { mode: ColorMode; onSetMode: (m: Co
           {whoOpen && (
             <div className="who-panel" role="menu">
               {personas.map((p) => (
-                <button key={p.id} className={`who-card ${p.id === persona.id ? "on" : ""}`} disabled={!p.available} onClick={() => pick(p)}>
+                <button key={p.id} className={`who-card ${p.id === persona.id ? "on" : ""}`} disabled={!p.available && !signIn(p)} onClick={() => pick(p)}>
                   <span className={`avatar ${p.tierKey}`}>{p.initials}</span>
                   <span className="wc-main">
                     <span className="wc-head">

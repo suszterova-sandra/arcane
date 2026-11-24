@@ -1,7 +1,9 @@
 /**
  * Backend-less mode for static hosting (GitHub Pages). The browser does what demo_app/server.py does:
- *  - Every persona (a demo user on one Exzeo carrier workspace - not an organization admin) has an API token
- *    compiled into the build (demo_app/.tokens.json), so every visitor can switch between all users.
+ *  - Every carrier persona (a demo user on one Exzeo carrier workspace) has an API token compiled into the build
+ *    (demo_app/.tokens.json), so every visitor can switch between them.
+ *  - The admin has no token in the build: it is whoever is signed in to GoodData in this browser (session cookie).
+ *    Visitors without a session see the admin as "sign in" only.
  *  - The Control Center facts (workspace tree, data filters, groups, agents) need organization-admin APIs: someone
  *    signed in to GoodData in this browser gets them live, everyone else the published snapshot
  *    (public/overview.json, from demo_app/snapshot_overview.py).
@@ -152,7 +154,9 @@ export function installStaticBackend() {
         host: `https://${HOST}`,
         parent: PARENT_WS,
         reportId: REPORT_ID,
-        personas: PERSONAS.map((p) => ({ ...p, available: Boolean(TOKENS[p.id]) })),
+        personas: await Promise.all(
+          PERSONAS.map(async (p) => ({ ...p, available: p.id === "admin" ? Boolean(await adminSession(nativeFetch)) : Boolean(TOKENS[p.id]) })),
+        ),
       });
     }
     if (url.pathname.endsWith("/app/token")) {
@@ -172,6 +176,8 @@ export function installStaticBackend() {
       const persona = headers.get("X-Persona") || PERSONAS[0]?.id;
       headers.delete("X-Persona");
       const target = `https://${HOST}${url.pathname.slice(gdAt + 3)}${url.search}`;
+      // the admin = the GoodData session in this browser, never an embedded token
+      if (persona === "admin") return nativeFetch(target, { ...init, headers, credentials: "include" });
       const token = TOKENS[persona];
       if (!token) return json({ error: "no token for this user" }, 401);
       headers.set("Authorization", `Bearer ${token}`);

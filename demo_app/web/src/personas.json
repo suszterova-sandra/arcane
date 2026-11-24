@@ -1,5 +1,33 @@
 [
  {
+  "id": "admin",
+  "userId": "arc.admin",
+  "name": "Exzeo Admin",
+  "initials": "EA",
+  "role": "Exzeo Platform Admin · Exzeo",
+  "tagline": "Exzeo admin: builds the standard content once in the Exzeo template (parent) and, inherited, sees every carrier workspace in its own brand; AI report, exports and alerts. Not an organization admin.",
+  "workspace": "e74a1eaa18f74706b94e39f91552efe7",
+  "client": "Exzeo",
+  "tier": "Exzeo team",
+  "tierKey": "admin",
+  "products": [
+   "Business Overview",
+   "Sales",
+   "Products",
+   "Customers"
+  ],
+  "locations": [
+   "All carriers"
+  ],
+  "permissions": [
+   "ANALYZE",
+   "EXPORT",
+   "CREATE_AUTOMATION",
+   "CREATE_DOCUMENT",
+   "USE_AI_ASSISTANT"
+  ]
+ },
+ {
   "id": "arc.routeo.marketing",
   "userId": "arc.routeo.marketing",
   "name": "Elena Ruiz",

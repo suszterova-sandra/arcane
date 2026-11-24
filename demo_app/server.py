@@ -60,13 +60,14 @@ def _personas():
     out = []
     for r in _csv(ROOT / "exzeo" / "personas.csv"):
         perms = r["workspace_permissions"].split("|")
-        tier, key = TIER["ANALYZE" if "ANALYZE" in perms else "VIEW"]
-        client = CLIENTS[r["client_id"]]
+        admin = r["client_id"] == "ALL"  # the Exzeo admin: parent workspace, all carriers (the app's "admin" persona)
+        tier, key = ("Exzeo team", "admin") if admin else TIER["ANALYZE" if "ANALYZE" in perms else "VIEW"]
+        client = "Exzeo" if admin else CLIENTS[r["client_id"]]
         out.append({
-            "id": r["user_id"], "userId": r["user_id"],
+            "id": "admin" if admin else r["user_id"], "userId": r["user_id"],
             "name": f'{r["first_name"]} {r["last_name"]}', "initials": (r["first_name"][:1] + r["last_name"][:1]).upper(),
             "role": f'{r["role"]} · {client}', "tagline": r["story"], "workspace": r["workspace_id"], "client": client,
-            "tier": tier, "tierKey": key, "products": PRODUCTS, "locations": [client], "permissions": perms,
+            "tier": tier, "tierKey": key, "products": PRODUCTS, "locations": ["All carriers"] if admin else [client], "permissions": perms,
         })
     return out
 
@@ -76,10 +77,11 @@ PERSONAS = _personas()
 
 def token_for(persona):
     p = next((p for p in PERSONAS if p["id"] == persona), None)
-    f = HERE / ".tokens.json"
-    if not p or not f.exists():
-        return None
-    return json.loads(f.read_text()).get(p["userId"])
+    # carrier users: demo_app/.tokens.json (public build); the admin: ../tenancy/.tokens.json (gitignored, local only)
+    for f in (HERE / ".tokens.json", ROOT / "tenancy" / ".tokens.json"):
+        if p and f.exists() and json.loads(f.read_text()).get(p["userId"]):
+            return json.loads(f.read_text())[p["userId"]]
+    return None
 
 
 def gd(path, token=ADMIN_TOKEN):
