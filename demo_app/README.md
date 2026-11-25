@@ -1,24 +1,25 @@
-# Exzeo demo app
+# FranConnect demo app
 
-React (Vite + TypeScript) portal around the **Exzeo** workspaces on `sandrasuszterova.demo.cloud.gooddata.com`:
-the Exzeo template workspace (`e74a1eaa18f74706b94e39f91552efe7`, "Exzeo Carrier Analytics (template)") and one
-white-labelled workspace per carrier (Homeowners Choice, TypTap Insurance, CORE). Switch between demo users in one
-click. Every number, dashboard and AI answer comes back with that user's own GoodData permissions and data filters.
-Ported from the Arcane portal; Exzeo workspaces, themes and the AI Publisher report come from `../exzeo/setup.py`.
+React (Vite + TypeScript) portal around the **FranConnect** workspaces on `sandrasuszterova.demo.cloud.gooddata.com`:
+the FranConnect template workspace (`ecommerce-parent`, "FranConnect Analytics (template)") and one white-labelled
+workspace per franchise brand (Brightside Burgers, FlexFit Studios, SparkClean Home Services). Switch between demo
+users in one click. Every number, dashboard and AI answer comes back with that user's own GoodData permissions and
+data filters. Workspaces, themes and analytics come from `../../FranConnect` (setup.py, gd deploy); this portal was
+the Exzeo portal before (Exzeo set-up still in `../exzeo/`).
 
-**Live (GitHub Pages):** https://suszterova-sandra.github.io/arcane/ (still the Arcane build until this is pushed)
+**Live (GitHub Pages):** https://suszterova-sandra.github.io/arcane/
 
-## Personas (`../exzeo/personas.csv`)
+## Personas (`../franconnect/personas.csv`)
 
-| User | Carrier workspace | Access | What to show |
+| User | Brand workspace | Access | What to show |
 |---|---|---|---|
-| Elena Ruiz (`arc.routeo.marketing`) | Homeowners Choice | VIEW + USE_AI_ASSISTANT | Standard dashboards in the carrier's brand, AI briefing, AI Assistant; no authoring |
-| Marc Fontaine (`arc.autonova.marketing`) | TypTap Insurance | ANALYZE + USE_AI_ASSISTANT | Everything Elena has + Analyze, New dashboard, AI-built visualizations |
+| Elena Ruiz (`arc.routeo.marketing`) | Brightside Burgers (`franconnect_brightside`) | VIEW + USE_AI_ASSISTANT | Standard dashboards + PoC must-haves in the brand's theme, AI briefing, AI Assistant; no authoring |
+| Marc Fontaine (`arc.autonova.marketing`) | FlexFit Studios (`franconnect_flexfit`) | ANALYZE + USE_AI_ASSISTANT | Everything Elena has + Analyze, New dashboard, AI-built visualizations |
+| Admin | FranConnect template (`ecommerce-parent`) | GoodData sign-in on Pages; `arc.admin` locally | Control Center: template, brand workspaces, data filters, access |
 
-Both are existing demo users moved over from Arcane (no new users: the org is at its user limit). Each sees only its
-own carrier workspace. The AI Publisher report (`business_performance_report`) is only readable with the
-CREATE_DOCUMENT permission, so the app hides the AI Report tab for users without it; PDF export needs EXPORT.
-There is no admin persona, so the Control Center screen is not reachable.
+Both users are existing demo users moved from the Exzeo carriers (no new users: the org is at its user limit). Each
+sees only its own brand workspace. There is no AI Publisher report in the FranConnect template yet, and neither user has
+CREATE_DOCUMENT, so the AI Report tab is hidden.
 
 **Tokens:** the two users' existing API tokens (from `../tenancy/.tokens.json`) are copied into
 `demo_app/.tokens.json` by `setup_tokens.py` and compiled into the static build, so visitors can switch users
@@ -29,7 +30,6 @@ locally (`server.py` overview, `snapshot_overview.py`) and is never committed.
 
 ```bash
 # once (from arcane/)
-python3 exzeo/setup.py                  # Exzeo workspaces, themes, WDFs, custom dashboard
 python3 demo_app/setup_tokens.py        # -> demo_app/.tokens.json + web/src/personas.json
 python3 demo_app/snapshot_overview.py   # Control Center snapshot -> web/public/overview.json
 cd demo_app/web && npm install

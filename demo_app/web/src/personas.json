@@ -2,13 +2,13 @@
  {
   "id": "admin",
   "userId": "arc.admin",
-  "name": "Exzeo Admin",
-  "initials": "EA",
-  "role": "Exzeo Platform Admin · Exzeo",
-  "tagline": "Exzeo admin: builds the standard content once in the Exzeo template (parent) and, inherited, sees every carrier workspace in its own brand; AI report, exports and alerts. Not an organization admin.",
-  "workspace": "e74a1eaa18f74706b94e39f91552efe7",
-  "client": "Exzeo",
-  "tier": "Exzeo team",
+  "name": "FranConnect Admin",
+  "initials": "FA",
+  "role": "FranConnect Platform Admin · FranConnect",
+  "tagline": "FranConnect admin: builds the standard content once in the FranConnect template (parent) and, inherited, sees every franchise brand workspace in its own brand; exports and alerts. Not an organization admin.",
+  "workspace": "ecommerce-parent",
+  "client": "FranConnect",
+  "tier": "FranConnect team",
   "tierKey": "admin",
   "products": [
    "Business Overview",
@@ -17,7 +17,7 @@
    "Customers"
   ],
   "locations": [
-   "All carriers"
+   "All brands"
   ],
   "permissions": [
    "ANALYZE",
@@ -32,10 +32,10 @@
   "userId": "arc.routeo.marketing",
   "name": "Elena Ruiz",
   "initials": "ER",
-  "role": "Claims & Operations Manager · Homeowners Choice",
-  "tagline": "Carrier user with VIEW + AI: Exzeo's standard dashboards and AI report in the Homeowners Choice brand, asks the AI Assistant in plain English; sees only Homeowners Choice data",
-  "workspace": "3d9adaacc9c24fc49cd7b868b468ed6f",
-  "client": "Homeowners Choice",
+  "role": "Franchise Operations Manager · Brightside Burgers",
+  "tagline": "Franchise brand user with VIEW + AI: FranConnect's standard dashboards and the PoC must-haves in the Brightside Burgers brand, asks the AI Assistant in plain English; sees only Brightside Burgers data",
+  "workspace": "franconnect_brightside",
+  "client": "Brightside Burgers",
   "tier": "View + AI",
   "tierKey": "base",
   "products": [
@@ -45,7 +45,7 @@
    "Customers"
   ],
   "locations": [
-   "Homeowners Choice"
+   "Brightside Burgers"
   ],
   "permissions": [
    "VIEW",
@@ -57,10 +57,10 @@
   "userId": "arc.autonova.marketing",
   "name": "Marc Fontaine",
   "initials": "MF",
-  "role": "Head of Analytics · TypTap Insurance",
-  "tagline": "Carrier power user with ANALYZE + AI: everything Elena has, plus self-service (Analytical Designer, new dashboards, AI-built visualizations) on TypTap data only",
-  "workspace": "efdabe226f2c4456873673af50575d3b",
-  "client": "TypTap Insurance",
+  "role": "Head of Analytics · FlexFit Studios",
+  "tagline": "Franchise brand power user with ANALYZE + AI: everything Elena has, plus self-service (Analytical Designer, new dashboards, AI-built visualizations) on FlexFit Studios data only",
+  "workspace": "franconnect_flexfit",
+  "client": "FlexFit Studios",
   "tier": "Analyze + AI",
   "tierKey": "ai",
   "products": [
@@ -70,7 +70,7 @@
    "Customers"
   ],
   "locations": [
-   "TypTap Insurance"
+   "FlexFit Studios"
   ],
   "permissions": [
    "ANALYZE",

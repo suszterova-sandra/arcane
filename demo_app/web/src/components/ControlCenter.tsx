@@ -7,9 +7,9 @@ import type { OverviewWorkspace, Persona, TierKey } from "../types";
 
 /** client_id (workspace data filter value) -> name */
 const CLIENT_NAMES: Record<string, string> = {
-  merchant__bigboxretailer: "Homeowners Choice",
-  electronics: "TypTap Insurance",
-  clothing: "CORE",
+  merchant__bigboxretailer: "Big Box Retailer",
+  merchant__electronics: "Electronics",
+  merchant__clothing: "Clothing",
 };
 const clientName = (id: string) => CLIENT_NAMES[id] || id;
 
@@ -17,25 +17,25 @@ const TIERS: { key: Exclude<TierKey, "admin">; title: string; what: string; isol
   {
     key: "ai",
     title: "Analyze + AI",
-    what: "Carrier power users: Exzeo's standard dashboards in the carrier's brand, plus self-service (Analytical Designer, own dashboards, AI-built visualizations).",
-    isolation: "Workspace data filter = this carrier only",
+    what: "Franchise brand power users: FranConnect's standard dashboards in the brand's own theme, plus self-service (Analytical Designer, own dashboards, AI-built visualizations).",
+    isolation: "Workspace data filters = this brand only",
     can: "ANALYZE + AI Assistant",
   },
   {
     key: "base",
     title: "View + AI",
-    what: "Carrier business users: Exzeo's standard dashboards in the carrier's own brand; ask the AI Assistant in plain English.",
-    isolation: "Workspace data filter = this carrier only",
+    what: "Franchise brand business users: FranConnect's standard dashboards in the brand's own theme; ask the AI Assistant in plain English.",
+    isolation: "Workspace data filters = this brand only",
     can: "VIEW + AI Assistant",
   },
 ];
 
 const LAYERS: { icon: IconName; title: string; question: string; how: string; example: string }[] = [
-  { icon: "shield", title: "Carrier", question: "Whose data?", how: "Workspace data filter on the client id, one carrier workspace each", example: "Elena sees only Homeowners Choice, Marc only TypTap" },
-  { icon: "dashboard", title: "Standard + custom content", question: "Which dashboards?", how: "Standard dashboards built once in the Exzeo template and inherited; custom boards live in the carrier's own workspace", example: "CORE has its own Custom Board on top of the standard set" },
+  { icon: "shield", title: "Franchise brand", question: "Whose data?", how: "Workspace data filters (merchant + P&L category), one brand workspace each", example: "Elena sees only Brightside Burgers, Marc only FlexFit Studios" },
+  { icon: "dashboard", title: "Standard + custom content", question: "Which dashboards?", how: "Standard dashboards built once in the FranConnect template and inherited; custom boards live in the brand's own workspace", example: "Every brand gets the PoC must-have visuals and the standard set" },
   { icon: "sparkles", title: "Permissions", question: "What can they do?", how: "Workspace permissions VIEW / ANALYZE / EXPORT / AI", example: "Elena views, Marc builds his own analyses; both have AI" },
-  { icon: "tag", title: "AI memory", question: "What does 'revenue' mean?", how: "AI memory set once on the template, inherited by every carrier", example: "Revenue = Total Net Sales · Region = customer country" },
-  { icon: "lock", title: "White-label", question: "Whose brand?", how: "Theme and colour palette per carrier workspace", example: "Each carrier sees its own logo, colours and imagery" },
+  { icon: "tag", title: "AI memory", question: "What does 'revenue' mean?", how: "AI memory set once on the template, inherited by every brand", example: "Revenue = Total Net Sales · Region = customer country" },
+  { icon: "lock", title: "White-label", question: "Whose brand?", how: "Theme and colour palette per brand workspace", example: "Each brand sees its own logo, colours and imagery" },
 ];
 
 const has = (perms: string[], ...want: string[]) => perms.includes("MANAGE") || want.some((w) => perms.includes(w));
@@ -71,9 +71,9 @@ function WsCard({ w, isParent, users }: { w: OverviewWorkspace; isParent?: boole
           <code>{w.id.length > 20 ? "parent" : w.id}</code> · {w.dashboards.length} dashboards {isParent ? "authored here" : "inherited"}
         </div>
         <dl className="kv">
-          <dt>{isParent ? "Data" : clients.length > 1 ? "Carriers" : "Carrier"}</dt>
+          <dt>{isParent ? "Data" : "Data scope"}</dt>
           <dd>
-            {isParent ? <span className="tchip">All carriers, unfiltered</span> : clients.map((c) => <span key={c} className="tchip">{clientName(c)}</span>)}
+            {isParent ? <span className="tchip">All brands, unfiltered</span> : clients.map((c) => <span key={c} className="tchip">{clientName(c)}</span>)}
           </dd>
           <dt>Users</dt>
           <dd className="people">
@@ -84,7 +84,7 @@ function WsCard({ w, isParent, users }: { w: OverviewWorkspace; isParent?: boole
                 </span>
               ))
             ) : (
-              <span className="tchip">{isParent ? "Exzeo team" : "—"}</span>
+              <span className="tchip">{isParent ? "FranConnect team" : "—"}</span>
             )}
           </dd>
         </dl>
@@ -112,31 +112,31 @@ export function ControlCenter() {
     <div className="page cc">
       <section className="cc-hero">
         <div>
-          <div className="chip glass" style={{ marginBottom: 10 }}>Exzeo · admin view</div>
-          <h1>One template, every carrier</h1>
+          <div className="chip glass" style={{ marginBottom: 10 }}>FranConnect · admin view</div>
+          <h1>One template, every franchise brand</h1>
           <p>
-            One shared data model, the standard dashboards, the AI Publisher report and the AI memory are built once in the Exzeo template and inherited
-            by every carrier workspace. Each carrier gets its own brand and can add custom dashboards; data filters and permissions decide what each user
+            One shared data model, the standard dashboards, the AI Publisher report and the AI memory are built once in the FranConnect template and inherited
+            by every brand workspace. Each franchise brand gets its own theme and can add custom dashboards; data filters and permissions decide what each user
             sees.
           </p>
         </div>
         <div className="stats">
           <div className="stat"><b>{parent?.dashboards.length ?? 0}</b><span>standard dashboards</span></div>
-          <div className="stat"><b>{children.length}</b><span>carrier workspaces</span></div>
+          <div className="stat"><b>{children.length}</b><span>brand workspaces</span></div>
           <div className="stat"><b>{Object.keys(o.themes).length}</b><span>white-label themes</span></div>
           <div className="stat"><b>{users.length}</b><span>demo users</span></div>
         </div>
       </section>
 
       <div className="section-title">
-        <h2>1 · Carrier workspaces by access</h2>
+        <h2>1 · Brand workspaces by access</h2>
         <span className="muted small">Click a workspace to open it as admin. Switch user at the top to see it as that user.</span>
       </div>
       <div className="cc-template">
         {parent && <WsCard w={parent} isParent users={team} />}
         <div className="cc-template-note">
           <b>Template (parent workspace)</b>
-          <p>Shared data model, metrics, standard dashboards, the AI Publisher report and AI memory. Exzeo team only; no carrier data filter, all carriers side by side.</p>
+          <p>Shared data model, metrics, standard dashboards, the AI Publisher report and AI memory. FranConnect team only; no brand data filter, all brands side by side.</p>
         </div>
       </div>
       <div className="cc-lanes">
@@ -166,7 +166,7 @@ export function ControlCenter() {
           <div className="cc-lane analytics">
             <div className="cc-lane-h">
               <span className="tier-badge analytics">Standard + custom</span>
-              <p>Carriers without a demo user: the standard set plus their own custom dashboards. Open as admin to show them.</p>
+              <p>Brands without a demo user: the standard set plus their own custom dashboards. Open as admin to show them.</p>
             </div>
             {unused.map((w) => (
               <WsCard key={w.id} w={w} users={[]} />
@@ -202,7 +202,7 @@ export function ControlCenter() {
             <tr>
               <th>User</th>
               <th>Workspace</th>
-              <th>Carrier data</th>
+              <th>Brand data</th>
               <th>Standard dashboards</th>
               <th className="c">Build own</th>
               <th className="c">AI</th>
@@ -231,7 +231,7 @@ export function ControlCenter() {
                   </td>
                   <td>
                     <b>{p.client}</b>
-                    <small className="cc-sub">{internal ? "all carriers (template)" : "own carrier workspace only"}</small>
+                    <small className="cc-sub">{internal ? "all brands (template)" : "own brand workspace only"}</small>
                   </td>
                   <td>
                     <div className="cc-products">
@@ -261,7 +261,7 @@ export function ControlCenter() {
 
       <div className="section-title">
         <h2>4 · AI agents</h2>
-        <span className="muted small">Configured once in AI Hub and assigned to user groups: every carrier user in the group (and the Exzeo team) can use them.</span>
+        <span className="muted small">Configured once in AI Hub and assigned to user groups: every brand user in the group (and the FranConnect team) can use them.</span>
       </div>
       <div className="card">
         <table className="matrix">

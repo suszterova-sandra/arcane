@@ -181,7 +181,7 @@ function Report({ ws }: { ws: string }) {
   // PDF export needs the EXPORT workspace permission; VIEW / ANALYZE (+ AI) users read the report in the app
   const perms = usePermissions(persona.id, ws);
   const canExport = !!perms && (perms.includes("EXPORT") || perms.includes("MANAGE"));
-  // one Publisher report per report id (Exzeo: one report covers all standard dashboards)
+  // one Publisher report per report id (FranConnect: one report covers all standard dashboards)
   const products = productsOf(persona.products).filter((p, i, all) => all.findIndex((x) => x.report === p.report) === i);
   const [reportId, setReportId] = useState(() => reportOf(persona.products, overview.reportId));
 
@@ -224,7 +224,7 @@ function Report({ ws }: { ws: string }) {
           ) : (
             <b>Business Performance report</b>
           )}{" "}
-          <span className="muted small">· authored once in the Exzeo template, rendered in each carrier's brand, computed on {persona.name}'s data only</span>
+          <span className="muted small">· authored once in the FranConnect template, rendered in each brand's theme, computed on {persona.name}'s data only</span>
         </div>
         {canExport && <button className="btn primary" onClick={exportPdf} disabled={busy}>
           {busy ? (
@@ -278,7 +278,7 @@ function Analyze({ ws, canAnalyze }: { ws: string; canAnalyze: boolean }) {
     <>
       <div className="row" style={{ marginBottom: 12 }}>
         <div className="grow">
-          <b>Analytical Designer</b> <span className="muted small">· drag metrics and attributes from the governed model; results are filtered to this carrier automatically</span>
+          <b>Analytical Designer</b> <span className="muted small">· drag metrics and attributes from the governed model; results are filtered to this franchise brand automatically</span>
         </div>
         <a className="btn ghost" target="_blank" rel="noreferrer" href={urls.app(ws, "analyze/#/reportId/edit")}>
           {t("openInGoodData")} <Icon name="external" size={14} />

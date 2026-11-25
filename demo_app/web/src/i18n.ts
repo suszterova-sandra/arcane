@@ -47,7 +47,7 @@ const D = {
   category: ["Category", "Kategorie", "Catégorie"],
   country: ["Country", "Land", "Pays"],
   aiLockedTitle: ["AI is not enabled for this user", "KI ist für diesen Benutzer nicht aktiviert", "L'IA n'est pas activée pour cet utilisateur"],
-  aiLockedText: ["{u} has no AI Assistant permission in this workspace. Exzeo can enable it per user.", "{u} hat in diesem Arbeitsbereich keine KI-Assistent-Berechtigung. Exzeo kann sie pro Benutzer aktivieren.", "{u} n'a pas le droit Assistant IA dans cet espace. Exzeo peut l'activer par utilisateur."],
+  aiLockedText: ["{u} has no AI Assistant permission in this workspace. FranConnect can enable it per user.", "{u} hat in diesem Arbeitsbereich keine KI-Assistent-Berechtigung. FranConnect kann sie pro Benutzer aktivieren.", "{u} n'a pas le droit Assistant IA dans cet espace. FranConnect peut l'activer par utilisateur."],
   shared: ["Shared", "Geteilt", "Partagés"],
   private: ["Private", "Privat", "Privés"],
   newDashboard: ["New dashboard", "Neues Dashboard", "Nouveau tableau de bord"],

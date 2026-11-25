@@ -1,5 +1,5 @@
 /**
- * Exzeo's standard content as the app uses it: the dashboards every carrier inherits from the Exzeo template,
+ * FranConnect's standard content as the app uses it: the dashboards every franchise brand inherits from the FranConnect template,
  * their headline KPIs and the visualizations a number opens (analytics/dashboards, analytics/visualisations).
  * One AI Publisher report (business_performance_report) covers all of them.
  */

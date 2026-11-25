@@ -1,11 +1,11 @@
 """Copy the persona API tokens into demo_app/.tokens.json and write web/src/personas.json, the persona list the
-static GitHub Pages build uses (same shape as server.py's PERSONAS, from ../exzeo/personas.csv).
+static GitHub Pages build uses (same shape as server.py's PERSONAS, from ../franconnect/personas.csv).
 
     python3 demo_app/setup_tokens.py
 
-The Exzeo personas are two existing demo users moved from Arcane (arc.routeo.marketing, arc.autonova.marketing);
-their tokens come from ../tenancy/.tokens.json. Each has access to one Exzeo carrier workspace only; none is an
-organization admin. The carrier tokens are committed and compiled into the static build on purpose, so visitors can switch users.
+The FranConnect personas are two existing demo users (moved from Arcane to Exzeo, then to FranConnect) (arc.routeo.marketing, arc.autonova.marketing);
+their tokens come from ../tenancy/.tokens.json. Each has access to one FranConnect brand workspace only; none is an
+organization admin. The brand-user tokens are committed and compiled into the static build on purpose, so visitors can switch users.
 """
 import json
 from pathlib import Path

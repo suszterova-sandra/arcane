@@ -1,11 +1,11 @@
-"""Exzeo demo app: localhost shell around the Exzeo workspaces (template + one workspace per carrier).
+"""FranConnect demo app: localhost shell around the FranConnect workspaces (template + one workspace per franchise brand).
 
     python3 demo_app/server.py            # backend on :8765
     cd demo_app/web && npm run dev        # React UI on http://localhost:5173 (proxies /gd and /app here)
 
 - /gd/<path>        proxy to GoodData, authenticated as the persona in the X-Persona header,
                     so every list, permission check and AI chat runs with that user's own access.
-- /app/personas     who can be impersonated (../exzeo/personas.csv; API tokens in .tokens.json)
+- /app/personas     who can be impersonated (../franconnect/personas.csv; API tokens in .tokens.json)
 - /app/token        token handed to embedded iframes via the setApiToken postMessage handshake
 - /app/overview     admin-only facts for the Control Center (hierarchy, themes, WDFs, access, agents), read with the
                     organization admin token from ../.env (server side only, never sent to the browser)
@@ -31,7 +31,7 @@ ROOT = HERE.parent
 STATIC = HERE / "web" / "dist"  # React build (npm run build); in dev, Vite serves the UI on :5173
 HOST = "sandrasuszterova.demo.cloud.gooddata.com"
 PORT = int(sys.argv[1]) if len(sys.argv) > 1 else 8765
-PARENT_WS = "e74a1eaa18f74706b94e39f91552efe7"  # Exzeo Carrier Analytics (template)
+PARENT_WS = "ecommerce-parent"  # FranConnect Analytics (template)
 REPORT_ID = "business_performance_report"  # AI Publisher report, authored once in the template
 
 
@@ -45,9 +45,9 @@ def _env():
 
 
 ADMIN_TOKEN = _env()["GOODDATA_API_TOKEN"]  # organization admin: only for the Control Center overview, server side
-# the standard dashboards every carrier inherits from the Exzeo template, in home-page order (web/src/products.ts)
+# the standard dashboards every franchise brand inherits from the FranConnect template, in home-page order (web/src/products.ts)
 PRODUCTS = ["Business Overview", "Sales", "Products", "Customers"]
-CLIENTS = {"hcpci": "Homeowners Choice", "typtap": "TypTap Insurance"}
+CLIENTS = {"brightside": "Brightside Burgers", "flexfit": "FlexFit Studios"}
 TIER = {"VIEW": ("View + AI", "base"), "ANALYZE": ("Analyze + AI", "ai")}
 
 
@@ -58,16 +58,16 @@ def _csv(path):
 
 def _personas():
     out = []
-    for r in _csv(ROOT / "exzeo" / "personas.csv"):
+    for r in _csv(ROOT / "franconnect" / "personas.csv"):
         perms = r["workspace_permissions"].split("|")
-        admin = r["client_id"] == "ALL"  # the Exzeo admin: parent workspace, all carriers (the app's "admin" persona)
-        tier, key = ("Exzeo team", "admin") if admin else TIER["ANALYZE" if "ANALYZE" in perms else "VIEW"]
-        client = "Exzeo" if admin else CLIENTS[r["client_id"]]
+        admin = r["client_id"] == "ALL"  # the FranConnect admin: parent workspace, all brands (the app's "admin" persona)
+        tier, key = ("FranConnect team", "admin") if admin else TIER["ANALYZE" if "ANALYZE" in perms else "VIEW"]
+        client = "FranConnect" if admin else CLIENTS[r["client_id"]]
         out.append({
             "id": "admin" if admin else r["user_id"], "userId": r["user_id"],
             "name": f'{r["first_name"]} {r["last_name"]}', "initials": (r["first_name"][:1] + r["last_name"][:1]).upper(),
             "role": f'{r["role"]} · {client}', "tagline": r["story"], "workspace": r["workspace_id"], "client": client,
-            "tier": tier, "tierKey": key, "products": PRODUCTS, "locations": ["All carriers"] if admin else [client], "permissions": perms,
+            "tier": tier, "tierKey": key, "products": PRODUCTS, "locations": ["All brands"] if admin else [client], "permissions": perms,
         })
     return out
 
@@ -77,7 +77,7 @@ PERSONAS = _personas()
 
 def token_for(persona):
     p = next((p for p in PERSONAS if p["id"] == persona), None)
-    # carrier users: demo_app/.tokens.json (public build); the admin: ../tenancy/.tokens.json (gitignored, local only)
+    # brand users: demo_app/.tokens.json (public build); the admin: ../tenancy/.tokens.json (gitignored, local only)
     for f in (HERE / ".tokens.json", ROOT / "tenancy" / ".tokens.json"):
         if p and f.exists() and json.loads(f.read_text()).get(p["userId"]):
             return json.loads(f.read_text())[p["userId"]]
@@ -96,7 +96,7 @@ TTL = 300  # seconds before the overview is refreshed in the background
 
 
 def _build_overview():
-    """Admin view of the Exzeo tree. All GoodData calls run in parallel."""
+    """Admin view of the FranConnect tree. All GoodData calls run in parallel."""
     with ThreadPoolExecutor(12) as ex:
         f_ws = ex.submit(gd, "/api/v1/entities/workspaces?include=parent&size=500")
         f_wdf = ex.submit(gd, "/api/v1/layout/workspaceDataFilters")
@@ -148,7 +148,7 @@ def _build_overview():
                            "skills": at.get("customSkills") if at.get("skillsMode") == "custom" else ["all skills"],
                            "availableToAll": at.get("availableToAll"),
                            "groups": [g["id"] for g in a.get("relationships", {}).get("userGroups", {}).get("data", [])],
-                           "conference": a["id"].startswith("exzeo-")})
+                           "conference": a["id"].startswith("franconnect-")})
 
     return {"host": f"https://{HOST}", "parent": PARENT_WS, "reportId": REPORT_ID, "workspaces": details,
             "themes": themes, "wdfs": wdfs, "groups": groups, "members": members, "agents": agents}
@@ -281,7 +281,7 @@ class Handler(BaseHTTPRequestHandler):
 if __name__ == "__main__":
     srv = ThreadingHTTPServer(("127.0.0.1", PORT), Handler)
     srv.daemon_threads = True
-    print(f"Exzeo demo backend → http://127.0.0.1:{PORT}  (UI: cd demo_app/web && npm run dev → http://localhost:5173)")
+    print(f"FranConnect demo backend → http://127.0.0.1:{PORT}  (UI: cd demo_app/web && npm run dev → http://localhost:5173)")
     missing = [p["name"] for p in PERSONAS if not token_for(p["id"])]
     if missing:
         print(f"  ! no API token yet for: {', '.join(missing)} → run: python3 demo_app/setup_tokens.py")
