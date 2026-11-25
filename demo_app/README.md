@@ -2,7 +2,7 @@
 
 React (Vite + TypeScript) portal around the **FranConnect** workspaces on `sandrasuszterova.demo.cloud.gooddata.com`:
 the FranConnect template workspace (`ecommerce-parent`, "FranConnect Analytics (template)") and one white-labelled
-workspace per franchise brand (Brightside Burgers, FlexFit Studios, SparkClean Home Services). Switch between demo
+workspace per franchise brand (Arby's, Paris Baguette, Floor Coverings International: FranConnect case-study customers). Switch between demo
 users in one click. Every number, dashboard and AI answer comes back with that user's own GoodData permissions and
 data filters. Workspaces, themes and analytics come from `../../FranConnect` (setup.py, gd deploy); this portal was
 the Exzeo portal before (Exzeo set-up still in `../exzeo/`).
@@ -13,8 +13,8 @@ the Exzeo portal before (Exzeo set-up still in `../exzeo/`).
 
 | User | Brand workspace | Access | What to show |
 |---|---|---|---|
-| Elena Ruiz (`arc.routeo.marketing`) | Brightside Burgers (`franconnect_brightside`) | VIEW + USE_AI_ASSISTANT | Standard dashboards + PoC must-haves in the brand's theme, AI briefing, AI Assistant; no authoring |
-| Marc Fontaine (`arc.autonova.marketing`) | FlexFit Studios (`franconnect_flexfit`) | ANALYZE + USE_AI_ASSISTANT | Everything Elena has + Analyze, New dashboard, AI-built visualizations |
+| Elena Ruiz (`arc.routeo.marketing`) | Arby's (`franconnect_brightside`) | VIEW + USE_AI_ASSISTANT | Standard dashboards + PoC must-haves in the brand's theme, AI briefing, AI Assistant; no authoring |
+| Marc Fontaine (`arc.autonova.marketing`) | Paris Baguette (`franconnect_flexfit`) | ANALYZE + USE_AI_ASSISTANT | Everything Elena has + Analyze, New dashboard, AI-built visualizations |
 | Admin | FranConnect template (`ecommerce-parent`) | GoodData sign-in on Pages; `arc.admin` locally | Control Center: template, brand workspaces, data filters, access |
 
 Both users are existing demo users moved from the Exzeo carriers (no new users: the org is at its user limit). Each

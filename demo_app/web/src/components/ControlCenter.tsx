@@ -31,7 +31,7 @@ const TIERS: { key: Exclude<TierKey, "admin">; title: string; what: string; isol
 ];
 
 const LAYERS: { icon: IconName; title: string; question: string; how: string; example: string }[] = [
-  { icon: "shield", title: "Franchise brand", question: "Whose data?", how: "Workspace data filters (merchant + P&L category), one brand workspace each", example: "Elena sees only Brightside Burgers, Marc only FlexFit Studios" },
+  { icon: "shield", title: "Franchise brand", question: "Whose data?", how: "Workspace data filters (merchant + P&L category), one brand workspace each", example: "Elena sees only Arby's, Marc only Paris Baguette" },
   { icon: "dashboard", title: "Standard + custom content", question: "Which dashboards?", how: "Standard dashboards built once in the FranConnect template and inherited; custom boards live in the brand's own workspace", example: "Every brand gets the PoC must-have visuals and the standard set" },
   { icon: "sparkles", title: "Permissions", question: "What can they do?", how: "Workspace permissions VIEW / ANALYZE / EXPORT / AI", example: "Elena views, Marc builds his own analyses; both have AI" },
   { icon: "tag", title: "AI memory", question: "What does 'revenue' mean?", how: "AI memory set once on the template, inherited by every brand", example: "Revenue = Total Net Sales · Region = customer country" },

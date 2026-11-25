@@ -47,7 +47,7 @@ def _env():
 ADMIN_TOKEN = _env()["GOODDATA_API_TOKEN"]  # organization admin: only for the Control Center overview, server side
 # the standard dashboards every franchise brand inherits from the FranConnect template, in home-page order (web/src/products.ts)
 PRODUCTS = ["Business Overview", "Sales", "Products", "Customers"]
-CLIENTS = {"brightside": "Brightside Burgers", "flexfit": "FlexFit Studios"}
+CLIENTS = {"arbys": "Arby's", "parisbaguette": "Paris Baguette"}
 TIER = {"VIEW": ("View + AI", "base"), "ANALYZE": ("Analyze + AI", "ai")}
 
 

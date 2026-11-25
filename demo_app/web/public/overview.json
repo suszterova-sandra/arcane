@@ -115,7 +115,7 @@
   },
   {
    "id": "franconnect_brightside",
-   "name": "Brightside Burgers",
+   "name": "Arby's",
    "isParent": false,
    "themeId": "franconnect_brightside",
    "permissions": [
@@ -168,7 +168,7 @@
   },
   {
    "id": "franconnect_flexfit",
-   "name": "FlexFit Studios",
+   "name": "Paris Baguette",
    "isParent": false,
    "themeId": "franconnect_flexfit",
    "permissions": [
@@ -221,7 +221,7 @@
   },
   {
    "id": "franconnect_sparkclean",
-   "name": "SparkClean Home Services",
+   "name": "Floor Coverings International",
    "isParent": false,
    "themeId": "franconnect_sparkclean",
    "permissions": [],
@@ -259,12 +259,51 @@
   }
  ],
  "themes": {
+  "franconnect_flexfit": {
+   "id": "franconnect_flexfit",
+   "name": "Paris Baguette (FranConnect)",
+   "palette": {
+    "primary": {
+     "base": "#001871",
+     "contrast": "#FFFFFF"
+    },
+    "error": {
+     "base": "#D1435B"
+    },
+    "warning": {
+     "base": "#FBBF24"
+    },
+    "success": {
+     "base": "#2F9E7A"
+    },
+    "complementary": {
+     "c0": "#FFFFFF",
+     "c1": "#FFFAF3",
+     "c2": "#F3EEE4",
+     "c3": "#E6DFD2",
+     "c4": "#CFC6B5",
+     "c5": "#9C9584",
+     "c6": "#6E7391",
+     "c7": "#3C4370",
+     "c8": "#0E1144",
+     "c9": "#0E1144"
+    }
+   },
+   "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Paris_Baguette_logo.svg/960px-Paris_Baguette_logo.svg.png",
+   "cover": "https://parisbaguette.com/wp-content/uploads/2025/01/2024_0910_ParisBaguette_DW9_6560-1536x1024.jpg",
+   "accent": "#FFC600",
+   "header": {
+    "backgroundColor": "#001871",
+    "color": "#FFFFFF",
+    "activeColor": "#FFC600"
+   }
+  },
   "franconnect": {
    "id": "franconnect",
    "name": "FranConnect (FranConnect)",
    "palette": {
     "primary": {
-     "base": "#1F6FB5",
+     "base": "#004191",
      "contrast": "#FFFFFF"
     },
     "error": {
@@ -278,32 +317,32 @@
     },
     "complementary": {
      "c0": "#FFFFFF",
-     "c1": "#F3F6FA",
-     "c2": "#F3F6FA",
-     "c3": "#DCE3EC",
-     "c4": "#DCE3EC",
-     "c5": "#9A98A8",
-     "c6": "#6E6C80",
-     "c7": "#4F4D63",
-     "c8": "#14294B",
-     "c9": "#0E1B30"
+     "c1": "#F4F7FB",
+     "c2": "#E1E8F0",
+     "c3": "#DBE4EE",
+     "c4": "#CBD7E4",
+     "c5": "#8FA3BC",
+     "c6": "#5E7491",
+     "c7": "#3B4F6B",
+     "c8": "#10213A",
+     "c9": "#00152F"
     }
    },
-   "logo": "https://suszterova-sandra.github.io/arcane/logos/franconnect_mark.svg",
-   "cover": "https://placehold.co/1920x1080/14294B/14294B/png",
-   "accent": "#F28C28",
+   "logo": "https://www.franconnect.com/wp-content/uploads/2020/02/FranConnect-Logo-PRIMARY-Color-Small.png",
+   "cover": "https://www.franconnect.com/wp-content/uploads/2024/01/shutterstock_2168498267-scaled.jpg",
+   "accent": "#F58220",
    "header": {
-    "backgroundColor": "#14294B",
+    "backgroundColor": "#004191",
     "color": "#FFFFFF",
-    "activeColor": "#F28C28"
+    "activeColor": "#F58220"
    }
   },
   "franconnect_brightside": {
    "id": "franconnect_brightside",
-   "name": "Brightside Burgers (FranConnect)",
+   "name": "Arby's (FranConnect)",
    "palette": {
     "primary": {
-     "base": "#D9480F",
+     "base": "#DC0032",
      "contrast": "#FFFFFF"
     },
     "error": {
@@ -317,71 +356,32 @@
     },
     "complementary": {
      "c0": "#FFFFFF",
-     "c1": "#FFF7F0",
-     "c2": "#FFF7F0",
-     "c3": "#F1DED2",
-     "c4": "#F1DED2",
-     "c5": "#9A98A8",
-     "c6": "#6E6C80",
-     "c7": "#4F4D63",
-     "c8": "#5C1F0B",
-     "c9": "#10202B"
+     "c1": "#FFFBF5",
+     "c2": "#FCF2F2",
+     "c3": "#EFE3E3",
+     "c4": "#D9C7C7",
+     "c5": "#A39494",
+     "c6": "#737373",
+     "c7": "#4A4040",
+     "c8": "#2B2222",
+     "c9": "#000000"
     }
    },
-   "logo": "https://suszterova-sandra.github.io/arcane/logos/brightside_mark.svg",
-   "cover": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Cheeseburger.jpg/1920px-Cheeseburger.jpg",
-   "accent": "#D9480F",
+   "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Arby%27s_logo.svg/960px-Arby%27s_logo.svg.png",
+   "cover": "https://images.ctfassets.net/30q5w5l98nbx/3iGaTQDizG4yk5VfEteTjL/8703abaac9a58eb846426821b760d4d2/Website_App_Favorites_2025.jpg",
+   "accent": "#DC0032",
    "header": {
     "backgroundColor": "#FFFFFF",
-    "color": "#5C1F0B",
-    "activeColor": "#D9480F"
-   }
-  },
-  "franconnect_flexfit": {
-   "id": "franconnect_flexfit",
-   "name": "FlexFit Studios (FranConnect)",
-   "palette": {
-    "primary": {
-     "base": "#6A3FD1",
-     "contrast": "#FFFFFF"
-    },
-    "error": {
-     "base": "#D1435B"
-    },
-    "warning": {
-     "base": "#FBBF24"
-    },
-    "success": {
-     "base": "#2F9E7A"
-    },
-    "complementary": {
-     "c0": "#FFFFFF",
-     "c1": "#F6F3FD",
-     "c2": "#F6F3FD",
-     "c3": "#E2DAF5",
-     "c4": "#E2DAF5",
-     "c5": "#9A98A8",
-     "c6": "#6E6C80",
-     "c7": "#4F4D63",
-     "c8": "#24124F",
-     "c9": "#10202B"
-    }
-   },
-   "logo": "https://suszterova-sandra.github.io/arcane/logos/flexfit_mark.svg",
-   "cover": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/GymNation_gym_interior_2024.jpg/1920px-GymNation_gym_interior_2024.jpg",
-   "accent": "#6A3FD1",
-   "header": {
-    "backgroundColor": "#FFFFFF",
-    "color": "#24124F",
-    "activeColor": "#6A3FD1"
+    "color": "#000000",
+    "activeColor": "#DC0032"
    }
   },
   "franconnect_sparkclean": {
    "id": "franconnect_sparkclean",
-   "name": "SparkClean Home Services (FranConnect)",
+   "name": "Floor Coverings International (FranConnect)",
    "palette": {
     "primary": {
-     "base": "#0F8B6F",
+     "base": "#1C294A",
      "contrast": "#FFFFFF"
     },
     "error": {
@@ -395,24 +395,24 @@
     },
     "complementary": {
      "c0": "#FFFFFF",
-     "c1": "#F1F8F6",
-     "c2": "#F1F8F6",
-     "c3": "#D5E8E3",
-     "c4": "#D5E8E3",
-     "c5": "#9A98A8",
-     "c6": "#6E6C80",
-     "c7": "#4F4D63",
-     "c8": "#0B3B35",
-     "c9": "#10202B"
+     "c1": "#FAF9F9",
+     "c2": "#F2EFEC",
+     "c3": "#E0E0E0",
+     "c4": "#C9CCD3",
+     "c5": "#9097A6",
+     "c6": "#6A7286",
+     "c7": "#35495E",
+     "c8": "#1C294A",
+     "c9": "#292929"
     }
    },
-   "logo": "https://suszterova-sandra.github.io/arcane/logos/sparkclean_mark.svg",
-   "cover": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Living_room_in_apartment_of_Condom%C3%ADnio_do_Edif%C3%ADcio_Zaher%2C_Le_Blond%2C_Rio_de_Janeiro%2C_Brazil.jpg/1920px-Living_room_in_apartment_of_Condom%C3%ADnio_do_Edif%C3%ADcio_Zaher%2C_Le_Blond%2C_Rio_de_Janeiro%2C_Brazil.jpg",
-   "accent": "#0F8B6F",
+   "logo": "https://chambermaster.blob.core.windows.net/images/customers/527/members/6857/logos/MEMBER_PAGE_HEADER/(Floor_Coverings_Intl_official_Logo_transparent_Back)_FCI_LOGO_RGB_clear_back_1637174394.png",
+   "cover": "https://floorcoveringsinternational.com/img/upload/ikjbq92roxtczfnu.webp",
+   "accent": "#80D14A",
    "header": {
-    "backgroundColor": "#FFFFFF",
-    "color": "#0B3B35",
-    "activeColor": "#0F8B6F"
+    "backgroundColor": "#1C294A",
+    "color": "#FFFFFF",
+    "activeColor": "#80D14A"
    }
   }
  },

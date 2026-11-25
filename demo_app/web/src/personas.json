@@ -32,10 +32,10 @@
   "userId": "arc.routeo.marketing",
   "name": "Elena Ruiz",
   "initials": "ER",
-  "role": "Franchise Operations Manager · Brightside Burgers",
-  "tagline": "Franchise brand user with VIEW + AI: FranConnect's standard dashboards and the PoC must-haves in the Brightside Burgers brand, asks the AI Assistant in plain English; sees only Brightside Burgers data",
+  "role": "Franchise Operations Manager · Arby's",
+  "tagline": "Franchise brand user with VIEW + AI: FranConnect's standard dashboards and the PoC must-haves in the Arby's brand, asks the AI Assistant in plain English; sees only Arby's data",
   "workspace": "franconnect_brightside",
-  "client": "Brightside Burgers",
+  "client": "Arby's",
   "tier": "View + AI",
   "tierKey": "base",
   "products": [
@@ -45,7 +45,7 @@
    "Customers"
   ],
   "locations": [
-   "Brightside Burgers"
+   "Arby's"
   ],
   "permissions": [
    "VIEW",
@@ -57,10 +57,10 @@
   "userId": "arc.autonova.marketing",
   "name": "Marc Fontaine",
   "initials": "MF",
-  "role": "Head of Analytics · FlexFit Studios",
-  "tagline": "Franchise brand power user with ANALYZE + AI: everything Elena has, plus self-service (Analytical Designer, new dashboards, AI-built visualizations) on FlexFit Studios data only",
+  "role": "Head of Analytics · Paris Baguette",
+  "tagline": "Franchise brand power user with ANALYZE + AI: everything Elena has, plus self-service (Analytical Designer, new dashboards, AI-built visualizations) on Paris Baguette data only",
   "workspace": "franconnect_flexfit",
-  "client": "FlexFit Studios",
+  "client": "Paris Baguette",
   "tier": "Analyze + AI",
   "tierKey": "ai",
   "products": [
@@ -70,7 +70,7 @@
    "Customers"
   ],
   "locations": [
-   "FlexFit Studios"
+   "Paris Baguette"
   ],
   "permissions": [
    "ANALYZE",
