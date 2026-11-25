@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { gd, urls } from "../api";
+import { gd, GdError, urls } from "../api";
 import { useApp } from "../AppContext";
 import { languageName, type Key, type Lang } from "../i18n";
 import { change, fmt, fmtDelta, loadInsights, type Driver, type Insights, type Kpi, type Target } from "../insights";
@@ -23,10 +23,27 @@ const briefings = new Map<string, Promise<{ text: string; meta: string }>>();
 function briefingFor(persona: PersonaId, ws: string, lang: Lang, dashboard: { id: string; title: string }) {
   const key = `${persona}|${ws}|${lang}|${dashboard.id}`;
   if (!briefings.has(key)) {
-    const p = gd(persona, `/api/v1/ai/workspaces/${ws}/summary`, {
-      method: "POST",
-      body: JSON.stringify({ dashboardId: dashboard.id, formatHint: lang === "en" ? undefined : `Write the whole answer in ${languageName(lang)}.` }),
-    }).then((r) => ({ text: r.summary as string, meta: `${r.visualizationsIncluded?.length || 0} visualizations · ${dashboard.title}` }));
+    const ask = () =>
+      gd(persona, `/api/v1/ai/workspaces/${ws}/summary`, {
+        method: "POST",
+        body: JSON.stringify({ dashboardId: dashboard.id, formatHint: lang === "en" ? undefined : `Write the whole answer in ${languageName(lang)}.` }),
+      });
+    // the AI summary endpoint is rate limited and the LLM call can fail transiently: retry twice with a pause
+    const withRetry = async () => {
+      for (let i = 0; ; i++) {
+        try {
+          return await ask();
+        } catch (e: any) {
+          const retryable = !(e instanceof GdError) || e.status === 429 || e.status >= 500;
+          if (i >= 2 || !retryable) throw e;
+          await new Promise((r) => setTimeout(r, 4000 * (i + 1)));
+        }
+      }
+    };
+    const p = withRetry().then((r) => {
+      if (!r?.summary) throw new Error("empty summary");
+      return { text: r.summary as string, meta: `${r.visualizationsIncluded?.length || 0} visualizations · ${dashboard.title}` };
+    });
     p.catch(() => briefings.delete(key));
     briefings.set(key, p);
   }
@@ -47,7 +64,8 @@ export function Portal({ fixedWs }: { fixedWs?: string }) {
   const [insights, setInsights] = useState<Insights | null>(null);
   const [insightsError, setInsightsError] = useState<string | null>(null);
   const [briefing, setBriefing] = useState<{ text: string; meta: string } | null>(null);
-  const [briefingError, setBriefingError] = useState(false);
+  const [briefingError, setBriefingError] = useState<string | null>(null);
+  const [briefingTry, setBriefingTry] = useState(0);
   const [briefOpen, setBriefOpen] = useState(false);
   const perms = usePermissions(persona.id, ws?.id);
   const aiAllowed = canUseAi(perms);
@@ -72,15 +90,15 @@ export function Portal({ fixedWs }: { fixedWs?: string }) {
     if (!ws || !aiAllowed) return;
     let live = true;
     setBriefing(null);
-    setBriefingError(false);
+    setBriefingError(null);
     briefingFor(persona.id, ws.id, lang, mainDash)
       .then((r) => live && setBriefing(r))
-      .catch(() => live && setBriefingError(true));
+      .catch((e) => live && setBriefingError(e instanceof GdError && e.status === 429 ? "GoodData AI is busy (rate limit)" : String(e?.message || e).slice(0, 120)));
     return () => {
       live = false;
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [persona.id, ws?.id, lang, mainDash.id, aiAllowed]);
+  }, [persona.id, ws?.id, lang, mainDash.id, aiAllowed, briefingTry]);
 
   if (!ws) return null;
 
@@ -198,7 +216,12 @@ export function Portal({ fixedWs }: { fixedWs?: string }) {
             {briefing ? (
               <div dangerouslySetInnerHTML={{ __html: markdown(briefing.text) }} />
             ) : briefingError ? (
-              <div className="muted">—</div>
+              <div className="muted small">
+                The AI briefing could not be generated: {briefingError}.{" "}
+                <button className="btn ghost sm" onClick={() => setBriefingTry((n) => n + 1)}>
+                  Retry
+                </button>
+              </div>
             ) : (
               <>
                 <span className="thinking">
